@@ -82,7 +82,7 @@ const PackagesSection = () => {
               key={pkg.name}
               className={`relative rounded-2xl p-5 sm:p-6 lg:p-8 transition-all duration-300 flex flex-col ${
                 pkg.highlighted 
-                  ? "bg-primary text-primary-foreground shadow-xl sm:scale-[1.02] lg:scale-105 z-10 order-first sm:order-none" 
+                  ? "bg-primary text-primary-foreground shadow-xl lg:scale-105 z-10" 
                   : "bg-card border border-border hover:shadow-lg"
               }`}
             >
