@@ -1,24 +1,90 @@
-import { Volume2, Play, Pause } from "lucide-react";
-import { useState, useRef } from "react";
+import { Volume2, Play, Pause, Square } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 const AudioDemoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+  const demoText = `Willkommen bei aireichbar. Ich bin der digitale Empfang und kümmere mich um Ihr Anliegen, ganz in Ruhe. 
+  Wie kann ich Ihnen heute helfen? Sie können mir Fragen zu unseren Öffnungszeiten, Leistungen oder Preisen stellen. 
+  Oder ich kann einen Rückruf für Sie vereinbaren.`;
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const availableVoices = speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
+
+    loadVoices();
+    speechSynthesis.onvoiceschanged = loadVoices;
+
+    return () => {
+      speechSynthesis.cancel();
+    };
+  }, []);
+
+  const getGermanFemaleVoice = () => {
+    // Prioritize natural German female voices
+    const preferredVoices = [
+      "Google Deutsch",
+      "Anna",
+      "Helena",
+      "Petra",
+      "Microsoft Katja",
+      "Vicki"
+    ];
+
+    for (const preferred of preferredVoices) {
+      const voice = voices.find(
+        v => v.name.includes(preferred) && v.lang.startsWith("de")
+      );
+      if (voice) return voice;
     }
+
+    // Fallback to any German female voice
+    const germanVoice = voices.find(v => v.lang.startsWith("de"));
+    return germanVoice || voices[0];
   };
 
-  const handleEnded = () => {
-    setIsPlaying(false);
+  const togglePlay = () => {
+    if (isSpeaking) {
+      speechSynthesis.cancel();
+      setIsSpeaking(false);
+      setIsPlaying(false);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(demoText);
+    const voice = getGermanFemaleVoice();
+    
+    if (voice) {
+      utterance.voice = voice;
+    }
+    
+    utterance.lang = "de-DE";
+    utterance.rate = 0.9; // Slightly slower for natural feel
+    utterance.pitch = 1.1; // Slightly higher for friendly tone
+    
+    utterance.onstart = () => {
+      setIsSpeaking(true);
+      setIsPlaying(true);
+    };
+    
+    utterance.onend = () => {
+      setIsSpeaking(false);
+      setIsPlaying(false);
+    };
+    
+    utterance.onerror = () => {
+      setIsSpeaking(false);
+      setIsPlaying(false);
+    };
+
+    utteranceRef.current = utterance;
+    speechSynthesis.speak(utterance);
   };
 
   return (
@@ -47,10 +113,10 @@ const AudioDemoSection = () => {
               onClick={togglePlay}
               className="gap-3"
             >
-              {isPlaying ? (
+              {isSpeaking ? (
                 <>
-                  <Pause className="w-5 h-5" />
-                  Pause
+                  <Square className="w-5 h-5" />
+                  Stoppen
                 </>
               ) : (
                 <>
@@ -66,10 +132,10 @@ const AudioDemoSection = () => {
                 <div
                   key={i}
                   className={`w-1 rounded-full bg-primary/30 transition-all duration-300 ${
-                    isPlaying ? "animate-pulse" : ""
+                    isSpeaking ? "animate-pulse" : ""
                   }`}
                   style={{
-                    height: `${Math.random() * 24 + 8}px`,
+                    height: isSpeaking ? `${Math.random() * 24 + 8}px` : "8px",
                     animationDelay: `${i * 0.05}s`
                   }}
                 />
@@ -77,18 +143,11 @@ const AudioDemoSection = () => {
             </div>
 
             {/* Transcript */}
-            <blockquote className="text-muted-foreground italic max-w-md">
+            <blockquote className="text-muted-foreground italic max-w-md text-sm">
               „Willkommen bei aireichbar. Ich bin der digitale Empfang und kümmere mich 
               um Ihr Anliegen – ganz in Ruhe."
             </blockquote>
           </div>
-
-          {/* Hidden audio element - placeholder URL */}
-          <audio 
-            ref={audioRef} 
-            onEnded={handleEnded}
-            src="/audio/demo.mp3"
-          />
         </div>
       </div>
     </section>

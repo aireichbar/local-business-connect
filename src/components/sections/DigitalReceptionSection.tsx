@@ -1,5 +1,5 @@
 import { MessageCircle, Clock, Smile, Shield } from "lucide-react";
-import phoneImage from "@/assets/phone-mockup.png";
+import WhatsAppChat from "@/components/WhatsAppChat";
 
 const DigitalReceptionSection = () => {
   const benefits = [
@@ -64,19 +64,15 @@ const DigitalReceptionSection = () => {
             </div>
           </div>
 
-          {/* Phone mockup */}
+          {/* WhatsApp Chat Mockup */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full" />
+              <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full scale-75" />
               
-              {/* Phone */}
+              {/* WhatsApp Chat */}
               <div className="relative animate-float">
-                <img 
-                  src={phoneImage} 
-                  alt="WhatsApp Chat auf Smartphone" 
-                  className="w-72 md:w-80 drop-shadow-2xl"
-                />
+                <WhatsAppChat />
               </div>
             </div>
           </div>
