@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import Logo from "@/components/Logo";
+import logoSrc from "@/assets/logo-header.svg";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,9 +36,12 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 sm:h-20 md:h-24">
           {/* Logo – responsive width with clamp, variant based on header state */}
           <a href="/" className="flex items-center" aria-label="Zur Startseite">
-            <Logo
-              variant={isSolidHeader ? "color" : "white"}
-              className="w-[clamp(120px,12vw,150px)] h-auto transition-opacity duration-300"
+            <img
+              src={logoSrc}
+              alt="Aireichbar Logo"
+              className={`w-[clamp(120px,12vw,150px)] h-auto transition-all duration-300 ${
+                isSolidHeader ? "" : "brightness-0 invert"
+              }`}
             />
           </a>
 
