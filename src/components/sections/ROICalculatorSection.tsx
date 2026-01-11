@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Phone, Clock, Calculator, TrendingUp, CheckCircle } from "lucide-react";
+import { Phone, Clock, Calculator, TrendingUp, CheckCircle, Settings2 } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
 
 const ROICalculatorSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [callsPerDay, setCallsPerDay] = useState(20);
+  const [hourlyRate, setHourlyRate] = useState(30);
   const [animatedValues, setAnimatedValues] = useState({
     calls: 0,
     hours: 0,
@@ -11,15 +14,14 @@ const ROICalculatorSection = () => {
     savings: 0,
   });
 
-  const targetValues = {
-    calls: 20,
-    hours: 14,
-    timeValue: 560,
-    monthlyCost: 139,
-    setupCost: 699,
-  };
-
-  const calculatedSavings = targetValues.timeValue - targetValues.monthlyCost;
+  // Calculate derived values based on inputs
+  const minutesPerCall = 3; // Average minutes per call
+  const workDaysPerMonth = 22;
+  const hoursPerMonth = Math.round((callsPerDay * minutesPerCall * workDaysPerMonth) / 60);
+  const timeValue = hoursPerMonth * hourlyRate;
+  const monthlyCost = 139;
+  const setupCost = 699;
+  const calculatedSavings = Math.max(0, timeValue - monthlyCost);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,9 +54,9 @@ const ROICalculatorSection = () => {
       const eased = 1 - Math.pow(1 - progress, 3);
 
       setAnimatedValues({
-        calls: Math.round(targetValues.calls * eased),
-        hours: Math.round(targetValues.hours * eased),
-        timeValue: Math.round(targetValues.timeValue * eased),
+        calls: Math.round(callsPerDay * eased),
+        hours: Math.round(hoursPerMonth * eased),
+        timeValue: Math.round(timeValue * eased),
         savings: Math.round(calculatedSavings * eased),
       });
 
@@ -62,7 +64,19 @@ const ROICalculatorSection = () => {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [isVisible]);
+  }, [isVisible, callsPerDay, hourlyRate, hoursPerMonth, timeValue, calculatedSavings]);
+
+  // Update animated values immediately when sliders change (after initial animation)
+  useEffect(() => {
+    if (isVisible) {
+      setAnimatedValues({
+        calls: callsPerDay,
+        hours: hoursPerMonth,
+        timeValue: timeValue,
+        savings: calculatedSavings,
+      });
+    }
+  }, [callsPerDay, hourlyRate, hoursPerMonth, timeValue, calculatedSavings, isVisible]);
 
   const benefits = [
     "Weniger Leerlauf",
@@ -89,7 +103,7 @@ const ROICalculatorSection = () => {
     },
     {
       icon: Calculator,
-      label: "Zeitwert (bei 40€/h)",
+      label: `Zeitwert (bei ${hourlyRate}€/h)`,
       value: animatedValues.timeValue,
       suffix: "€",
       iconBg: "bg-success/10",
@@ -98,13 +112,19 @@ const ROICalculatorSection = () => {
     {
       icon: TrendingUp,
       label: "Kosten Digitaler Empfang",
-      value: targetValues.monthlyCost,
+      value: monthlyCost,
       suffix: "€/Monat",
       iconBg: "bg-accent/10",
       iconColor: "text-accent",
       highlight: true,
     },
   ];
+
+  // Calculate bar heights based on timeValue
+  const maxBarHeight = 80;
+  const timeValueBarHeight = maxBarHeight;
+  const costBarHeight = timeValue > 0 ? (monthlyCost / timeValue) * maxBarHeight : 0;
+  const savingsBarHeight = timeValue > 0 ? (calculatedSavings / timeValue) * maxBarHeight : 0;
 
   return (
     <section
@@ -122,15 +142,15 @@ const ROICalculatorSection = () => {
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
           <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-white/10 text-white/90 mb-4">
-            Rechenbeispiel
+            Interaktiver ROI-Rechner
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Zahlen am Beispiel eines Betriebs
+            Berechnen Sie Ihre
             <br className="hidden sm:block" />
-            <span className="text-accent"> im Kreis Borken</span>
+            <span className="text-accent"> persönliche Ersparnis</span>
           </h2>
           <p className="text-white/70 max-w-xl mx-auto text-lg">
-            So rechnet sich der digitale Empfang für Ihren Betrieb.
+            Passen Sie die Werte an Ihren Betrieb an und sehen Sie, wie sich der digitale Empfang für Sie rechnet.
           </p>
         </div>
 
@@ -141,6 +161,54 @@ const ROICalculatorSection = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
+            {/* Interactive Sliders */}
+            <div className="bg-white/5 rounded-xl p-4 md:p-6 mb-6 border border-white/10">
+              <div className="flex items-center gap-2 mb-4">
+                <Settings2 className="w-5 h-5 text-accent" />
+                <h4 className="text-white font-semibold">Ihre Werte anpassen</h4>
+              </div>
+              
+              {/* Calls per day slider */}
+              <div className="mb-6">
+                <div className="flex justify-between items-center mb-3">
+                  <label className="text-white/80 text-sm">Anrufe pro Tag</label>
+                  <span className="text-accent font-bold text-lg">{callsPerDay}</span>
+                </div>
+                <Slider
+                  value={[callsPerDay]}
+                  onValueChange={(value) => setCallsPerDay(value[0])}
+                  min={5}
+                  max={50}
+                  step={1}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-white/40 text-xs mt-1">
+                  <span>5</span>
+                  <span>50</span>
+                </div>
+              </div>
+              
+              {/* Hourly rate slider */}
+              <div>
+                <div className="flex justify-between items-center mb-3">
+                  <label className="text-white/80 text-sm">Stundensatz (€/h)</label>
+                  <span className="text-accent font-bold text-lg">{hourlyRate}€</span>
+                </div>
+                <Slider
+                  value={[hourlyRate]}
+                  onValueChange={(value) => setHourlyRate(value[0])}
+                  min={15}
+                  max={80}
+                  step={5}
+                  className="w-full"
+                />
+                <div className="flex justify-between text-white/40 text-xs mt-1">
+                  <span>15€</span>
+                  <span>80€</span>
+                </div>
+              </div>
+            </div>
+
             {/* Stats Grid */}
             <div className="space-y-4 mb-8">
               {stats.map((stat, index) => (
@@ -208,9 +276,9 @@ const ROICalculatorSection = () => {
                     {animatedValues.timeValue}€
                   </span>
                   <div
-                    className="w-10 sm:w-14 md:w-20 bg-white/30 rounded-t-lg transition-all duration-1000"
+                    className="w-10 sm:w-14 md:w-20 bg-white/30 rounded-t-lg transition-all duration-500"
                     style={{
-                      height: isVisible ? "80px" : "0px",
+                      height: isVisible ? `${timeValueBarHeight}px` : "0px",
                     }}
                   />
                   <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Zeitwert</span>
@@ -222,12 +290,12 @@ const ROICalculatorSection = () => {
                 {/* Kosten Bar */}
                 <div className="flex flex-col items-center">
                   <span className="text-accent font-bold text-sm sm:text-lg mb-1 sm:mb-2">
-                    {targetValues.monthlyCost}€
+                    {monthlyCost}€
                   </span>
                   <div
-                    className="w-10 sm:w-14 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-1000 delay-300"
+                    className="w-10 sm:w-14 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-500 delay-150"
                     style={{
-                      height: isVisible ? `${(targetValues.monthlyCost / targetValues.timeValue) * 80}px` : "0px",
+                      height: isVisible ? `${Math.max(costBarHeight, 10)}px` : "0px",
                     }}
                   />
                   <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Kosten</span>
@@ -242,9 +310,9 @@ const ROICalculatorSection = () => {
                     {animatedValues.savings}€
                   </span>
                   <div
-                    className="w-10 sm:w-14 md:w-20 bg-success/70 rounded-t-lg transition-all duration-1000 delay-500"
+                    className="w-10 sm:w-14 md:w-20 bg-success/70 rounded-t-lg transition-all duration-500 delay-300"
                     style={{
-                      height: isVisible ? `${(calculatedSavings / targetValues.timeValue) * 80}px` : "0px",
+                      height: isVisible ? `${Math.max(savingsBarHeight, 5)}px` : "0px",
                     }}
                   />
                   <span className="text-success text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
@@ -260,7 +328,7 @@ const ROICalculatorSection = () => {
                 <span className="text-white/60 text-xs sm:text-sm">Einrichtung</span>
                 <div className="mt-1">
                   <span className="text-white text-xl sm:text-2xl font-bold">
-                    {targetValues.setupCost}
+                    {setupCost}
                   </span>
                   <span className="text-white/60 text-xs sm:text-sm">€</span>
                 </div>
@@ -270,7 +338,7 @@ const ROICalculatorSection = () => {
                 <span className="text-white/80 text-xs sm:text-sm">Monatlich</span>
                 <div className="mt-1">
                   <span className="text-accent text-xl sm:text-2xl font-bold">
-                    {targetValues.monthlyCost}
+                    {monthlyCost}
                   </span>
                   <span className="text-accent/80 text-xs sm:text-sm">€</span>
                 </div>

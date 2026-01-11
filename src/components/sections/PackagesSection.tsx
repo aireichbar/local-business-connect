@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, Star, ArrowRight } from "lucide-react";
+import { Check, Star, ArrowRight, Shield, MessageCircle, Phone, Mail, FileText, Database } from "lucide-react";
 
 const PackagesSection = () => {
   const packages = [
@@ -8,6 +8,7 @@ const PackagesSection = () => {
       price: "399",
       priceLabel: "€ einmalig",
       mrr: null,
+      mrrNote: null,
       description: "Professionelle Website ohne Aufwand.",
       features: [
         "Moderne OnePager-Website",
@@ -25,6 +26,7 @@ const PackagesSection = () => {
       price: "499",
       priceLabel: "€ einmalig",
       mrr: "79",
+      mrrNote: "bei 24 Monaten Laufzeit",
       description: "Website mit Rundum-Service.",
       features: [
         "Mehrseitige Website",
@@ -32,7 +34,8 @@ const PackagesSection = () => {
         "6 Anpassungen/Jahr",
         "SEO-Optimierung",
         "Mobiloptimiert",
-        "Persönlicher Ansprechpartner"
+        "Persönlicher Ansprechpartner",
+        "DSGVO-konform"
       ],
       cta: "Wachstum wählen",
       highlighted: true,
@@ -43,15 +46,17 @@ const PackagesSection = () => {
       price: "699",
       priceLabel: "€ einmalig",
       mrr: "139",
+      mrrNote: "bei 24 Monaten Laufzeit",
       description: "Automatisierte Kundenkommunikation.",
       features: [
         "Alles aus Wachstum",
-        "Chat-Integration",
+        "Telefonie-Integration",
         "WhatsApp-Anbindung",
-        "Automatische Antworten",
-        "Kontaktdaten-Erfassung",
+        "E-Mail-Automatisierung",
+        "Kontaktformular inkl.",
         "24/7 erreichbar",
-        "Monatliche Reports"
+        "DSGVO-konform",
+        "Ihre Daten bleiben bei Ihnen"
       ],
       cta: "Empfang aktivieren",
       highlighted: false,
@@ -121,9 +126,16 @@ const PackagesSection = () => {
                   </span>
                 </div>
                 {pkg.mrr && (
-                  <p className={`mt-1 text-sm ${pkg.highlighted ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
-                    + {pkg.mrr} €/Monat
-                  </p>
+                  <div className="mt-1">
+                    <p className={`text-sm ${pkg.highlighted ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+                      + {pkg.mrr} €/Monat
+                    </p>
+                    {pkg.mrrNote && (
+                      <p className={`text-xs mt-0.5 ${pkg.highlighted ? "text-primary-foreground/50" : "text-muted-foreground/70"}`}>
+                        {pkg.mrrNote}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
 
@@ -156,9 +168,68 @@ const PackagesSection = () => {
           ))}
         </div>
 
+        {/* Digitaler Empfang Info Box */}
+        <div className="max-w-4xl mx-auto mt-10">
+          <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 md:p-8">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-foreground mb-2">
+                  Was beinhaltet der Digitale Empfang?
+                </h4>
+                <p className="text-muted-foreground text-sm">
+                  Eine vollständige Kommunikationslösung für Ihren Betrieb – automatisiert und rund um die Uhr verfügbar.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="flex items-center gap-3 bg-background rounded-lg p-3">
+                <Phone className="w-5 h-5 text-primary" />
+                <span className="text-sm text-foreground">Telefonie</span>
+              </div>
+              <div className="flex items-center gap-3 bg-background rounded-lg p-3">
+                <MessageCircle className="w-5 h-5 text-success" />
+                <span className="text-sm text-foreground">WhatsApp</span>
+              </div>
+              <div className="flex items-center gap-3 bg-background rounded-lg p-3">
+                <Mail className="w-5 h-5 text-accent" />
+                <span className="text-sm text-foreground">E-Mail</span>
+              </div>
+              <div className="flex items-center gap-3 bg-background rounded-lg p-3">
+                <FileText className="w-5 h-5 text-primary" />
+                <span className="text-sm text-foreground">Kontaktformular</span>
+              </div>
+            </div>
+
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground">
+                  <strong className="text-foreground">Auch für bestehende Websites:</strong> Der Digitale Empfang kann problemlos in Ihre bereits vorhandene Website integriert werden.
+                </span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Database className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground">
+                  <strong className="text-foreground">Ihre Daten gehören Ihnen:</strong> Sämtliche erfassten Kundendaten verbleiben ausschließlich bei Ihnen – volle Kontrolle, volle Transparenz.
+                </span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Shield className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                <span className="text-muted-foreground">
+                  <strong className="text-foreground">DSGVO-konform:</strong> Alle Pakete mit monatlicher Gebühr erfüllen die Anforderungen der Datenschutz-Grundverordnung.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Trust note */}
         <p className="text-center text-muted-foreground text-sm mt-8">
-          Alle Preise zzgl. MwSt. • Monatlich kündbar
+          Alle Preise zzgl. MwSt. • Monatliche Gebühren bei 24 Monaten Mindestlaufzeit
         </p>
       </div>
     </section>
