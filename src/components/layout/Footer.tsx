@@ -1,4 +1,5 @@
 import { Mail, MapPin, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -109,12 +110,12 @@ const Footer = () => {
             © {currentYear} aireichbar. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-white/50 hover:text-white transition-colors">
+            <Link to="/impressum" className="text-white/50 hover:text-white transition-colors">
               Impressum
-            </a>
-            <a href="#" className="text-white/50 hover:text-white transition-colors">
+            </Link>
+            <Link to="/datenschutz" className="text-white/50 hover:text-white transition-colors">
               Datenschutz
-            </a>
+            </Link>
           </div>
         </div>
       </div>
