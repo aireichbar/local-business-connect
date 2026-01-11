@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, Star, ArrowRight } from "lucide-react";
+import { Check, Star, ArrowRight, Sparkles } from "lucide-react";
 
 const PackagesSection = () => {
   const packages = [
@@ -9,33 +9,37 @@ const PackagesSection = () => {
       price: "399",
       priceLabel: "€ einmalig",
       mrr: null,
-      description: "Endlich eine professionelle Website – ohne Aufwand, ohne Folgekosten.",
+      description: "Endlich online – mit einer professionellen Website, die Vertrauen schafft.",
       features: [
         "Moderne OnePager-Website",
-        "Responsives Design",
-        "Lokale Sichtbarkeit",
-        "Ihre Webseite in Ihrer Infrastruktur"
+        "Responsives Design für alle Geräte",
+        "Lokale Google-Sichtbarkeit",
+        "SSL-Zertifikat inklusive",
+        "Ihre Domain, Ihr Hosting"
       ],
       cta: "Jetzt starten",
-      highlighted: false
+      highlighted: false,
+      badge: null
     },
     {
       name: "Wachstum",
-      tagline: "Beliebteste Wahl",
+      tagline: "Empfohlen",
       price: "499",
       priceLabel: "€ einmalig",
       mrr: "79",
-      description: "Ihre Website wächst mit Ihrem Unternehmen – automatisch.",
+      description: "Ihre Website wächst mit Ihrem Unternehmen – wir kümmern uns um alles.",
       features: [
         "Mehrseitige Website",
-        "Inkl. Betrieb und Wartung",
-        "Bis zu sechs Text-/Bildanpassungen pro Jahr",
-        "SEO optimiert",
+        "Betrieb & Wartung inklusive",
+        "6 Anpassungen pro Jahr",
+        "SEO-Optimierung",
         "Mobiloptimiert",
-        "Persönlicher Ansprechpartner"
+        "Persönlicher Ansprechpartner",
+        "E-Mail-Support"
       ],
       cta: "Wachstum starten",
-      highlighted: true
+      highlighted: true,
+      badge: "Beliebt"
     },
     {
       name: "Digitaler Empfang",
@@ -43,18 +47,20 @@ const PackagesSection = () => {
       price: "699",
       priceLabel: "€ einmalig",
       mrr: "139",
-      description: "Ihr Unternehmen ist erreichbar – auch wenn Sie gerade keine Zeit haben.",
+      description: "Ihr Unternehmen antwortet automatisch – auch wenn Sie gerade arbeiten.",
       features: [
         "Alles aus Wachstum",
-        "Automatisierter Empfang",
-        "Website-Chat Integration",
-        "WhatsApp-Anbindung",
+        "Intelligenter Chat-Empfang",
+        "WhatsApp-Integration",
         "Beantwortet Kundenanfragen",
-        "Nimmt Kontaktdaten auf",
-        "24/7 Erreichbarkeit"
+        "Sammelt Kontaktdaten",
+        "24/7 Erreichbarkeit",
+        "Terminvereinbarung",
+        "Monatliche Reports"
       ],
       cta: "Empfang aktivieren",
-      highlighted: false
+      highlighted: false,
+      badge: "Premium"
     }
   ];
 
@@ -74,7 +80,7 @@ const PackagesSection = () => {
             Wählen Sie Ihr Paket
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Faire Preise, klare Leistungen. Starten Sie dort, wo es für Sie Sinn macht.
+            Drei Pakete, eine Philosophie: Faire Preise, klare Leistungen, keine versteckten Kosten.
           </p>
         </div>
 
@@ -90,17 +96,21 @@ const PackagesSection = () => {
               }`}
             >
               {/* Badge */}
-              {pkg.highlighted && (
+              {pkg.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="flex items-center gap-2 bg-cta text-cta-foreground px-5 py-2 rounded-full text-sm font-bold shadow-cta">
-                    <Star className="w-4 h-4 fill-current" />
-                    {pkg.tagline}
+                  <div className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-bold shadow-lg ${
+                    pkg.highlighted 
+                      ? "bg-cta text-cta-foreground" 
+                      : "bg-accent text-accent-foreground"
+                  }`}>
+                    {pkg.highlighted ? <Star className="w-4 h-4 fill-current" /> : <Sparkles className="w-4 h-4" />}
+                    {pkg.badge}
                   </div>
                 </div>
               )}
 
               {/* Header */}
-              <div className="mb-6">
+              <div className="mb-6 pt-2">
                 <h3 className={`text-2xl lg:text-3xl font-bold mb-2 ${pkg.highlighted ? "" : "text-foreground"}`}>
                   {pkg.name}
                 </h3>
@@ -124,6 +134,11 @@ const PackagesSection = () => {
                     + {pkg.mrr} €/Monat für Betrieb & Service
                   </p>
                 )}
+                {!pkg.mrr && (
+                  <p className={`mt-2 text-sm ${pkg.highlighted ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                    Einmalige Zahlung, keine laufenden Kosten
+                  </p>
+                )}
               </div>
 
               {/* Description */}
@@ -132,17 +147,17 @@ const PackagesSection = () => {
               </p>
 
               {/* Features */}
-              <ul className="space-y-4 mb-10 flex-grow">
+              <ul className="space-y-3 mb-10 flex-grow">
                 {pkg.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 ${
+                    <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
                       pkg.highlighted ? "bg-white/20" : "bg-success/10"
                     }`}>
-                      <Check className={`w-4 h-4 ${
+                      <Check className={`w-3 h-3 ${
                         pkg.highlighted ? "text-white" : "text-success"
                       }`} />
                     </div>
-                    <span className={pkg.highlighted ? "text-primary-foreground/90" : "text-foreground"}>
+                    <span className={`text-sm ${pkg.highlighted ? "text-primary-foreground/90" : "text-foreground"}`}>
                       {feature}
                     </span>
                   </li>
@@ -164,10 +179,21 @@ const PackagesSection = () => {
           ))}
         </div>
 
-        {/* Trust note */}
-        <p className="text-center text-muted-foreground text-sm mt-12">
-          Alle Preise verstehen sich zzgl. MwSt. • Keine versteckten Kosten • Monatlich kündbar
-        </p>
+        {/* Trust notes */}
+        <div className="flex flex-wrap justify-center gap-6 mt-12 text-sm text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <Check className="w-4 h-4 text-success" />
+            Alle Preise zzgl. MwSt.
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="w-4 h-4 text-success" />
+            Monatlich kündbar
+          </span>
+          <span className="flex items-center gap-2">
+            <Check className="w-4 h-4 text-success" />
+            Keine versteckten Kosten
+          </span>
+        </div>
       </div>
     </section>
   );

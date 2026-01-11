@@ -1,24 +1,32 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, Play } from "lucide-react";
 
 const HeroSection = () => {
   const benefits = [
-    "Immer erreichbar",
-    "Professioneller Auftritt",
-    "Keine laufende Arbeit",
+    "24/7 erreichbar",
+    "Lokaler Partner",
+    "Kein Technik-Stress",
   ];
 
+  const scrollToDemo = () => {
+    const demoSection = document.getElementById('digitaler-empfang');
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative min-h-[95vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[100vh] flex items-center overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 -z-10"
         style={{ background: "var(--gradient-hero)" }}
       />
       
-      {/* Decorative blobs */}
-      <div className="blob-decoration top-20 right-10 w-96 h-96 bg-white/10" />
-      <div className="blob-decoration bottom-40 left-10 w-80 h-80 bg-white/5" />
+      {/* Animated background elements */}
+      <div className="blob-decoration top-20 right-10 w-[500px] h-[500px] bg-white/10 animate-float" />
+      <div className="blob-decoration bottom-40 left-10 w-96 h-96 bg-white/5" style={{ animationDelay: '-2s' }} />
+      <div className="blob-decoration top-1/2 right-1/4 w-64 h-64 bg-white/5" style={{ animationDelay: '-4s' }} />
       
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 -z-10 opacity-[0.03]">
@@ -28,36 +36,37 @@ const HeroSection = () => {
         }} />
       </div>
 
-      <div className="container mx-auto px-5 md:px-8 py-20 md:py-28">
-        <div className="max-w-3xl">
+      <div className="container mx-auto px-5 md:px-8 py-24 md:py-32">
+        <div className="max-w-4xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 rounded-full bg-white/10 backdrop-blur-md px-5 py-2.5 mb-10 animate-fade-in border border-white/20">
+          <div className="inline-flex items-center gap-2.5 rounded-full bg-white/10 backdrop-blur-md px-5 py-2.5 mb-8 animate-fade-in border border-white/20">
             <Sparkles className="w-4 h-4 text-cta" />
             <span className="text-white/90 text-sm font-medium">
-              Für lokale Unternehmen im Kreis Borken
+              Für Handwerker, Praxen & lokale Betriebe im Kreis Borken
             </span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-8 animate-slide-up">
-            Ihr Unternehmen – <br />
-            <span className="text-white/90">jederzeit erreichbar.</span>
+          {/* Headline - Emotionaler und klarer */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-8 animate-slide-up">
+            Nie wieder Kunden <br />
+            <span className="text-white/90">verlieren, weil Sie</span><br />
+            <span className="text-cta">nicht erreichbar</span> <span className="text-white/90">sind.</span>
           </h1>
 
-          {/* Subheadline */}
+          {/* Subheadline - Fokussierter auf den Nutzen */}
           <p className="text-lg md:text-xl lg:text-2xl text-white/80 mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
-            Das digitale Ökosystem, das Ihren Betrieb entlastet – 
-            von der modernen Website bis zum automatisierten Empfang.
+            Während Sie arbeiten, beantwortet Ihr digitaler Empfang Kundenanfragen – 
+            auf der Website, per WhatsApp, rund um die Uhr.
           </p>
 
           {/* Benefits */}
-          <div className="flex flex-wrap gap-5 mb-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+          <div className="flex flex-wrap gap-6 mb-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             {benefits.map((benefit) => (
               <div key={benefit} className="flex items-center gap-2.5 text-white/90">
-                <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-success/30 flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4 text-success" />
                 </div>
-                <span className="font-medium text-sm md:text-base">{benefit}</span>
+                <span className="font-semibold text-base">{benefit}</span>
               </div>
             ))}
           </div>
@@ -65,28 +74,42 @@ const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
             <a href="#kontakt">
-              <Button variant="cta" size="xl" className="group text-base md:text-lg">
-                Jetzt unverbindlich anfragen
+              <Button variant="cta" size="xl" className="group text-base md:text-lg shadow-cta">
+                Kostenlose Beratung
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
-            <a href="#pakete">
-              <Button variant="heroOutline" size="xl" className="text-base md:text-lg">
-                Pakete entdecken
-              </Button>
-            </a>
+            <Button 
+              variant="heroOutline" 
+              size="xl" 
+              className="text-base md:text-lg gap-2"
+              onClick={scrollToDemo}
+            >
+              <Play className="w-4 h-4" />
+              Demo ansehen
+            </Button>
           </div>
 
-          {/* Trust indicator */}
-          <div className="mt-16 animate-fade-in" style={{ animationDelay: "0.5s" }}>
-            <p className="text-white/50 text-sm">
-              Persönliche Betreuung • Keine versteckten Kosten • Lokaler Ansprechpartner
+          {/* Social proof hint */}
+          <div className="mt-16 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <p className="text-white/50 text-sm flex items-center gap-4">
+              <span className="flex -space-x-2">
+                {['TM', 'SK', 'MH'].map((initials, i) => (
+                  <div 
+                    key={initials}
+                    className="w-8 h-8 rounded-full bg-white/20 border-2 border-primary flex items-center justify-center"
+                  >
+                    <span className="text-white text-xs font-bold">{initials}</span>
+                  </div>
+                ))}
+              </span>
+              <span>Bereits von lokalen Unternehmen im Kreis Borken genutzt</span>
             </p>
           </div>
         </div>
       </div>
 
-      {/* Bottom wave - smoother curve */}
+      {/* Bottom wave */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
           <path 
