@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Check, Star } from "lucide-react";
 
 const PackagesSection = () => {
-  const packages = [
+const packages = [
     {
       name: "Einstieg",
       tagline: "Der perfekte Start",
-      price: "349",
+      price: "399",
       priceLabel: "€ einmalig",
       mrr: null,
       description: "Endlich eine professionelle Website – ohne Aufwand, ohne Folgekosten.",
@@ -14,8 +14,7 @@ const PackagesSection = () => {
         "Moderne OnePager-Website",
         "Responsives Design",
         "Lokale Sichtbarkeit",
-        "SSL-Verschlüsselung",
-        "1 Änderungsrunde inklusive"
+        "Ihre Webseite in Ihrer Infrastruktur"
       ],
       cta: "Jetzt starten",
       highlighted: false
@@ -23,16 +22,16 @@ const PackagesSection = () => {
     {
       name: "Wachstum",
       tagline: "Beliebteste Wahl",
-      price: "349",
+      price: "499",
       priceLabel: "€ einmalig",
-      mrr: "49",
+      mrr: "79",
       description: "Ihre Website wächst mit Ihrem Unternehmen – automatisch.",
       features: [
         "Mehrseitige Website",
-        "Start, Leistungen, Über uns, Kontakt",
-        "Laufende Pflege & Updates",
-        "SEO-Optimierung",
-        "Skalierbare Struktur",
+        "Inkl. Betrieb und Wartung",
+        "Bis zu sechs Text-/Bildanpassungen pro Jahr",
+        "SEO optimiert",
+        "Mobiloptimiert",
         "Persönlicher Ansprechpartner"
       ],
       cta: "Wachstum starten",
