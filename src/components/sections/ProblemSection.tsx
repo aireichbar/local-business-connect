@@ -1,81 +1,78 @@
-import { Phone, Clock, UserX, AlertCircle, TrendingDown } from "lucide-react";
+import { Phone, Clock, TrendingDown, XCircle } from "lucide-react";
 
 const ProblemSection = () => {
   const problems = [
     {
       icon: Phone,
-      title: "Ständig nicht erreichbar",
-      description: "Kunden rufen an – aber Sie sind gerade im Einsatz, auf der Baustelle oder mit einem anderen Kunden beschäftigt.",
+      title: "Nicht erreichbar",
+      description: "Auf der Baustelle, beim Kunden, in der Behandlung – Sie können nicht immer ans Telefon gehen.",
       stat: "3-5",
-      statLabel: "verpasste Anrufe pro Tag"
+      statLabel: "verpasste Anrufe/Tag"
     },
     {
       icon: Clock,
       title: "Anfragen nach Feierabend",
-      description: "60% der Suchanfragen passieren abends oder am Wochenende – wenn Ihr Geschäft geschlossen ist.",
+      description: "Die meisten Menschen suchen abends oder am Wochenende – wenn Sie nicht im Büro sind.",
       stat: "60%",
-      statLabel: "außerhalb der Öffnungszeiten"
+      statLabel: "außerhalb Ihrer Zeiten"
     },
     {
-      icon: UserX,
-      title: "Kunden warten nicht",
-      description: "Wer Sie nicht erreicht, ruft den nächsten Anbieter an. Die Konkurrenz ist nur einen Klick entfernt.",
-      stat: "< 30",
-      statLabel: "Sekunden Geduld"
+      icon: XCircle,
+      title: "Kunden gehen zur Konkurrenz",
+      description: "Wer keine schnelle Antwort bekommt, ruft beim nächsten Anbieter an.",
+      stat: "< 30s",
+      statLabel: "Geduld der Kunden"
     },
     {
-      icon: AlertCircle,
-      title: "Technik-Frust statt Kerngeschäft",
-      description: "Website pflegen, E-Mails beantworten, Social Media – wann soll man das noch schaffen?",
+      icon: TrendingDown,
+      title: "Zeit fehlt fürs Digitale",
+      description: "Website pflegen, Anfragen beantworten, Social Media – wann soll das noch passieren?",
       stat: "5+",
-      statLabel: "Stunden pro Woche verloren"
+      statLabel: "Stunden/Woche verloren"
     }
   ];
 
   return (
     <section className="section-padding bg-background relative overflow-hidden">
-      {/* Subtle background decoration */}
-      <div className="blob-decoration -top-32 -right-32 w-96 h-96 bg-destructive/5" />
+      {/* Subtle background */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/50 to-transparent" />
       
       <div className="container mx-auto container-narrow relative">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="trust-badge mb-6" style={{ background: 'hsl(var(--destructive) / 0.1)', borderColor: 'hsl(var(--destructive) / 0.2)', color: 'hsl(var(--destructive))' }}>
-            <TrendingDown className="w-4 h-4" />
+          <span className="trust-badge mb-4">
             Das Problem
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Kommt Ihnen das bekannt vor?
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Als lokaler Unternehmer kennen Sie diese Situationen nur zu gut – 
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Als lokaler Unternehmer kennen Sie diese Situationen – 
             und sie kosten Sie jeden Tag bares Geld.
           </p>
         </div>
 
-        {/* Problem cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Problem grid */}
+        <div className="grid md:grid-cols-2 gap-6">
           {problems.map((problem, index) => (
             <div 
               key={problem.title}
-              className="group card-elevated p-8 lg:p-10 border border-border/50 card-hover"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-destructive/30 hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-destructive/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                  <problem.icon className="w-7 h-7 text-destructive" />
+                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0 group-hover:bg-destructive/20 transition-colors">
+                  <problem.icon className="w-6 h-6 text-destructive" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-foreground mb-3">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
                     {problem.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {problem.description}
                   </p>
-                  {/* Mini stat */}
-                  <div className="inline-flex items-center gap-2 bg-destructive/5 rounded-lg px-4 py-2">
-                    <span className="text-2xl font-bold text-destructive">{problem.stat}</span>
-                    <span className="text-sm text-muted-foreground">{problem.statLabel}</span>
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="text-xl font-bold text-destructive">{problem.stat}</span>
+                    <span className="text-muted-foreground">{problem.statLabel}</span>
                   </div>
                 </div>
               </div>
@@ -83,9 +80,9 @@ const ProblemSection = () => {
           ))}
         </div>
 
-        {/* Transition text */}
+        {/* Transition */}
         <div className="text-center mt-16">
-          <p className="text-xl md:text-2xl text-foreground font-medium">
+          <p className="text-xl font-medium text-foreground">
             Was wäre, wenn das alles <span className="text-primary font-bold">automatisch</span> funktionieren würde?
           </p>
         </div>

@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Sparkles, Play } from "lucide-react";
+import { ArrowRight, CheckCircle2, Play, Wifi } from "lucide-react";
 
 const HeroSection = () => {
   const benefits = [
-    "24/7 erreichbar",
+    "Immer erreichbar",
     "Lokaler Partner",
-    "Kein Technik-Stress",
+    "Keine Technik-Kenntnisse nötig",
   ];
 
   const scrollToDemo = () => {
@@ -16,57 +16,52 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[100vh] flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 -z-10"
         style={{ background: "var(--gradient-hero)" }}
       />
       
-      {/* Animated background elements */}
-      <div className="blob-decoration top-20 right-10 w-[500px] h-[500px] bg-white/10 animate-float" />
-      <div className="blob-decoration bottom-40 left-10 w-96 h-96 bg-white/5" style={{ animationDelay: '-2s' }} />
-      <div className="blob-decoration top-1/2 right-1/4 w-64 h-64 bg-white/5" style={{ animationDelay: '-4s' }} />
+      {/* Animated circles */}
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full border border-white/10 opacity-30 animate-pulse-soft" />
+      <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] rounded-full border border-white/10 opacity-20" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-white/5 blur-3xl" />
       
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 -z-10 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: "40px 40px"
-        }} />
+      {/* WiFi signal decoration - matching logo */}
+      <div className="absolute top-1/3 right-[15%] hidden lg:flex flex-col items-center gap-2 opacity-20">
+        <Wifi className="w-32 h-32 text-white" />
       </div>
 
-      <div className="container mx-auto px-5 md:px-8 py-24 md:py-32">
-        <div className="max-w-4xl">
+      <div className="container mx-auto px-5 md:px-8 py-32 md:py-40">
+        <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 rounded-full bg-white/10 backdrop-blur-md px-5 py-2.5 mb-8 animate-fade-in border border-white/20">
-            <Sparkles className="w-4 h-4 text-cta" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-2 mb-8 animate-fade-in border border-white/20">
+            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-white/90 text-sm font-medium">
-              Für Handwerker, Praxen & lokale Betriebe im Kreis Borken
+              Für lokale Unternehmen im Kreis Borken
             </span>
           </div>
 
-          {/* Headline - Emotionaler und klarer */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-8 animate-slide-up">
-            Nie wieder Kunden <br />
-            <span className="text-white/90">verlieren, weil Sie</span><br />
-            <span className="text-cta">nicht erreichbar</span> <span className="text-white/90">sind.</span>
+          {/* Headline */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 animate-slide-up">
+            Ihr Unternehmen ist
+            <span className="text-accent"> immer erreichbar</span> – 
+            auch wenn Sie es nicht sind.
           </h1>
 
-          {/* Subheadline - Fokussierter auf den Nutzen */}
-          <p className="text-lg md:text-xl lg:text-2xl text-white/80 mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
-            Während Sie arbeiten, beantwortet Ihr digitaler Empfang Kundenanfragen – 
-            auf der Website, per WhatsApp, rund um die Uhr.
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
+            Während Sie arbeiten, beantwortet Ihr digitaler Empfang Kundenanfragen 
+            automatisch – per Website, WhatsApp und mehr.
           </p>
 
           {/* Benefits */}
-          <div className="flex flex-wrap gap-6 mb-12 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+          <div className="flex flex-wrap gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             {benefits.map((benefit) => (
-              <div key={benefit} className="flex items-center gap-2.5 text-white/90">
-                <div className="w-6 h-6 rounded-full bg-success/30 flex items-center justify-center">
-                  <CheckCircle2 className="w-4 h-4 text-success" />
-                </div>
-                <span className="font-semibold text-base">{benefit}</span>
+              <div key={benefit} className="flex items-center gap-2 text-white/90 bg-white/10 rounded-full px-4 py-2">
+                <CheckCircle2 className="w-4 h-4 text-accent" />
+                <span className="text-sm font-medium">{benefit}</span>
               </div>
             ))}
           </div>
@@ -74,46 +69,33 @@ const HeroSection = () => {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
             <a href="#kontakt">
-              <Button variant="cta" size="xl" className="group text-base md:text-lg shadow-cta">
+              <Button 
+                variant="cta" 
+                size="xl" 
+                className="group bg-white text-primary hover:bg-white/90 shadow-xl"
+              >
                 Kostenlose Beratung
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
             <Button 
-              variant="heroOutline" 
+              variant="ghost" 
               size="xl" 
-              className="text-base md:text-lg gap-2"
+              className="text-white hover:bg-white/10 gap-2"
               onClick={scrollToDemo}
             >
               <Play className="w-4 h-4" />
               Demo ansehen
             </Button>
           </div>
-
-          {/* Social proof hint */}
-          <div className="mt-16 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-            <p className="text-white/50 text-sm flex items-center gap-4">
-              <span className="flex -space-x-2">
-                {['TM', 'SK', 'MH'].map((initials, i) => (
-                  <div 
-                    key={initials}
-                    className="w-8 h-8 rounded-full bg-white/20 border-2 border-primary flex items-center justify-center"
-                  >
-                    <span className="text-white text-xs font-bold">{initials}</span>
-                  </div>
-                ))}
-              </span>
-              <span>Bereits von lokalen Unternehmen im Kreis Borken genutzt</span>
-            </p>
-          </div>
         </div>
       </div>
 
       {/* Bottom wave */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
+        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
           <path 
-            d="M0 120L48 108C96 96 192 72 288 60C384 48 480 48 576 54C672 60 768 72 864 78C960 84 1056 84 1152 78C1248 72 1344 60 1392 54L1440 48V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0Z" 
+            d="M0 100L60 90C120 80 240 60 360 50C480 40 600 40 720 45C840 50 960 60 1080 65C1200 70 1320 70 1380 70L1440 70V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0Z" 
             fill="hsl(var(--background))"
           />
         </svg>

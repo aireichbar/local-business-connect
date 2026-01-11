@@ -10,29 +10,25 @@ const StatsSection = () => {
       icon: Clock,
       value: 24,
       suffix: "/7",
-      label: "Erreichbarkeit",
-      description: "Ihr Unternehmen antwortet rund um die Uhr"
+      label: "Erreichbarkeit"
     },
     {
       icon: TrendingUp,
       value: 40,
       suffix: "%",
-      label: "Weniger verpasste Anfragen",
-      description: "Durchschnittliche Steigerung unserer Kunden"
+      label: "Mehr Anfragen"
     },
     {
       icon: Users,
       value: 3,
-      suffix: " Std.",
-      label: "Zeit gespart pro Woche",
-      description: "Durch automatisierte Kundenkommunikation"
+      suffix: " Std",
+      label: "Zeit gespart/Woche"
     },
     {
       icon: Zap,
       value: 30,
-      suffix: " Sek.",
-      label: "Antwortzeit",
-      description: "Ihr Empfang reagiert sofort"
+      suffix: "s",
+      label: "Antwortzeit"
     }
   ];
 
@@ -54,17 +50,9 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-20 bg-primary relative overflow-hidden">
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: "32px 32px"
-        }} />
-      </div>
-      
+    <section ref={sectionRef} className="py-16 relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
       <div className="container mx-auto px-5 md:px-8 relative">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <div 
               key={stat.label}
@@ -72,13 +60,10 @@ const StatsSection = () => {
               style={{ 
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transition: `all 0.6s ease-out ${index * 0.1}s`
+                transition: `all 0.5s ease-out ${index * 0.1}s`
               }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-7 h-7 text-white" />
-              </div>
-              <div className="text-4xl md:text-5xl font-extrabold text-white mb-2">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                 <AnimatedNumber 
                   value={stat.value} 
                   suffix={stat.suffix} 
@@ -86,8 +71,7 @@ const StatsSection = () => {
                   delay={index * 100}
                 />
               </div>
-              <p className="text-white font-semibold mb-1">{stat.label}</p>
-              <p className="text-white/70 text-sm hidden md:block">{stat.description}</p>
+              <p className="text-white/70 text-sm font-medium">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -115,8 +99,8 @@ const AnimatedNumber = ({
     const timeout = setTimeout(() => {
       let start = 0;
       const end = value;
-      const duration = 1500;
-      const stepTime = 50;
+      const duration = 1200;
+      const stepTime = 40;
       const steps = duration / stepTime;
       const increment = end / steps;
 

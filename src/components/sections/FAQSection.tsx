@@ -10,66 +10,60 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "Brauche ich technische Kenntnisse?",
-      answer: "Nein, überhaupt nicht. Wir kümmern uns um alles – von der Erstellung bis zur Wartung. Sie müssen nur sagen, was Sie möchten. Keine IT-Kenntnisse nötig."
+      answer: "Nein, überhaupt nicht. Wir kümmern uns um alles – von der Erstellung bis zur Wartung. Keine IT-Kenntnisse nötig."
     },
     {
       question: "Wie lange dauert es, bis meine Website online ist?",
-      answer: "Ein einfacher OnePager ist in der Regel innerhalb von 1-2 Wochen fertig. Bei umfangreicheren Projekten oder dem digitalen Empfang planen wir 2-4 Wochen ein – je nach Abstimmungsbedarf."
+      answer: "Ein OnePager ist in 1-2 Wochen fertig. Bei umfangreicheren Projekten planen wir 2-4 Wochen ein."
     },
     {
       question: "Was passiert, wenn ich später mehr brauche?",
-      answer: "Kein Problem! Unser System ist modular. Sie können jederzeit vom Einstiegspaket auf Wachstum oder den digitalen Empfang upgraden. Die bereits gezahlten Einmalkosten werden angerechnet."
+      answer: "Kein Problem! Sie können jederzeit upgraden. Die bereits gezahlten Einmalkosten werden angerechnet."
     },
     {
-      question: "Was kostet mich der digitale Empfang im Monat?",
-      answer: "Der digitale Empfang kostet 139 €/Monat, inklusive aller Features: Website-Chat, WhatsApp-Anbindung, automatisierte Antworten und 24/7 Erreichbarkeit. Keine versteckten Kosten."
+      question: "Was kostet der digitale Empfang im Monat?",
+      answer: "Der digitale Empfang kostet 139 €/Monat, inklusive aller Features. Keine versteckten Kosten."
     },
     {
       question: "Kann ich monatlich kündigen?",
-      answer: "Ja, alle unsere Pakete mit monatlichen Kosten sind monatlich kündbar. Keine langen Vertragslaufzeiten. Bei Kündigung bleibt Ihre Website selbstverständlich online."
+      answer: "Ja, alle Pakete mit monatlichen Kosten sind monatlich kündbar. Keine langen Vertragslaufzeiten."
     },
     {
       question: "Funktioniert das auch für meine Branche?",
-      answer: "Der digitale Empfang eignet sich für alle Branchen mit Kundenkontakt: Handwerker, Therapeuten, Friseure, Restaurants, Werkstätten, Arztpraxen und viele mehr. Im Erstgespräch prüfen wir gemeinsam, ob es für Sie passt."
-    },
-    {
-      question: "Wer ist mein Ansprechpartner bei Fragen?",
-      answer: "Sie haben immer einen persönlichen Ansprechpartner aus dem Kreis Borken. Keine anonymen Hotlines, keine Warteschleifen. Direkter Kontakt per E-Mail oder Telefon."
+      answer: "Der digitale Empfang eignet sich für alle Branchen mit Kundenkontakt: Handwerker, Therapeuten, Friseure, Restaurants und mehr."
     }
   ];
 
   return (
-    <section className="section-padding bg-background relative overflow-hidden">
-      <div className="blob-decoration bottom-0 left-0 w-80 h-80 bg-primary/5" />
-      
+    <section id="faq" className="section-padding bg-background relative overflow-hidden">
       <div className="container mx-auto container-narrow relative">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="trust-badge mb-6">
-            <HelpCircle className="w-4 h-4 text-primary" />
-            Häufige Fragen
+        <div className="text-center mb-12">
+          <span className="trust-badge mb-4">
+            <HelpCircle className="w-4 h-4" />
+            FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Sie fragen – wir antworten
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Häufige Fragen
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Die wichtigsten Fragen vorab beantwortet. Bei weiteren Fragen sind wir gerne persönlich für Sie da.
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Die wichtigsten Fragen vorab beantwortet.
           </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className="max-w-2xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="card-elevated border border-border/50 rounded-2xl px-6 data-[state=open]:shadow-lg transition-shadow"
+                className="bg-card border border-border/50 rounded-xl px-6 data-[state=open]:shadow-md transition-shadow"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold text-foreground hover:no-underline py-6">
+                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
+                <AccordionContent className="text-muted-foreground pb-5 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
