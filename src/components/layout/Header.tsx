@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -16,37 +17,40 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Pakete", href: "#pakete" },
+    { label: "Leistungen", href: "#pakete" },
     { label: "Digitaler Empfang", href: "#digitaler-empfang" },
+    { label: "Über uns", href: "#so-funktioniert-es" },
     { label: "Kontakt", href: "#kontakt" },
   ];
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-background/95 backdrop-blur-xl shadow-md border-b border-border/50" 
+          ? "bg-white/95 backdrop-blur-xl shadow-sm border-b border-border/50" 
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-5 md:px-8">
-        <div className="flex items-center justify-between h-18 md:h-24">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 group">
-            <div className={`text-2xl md:text-3xl font-extrabold transition-colors duration-300 ${
-              isScrolled ? "text-primary" : "text-white"
-            }`}>
-              ai<span className="text-accent group-hover:text-cta transition-colors">reichbar</span>
-            </div>
+          <a href="/" className="flex items-center">
+            <img 
+              src={logo} 
+              alt="aireichbar" 
+              className={`h-10 md:h-12 w-auto transition-all duration-300 ${
+                isScrolled ? "" : "brightness-0 invert"
+              }`}
+            />
           </a>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a 
                 key={link.label}
                 href={link.href}
-                className={`font-semibold transition-all duration-300 hover:text-cta relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cta after:transition-all after:duration-300 hover:after:w-full ${
+                className={`text-sm font-medium transition-colors hover:text-accent ${
                   isScrolled ? "text-foreground" : "text-white"
                 }`}
               >
@@ -54,43 +58,47 @@ const Header = () => {
               </a>
             ))}
             <a href="#kontakt">
-              <Button variant={isScrolled ? "cta" : "heroOutline"} size="lg" className="font-semibold">
-                Jetzt anfragen
+              <Button 
+                variant="cta" 
+                size="default"
+                className={`${!isScrolled ? "shadow-lg" : ""}`}
+              >
+                Kostenlos beraten lassen
               </Button>
             </a>
           </nav>
 
           {/* Mobile menu button */}
           <button 
-            className="md:hidden p-3 -mr-3"
+            className="lg:hidden p-2 -mr-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Menü öffnen"
           >
             {isMobileMenuOpen ? (
-              <X className={`w-7 h-7 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
             ) : (
-              <Menu className={`w-7 h-7 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
             )}
           </button>
         </div>
 
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-elevated">
-            <nav className="flex flex-col p-6 gap-2">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-border shadow-lg">
+            <nav className="flex flex-col p-4 gap-1">
               {navLinks.map((link) => (
                 <a 
                   key={link.label}
                   href={link.href}
-                  className="text-foreground font-semibold py-4 px-4 rounded-xl hover:bg-secondary transition-colors"
+                  className="text-foreground font-medium py-3 px-4 rounded-lg hover:bg-secondary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <a href="#kontakt" onClick={() => setIsMobileMenuOpen(false)} className="mt-4">
-                <Button variant="cta" size="xl" className="w-full font-semibold">
-                  Jetzt anfragen
+              <a href="#kontakt" onClick={() => setIsMobileMenuOpen(false)} className="mt-2">
+                <Button variant="cta" size="lg" className="w-full">
+                  Kostenlos beraten lassen
                 </Button>
               </a>
             </nav>
