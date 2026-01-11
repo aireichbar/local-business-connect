@@ -210,8 +210,7 @@ const ROICalculatorSection = () => {
                   <div
                     className="w-10 sm:w-14 md:w-20 bg-white/30 rounded-t-lg transition-all duration-1000"
                     style={{
-                      height: isVisible ? "100%" : "0px",
-                      maxHeight: isVisible ? "100px" : "0px",
+                      height: isVisible ? "80px" : "0px",
                     }}
                   />
                   <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Zeitwert</span>
@@ -228,7 +227,7 @@ const ROICalculatorSection = () => {
                   <div
                     className="w-10 sm:w-14 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-1000 delay-300"
                     style={{
-                      height: isVisible ? `${(targetValues.monthlyCost / targetValues.timeValue) * 100}px` : "0px",
+                      height: isVisible ? `${(targetValues.monthlyCost / targetValues.timeValue) * 80}px` : "0px",
                     }}
                   />
                   <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Kosten</span>
@@ -245,7 +244,7 @@ const ROICalculatorSection = () => {
                   <div
                     className="w-10 sm:w-14 md:w-20 bg-success/70 rounded-t-lg transition-all duration-1000 delay-500"
                     style={{
-                      height: isVisible ? `${(calculatedSavings / targetValues.timeValue) * 100}px` : "0px",
+                      height: isVisible ? `${(calculatedSavings / targetValues.timeValue) * 80}px` : "0px",
                     }}
                   />
                   <span className="text-success text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
