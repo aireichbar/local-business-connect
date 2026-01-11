@@ -6,6 +6,7 @@ import SolutionSection from "@/components/sections/SolutionSection";
 import StatsSection from "@/components/sections/StatsSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import PackagesSection from "@/components/sections/PackagesSection";
+import ROICalculatorSection from "@/components/sections/ROICalculatorSection";
 import DigitalReceptionSection from "@/components/sections/DigitalReceptionSection";
 import AudioDemoSection from "@/components/sections/AudioDemoSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
@@ -41,7 +42,10 @@ const Index = () => {
         {/* 7. Wie es funktioniert - Einfachheit zeigen */}
         <HowItWorksSection />
         
-        {/* 8. Pakete - Angebot klar machen */}
+        {/* 8. ROI-Rechner - Wert demonstrieren */}
+        <ROICalculatorSection />
+        
+        {/* 9. Pakete - Angebot klar machen */}
         <PackagesSection />
         
         {/* 9. FAQ - Einwände entkräften */}
