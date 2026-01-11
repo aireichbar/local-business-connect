@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
+import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
   return (
@@ -23,35 +24,57 @@ const Index = () => {
         <HeroSection />
         
         {/* 2. Problem - Schmerz verstärken */}
-        <ProblemSection />
+        <AnimatedSection animation="fade-up">
+          <ProblemSection />
+        </AnimatedSection>
         
         {/* 3. Lösung - Die Antwort präsentieren */}
-        <SolutionSection />
+        <AnimatedSection animation="fade-up" delay={100}>
+          <SolutionSection />
+        </AnimatedSection>
         
         {/* 4. Zahlen - Glaubwürdigkeit aufbauen */}
-        <StatsSection />
+        <AnimatedSection animation="scale">
+          <StatsSection />
+        </AnimatedSection>
         
         {/* 5. Demo - Produkt erlebbar machen */}
-        <DigitalReceptionSection />
-        <AudioDemoSection />
+        <AnimatedSection animation="fade-up">
+          <DigitalReceptionSection />
+        </AnimatedSection>
+        <AnimatedSection animation="fade-up" delay={100}>
+          <AudioDemoSection />
+        </AnimatedSection>
         
         {/* 6. Wie es funktioniert - Einfachheit zeigen */}
-        <HowItWorksSection />
+        <AnimatedSection animation="fade-up">
+          <HowItWorksSection />
+        </AnimatedSection>
         
         {/* 7. ROI-Rechner - Wert demonstrieren */}
-        <ROICalculatorSection />
+        <AnimatedSection animation="scale">
+          <ROICalculatorSection />
+        </AnimatedSection>
         
         {/* 8. Pakete - Angebot klar machen */}
-        <PackagesSection />
+        <AnimatedSection animation="fade-up">
+          <PackagesSection />
+        </AnimatedSection>
         
         {/* 9. FAQ - Einwände entkräften */}
-        <FAQSection />
+        <AnimatedSection animation="fade-up">
+          <FAQSection />
+        </AnimatedSection>
         
         {/* 10. Final CTA - Zum Handeln bewegen */}
-        <FinalCTASection />
+        <AnimatedSection animation="scale">
+          <FinalCTASection />
+        </AnimatedSection>
         
         {/* 11. Kontakt - Conversion ermöglichen */}
-        <ContactSection />
+        <AnimatedSection animation="fade-up">
+          <ContactSection />
+        </AnimatedSection>
       </main>
       <Footer />
       
