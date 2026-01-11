@@ -1,4 +1,4 @@
-import { MessageCircle, Clock, Smile, Shield } from "lucide-react";
+import { MessageCircle, Clock, Smile, Shield, Zap } from "lucide-react";
 import WhatsAppChat from "@/components/WhatsAppChat";
 
 const DigitalReceptionSection = () => {
@@ -26,19 +26,24 @@ const DigitalReceptionSection = () => {
   ];
 
   return (
-    <section id="digitaler-empfang" className="section-padding bg-secondary/30">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+    <section id="digitaler-empfang" className="section-padding relative overflow-hidden" style={{ background: "var(--gradient-warm)" }}>
+      {/* Decorative elements */}
+      <div className="blob-decoration top-20 right-0 w-96 h-96 bg-accent/5" />
+      <div className="blob-decoration bottom-0 left-0 w-80 h-80 bg-primary/5" />
+      
+      <div className="container mx-auto px-5 md:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
           {/* Content */}
           <div>
-            <span className="inline-block text-accent font-semibold text-sm uppercase tracking-wider mb-4">
+            <span className="trust-badge mb-6">
+              <Zap className="w-4 h-4 text-accent" />
               Digitaler Empfang
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ihr Unternehmen antwortet – <br className="hidden md:block" />
-              auch wenn Sie es nicht können.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+              Ihr Unternehmen antwortet – <br className="hidden lg:block" />
+              <span className="text-muted-foreground">auch wenn Sie es nicht können.</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed">
               Stellen Sie sich vor: Ein Kunde schreibt Ihnen über WhatsApp oder Ihre Website. 
               Anstatt zu warten oder Sie zu stören, bekommt er sofort eine freundliche Antwort. 
               Das ist der digitale Empfang.
@@ -46,16 +51,19 @@ const DigitalReceptionSection = () => {
 
             {/* Benefits */}
             <div className="space-y-6">
-              {benefits.map((benefit) => (
-                <div key={benefit.title} className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <benefit.icon className="w-6 h-6 text-accent" />
+              {benefits.map((benefit, index) => (
+                <div 
+                  key={benefit.title} 
+                  className="group flex gap-5 p-4 rounded-2xl hover:bg-card/80 transition-colors duration-300"
+                >
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-accent/10 to-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                    <benefit.icon className="w-7 h-7 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">
+                    <h3 className="font-bold text-foreground mb-1 text-lg">
                       {benefit.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground leading-relaxed">
                       {benefit.description}
                     </p>
                   </div>
@@ -68,7 +76,7 @@ const DigitalReceptionSection = () => {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full scale-75" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-primary/20 blur-[80px] rounded-full scale-75" />
               
               {/* WhatsApp Chat */}
               <div className="relative animate-float">
