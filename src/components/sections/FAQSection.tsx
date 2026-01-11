@@ -25,12 +25,48 @@ const FAQSection = () => {
       answer: "Der digitale Empfang kostet 139 €/Monat, inklusive aller Features. Keine versteckten Kosten."
     },
     {
-      question: "Kann ich monatlich kündigen?",
-      answer: "Ja, alle Pakete mit monatlichen Kosten sind monatlich kündbar. Keine langen Vertragslaufzeiten."
-    },
-    {
       question: "Funktioniert das auch für meine Branche?",
       answer: "Der digitale Empfang eignet sich für alle Branchen mit Kundenkontakt: Handwerker, Therapeuten, Friseure, Restaurants und mehr."
+    },
+    {
+      question: 'Was ist im Wachstum-Paket mit "6 Anpassungen/Jahr" gemeint?',
+      answer: "Sie können bis zu sechs Mal im Jahr kleinere Änderungen an Texten, Bildern oder Layouts anfragen – wir setzen diese zeitnah um."
+    },
+    {
+      question: "Welche Domain bekomme ich?",
+      answer: "Sie können Ihre bestehende Domain nutzen oder wir registrieren eine neue für Sie. Die Domain gehört selbstverständlich Ihnen."
+    },
+    {
+      question: "Kann ich meine bestehende Website behalten?",
+      answer: "Ja! Der Digitale Empfang kann problemlos in Ihre bereits vorhandene Website integriert werden."
+    },
+    {
+      question: "Wer hat Zugriff auf meine Kundendaten?",
+      answer: "Nur Sie. Alle erfassten Daten verbleiben ausschließlich bei Ihnen – volle Kontrolle, volle Transparenz, DSGVO-konform."
+    },
+    {
+      question: "Wie läuft der Onboarding-Prozess ab?",
+      answer: "Nach Auftragserteilung führen wir ein kurzes Gespräch, sammeln Ihre Inhalte und setzen alles um. Sie müssen sich um nichts kümmern."
+    },
+    {
+      question: "Gibt es Vertragslaufzeiten?",
+      answer: "Ja, die monatlichen Pakete haben eine Mindestlaufzeit von 24 Monaten. Das einmalige Einstieg-Paket ist ohne Laufzeit."
+    },
+    {
+      question: "Wie schnell erhalte ich Support bei Problemen?",
+      answer: "In der Regel antworten wir innerhalb von 24 Stunden. Bei dringenden Anliegen sind wir oft noch schneller."
+    },
+    {
+      question: "Wie funktioniert die WhatsApp-Integration?",
+      answer: "Wir verbinden Ihre Geschäftsnummer mit dem digitalen Empfang. Kunden schreiben wie gewohnt – die KI antwortet automatisch."
+    },
+    {
+      question: "Was passiert, wenn die KI eine Frage nicht beantworten kann?",
+      answer: "In diesem Fall sammelt sie die Kontaktdaten und Sie erhalten eine Benachrichtigung, um persönlich zu reagieren."
+    },
+    {
+      question: "Kann ich den digitalen Empfang testen?",
+      answer: "Gerne zeigen wir Ihnen in einem kostenlosen Beratungsgespräch eine Live-Demo, damit Sie sehen, wie es in der Praxis funktioniert."
     }
   ];
 
@@ -76,3 +112,4 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
+

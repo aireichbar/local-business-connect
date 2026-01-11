@@ -18,10 +18,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Leistungen", href: "#pakete" },
-    { label: "Digitaler Empfang", href: "#digitaler-empfang" },
-    { label: "Über uns", href: "#so-funktioniert-es" },
-    { label: "Kontakt", href: "#kontakt" },
+    { label: "Leistungen", href: "/#pakete" },
+    { label: "Digitaler Empfang", href: "/#digitaler-empfang" },
+    { label: "Über uns", href: "/ueber-uns" },
+    { label: "Kontakt", href: "/#kontakt" },
   ];
 
   return (

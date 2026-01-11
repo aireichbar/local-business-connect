@@ -5,24 +5,64 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Send, MapPin, Mail, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name ist erforderlich").max(100),
+  company: z.string().trim().max(100).optional(),
+  email: z.string().trim().email("Ungültige E-Mail-Adresse").max(255),
+  message: z.string().trim().min(1, "Nachricht ist erforderlich").max(2000),
+});
 
 const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrors({});
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      company: formData.get("company") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string,
+    };
 
+    // Validate
+    const result = contactSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Build mailto link and open it
+    const subject = encodeURIComponent(`Kontaktanfrage von ${data.name}${data.company ? ` (${data.company})` : ""}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nUnternehmen: ${data.company || "-"}\nE-Mail: ${data.email}\n\nNachricht:\n${data.message}`
+    );
+    const mailtoLink = `mailto:info@aireichbar.de?subject=${subject}&body=${body}`;
+
+    // Open default mail client
+    window.location.href = mailtoLink;
+
+    // Show success toast
     toast({
-      title: "Nachricht gesendet!",
-      description: "Wir melden uns schnellstmöglich bei Ihnen.",
+      title: "E-Mail-Programm geöffnet!",
+      description: "Bitte senden Sie die vorbereitete E-Mail ab.",
     });
 
     setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
   };
 
   return (
@@ -95,8 +135,9 @@ const ContactSection = () => {
                     name="name" 
                     placeholder="Ihr Name" 
                     required 
-                    className="h-12 bg-background"
+                    className={`h-12 bg-background ${errors.name ? "border-destructive" : ""}`}
                   />
+                  {errors.name && <p className="text-destructive text-xs">{errors.name}</p>}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="company" className="text-foreground text-sm font-medium">Unternehmen</Label>
@@ -117,8 +158,9 @@ const ContactSection = () => {
                   type="email" 
                   placeholder="ihre@email.de" 
                   required 
-                  className="h-12 bg-background"
+                  className={`h-12 bg-background ${errors.email ? "border-destructive" : ""}`}
                 />
+                {errors.email && <p className="text-destructive text-xs">{errors.email}</p>}
               </div>
 
               <div className="space-y-2">
@@ -128,8 +170,9 @@ const ContactSection = () => {
                   name="message" 
                   placeholder="Wie können wir Ihnen helfen?" 
                   required 
-                  className="min-h-[120px] bg-background resize-none"
+                  className={`min-h-[120px] bg-background resize-none ${errors.message ? "border-destructive" : ""}`}
                 />
+                {errors.message && <p className="text-destructive text-xs">{errors.message}</p>}
               </div>
 
               <Button 
@@ -161,3 +204,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+

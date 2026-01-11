@@ -85,7 +85,7 @@ const HeroSection = () => {
               onClick={scrollToDemo}
             >
               <Play className="w-4 h-4" />
-              Demo ansehen
+              Demo anhören
             </Button>
           </div>
         </div>
