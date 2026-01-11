@@ -1,5 +1,5 @@
 import { Play, Pause } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const AudioDemoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -8,8 +8,53 @@ const AudioDemoSection = () => {
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [waveformHeights, setWaveformHeights] = useState<number[]>([]);
+  const animationFrameRef = useRef<number | null>(null);
 
   const demoText = `Willkommen bei Hairstyling Bocholt. Hier ist Alina, Ihre digitale Kollegin – rund um die Uhr für Sie erreichbar. Termine buchen, verschieben oder Fragen klären? Sagen Sie mir einfach, was Sie möchten – den Rest übernehme ich für Sie.`;
+
+  // Generate initial waveform heights
+  const generateStaticWaveform = useCallback(() => {
+    return Array.from({ length: 60 }, (_, i) => {
+      return Math.sin(i * 0.3) * 20 + 25;
+    });
+  }, []);
+
+  // Animate waveform when playing
+  const animateWaveform = useCallback(() => {
+    const animate = () => {
+      setWaveformHeights(prev => 
+        prev.map((height, i) => {
+          const baseHeight = Math.sin(i * 0.3) * 20 + 25;
+          const randomVariation = Math.sin(Date.now() * 0.01 + i * 0.5) * 15 + Math.random() * 10;
+          return baseHeight + randomVariation;
+        })
+      );
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+    animate();
+  }, []);
+
+  useEffect(() => {
+    setWaveformHeights(generateStaticWaveform());
+  }, [generateStaticWaveform]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      animateWaveform();
+    } else {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      setWaveformHeights(generateStaticWaveform());
+    }
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isPlaying, animateWaveform, generateStaticWaveform]);
 
   useEffect(() => {
     const loadVoices = () => {
@@ -101,12 +146,6 @@ const AudioDemoSection = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Generate waveform bars
-  const waveformBars = Array.from({ length: 60 }, (_, i) => {
-    const height = Math.sin(i * 0.3) * 30 + Math.random() * 20 + 20;
-    return height;
-  });
-
   return (
     <section id="audio-demo" className="section-padding bg-background">
       <div className="container mx-auto container-narrow">
@@ -127,20 +166,20 @@ const AudioDemoSection = () => {
         <div className="bg-[#1a1f25] rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
           {/* Waveform Visualization */}
           <div className="flex items-center justify-center gap-[2px] h-20 mb-8">
-            {waveformBars.map((height, i) => {
+            {waveformHeights.map((height, i) => {
               const progress = currentTime / duration;
-              const barProgress = i / waveformBars.length;
+              const barProgress = i / waveformHeights.length;
               const isActive = barProgress <= progress;
               
               return (
                 <div
                   key={i}
-                  className={`w-[3px] rounded-full transition-colors duration-150 ${
+                  className={`w-[3px] rounded-full ${
                     isActive ? "bg-accent" : "bg-gray-600"
                   }`}
                   style={{
-                    height: `${isPlaying ? height : height * 0.6}px`,
-                    transition: isPlaying ? "height 0.15s ease" : "height 0.3s ease",
+                    height: `${height}px`,
+                    transition: "height 0.08s ease-out, background-color 0.15s ease",
                   }}
                 />
               );
