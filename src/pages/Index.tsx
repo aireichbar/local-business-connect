@@ -9,7 +9,6 @@ import PackagesSection from "@/components/sections/PackagesSection";
 import ROICalculatorSection from "@/components/sections/ROICalculatorSection";
 import DigitalReceptionSection from "@/components/sections/DigitalReceptionSection";
 import AudioDemoSection from "@/components/sections/AudioDemoSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -36,16 +35,13 @@ const Index = () => {
         <DigitalReceptionSection />
         <AudioDemoSection />
         
-        {/* 6. Social Proof - Vertrauen stärken */}
-        <TestimonialsSection />
-        
-        {/* 7. Wie es funktioniert - Einfachheit zeigen */}
+        {/* 6. Wie es funktioniert - Einfachheit zeigen */}
         <HowItWorksSection />
         
-        {/* 8. ROI-Rechner - Wert demonstrieren */}
+        {/* 7. ROI-Rechner - Wert demonstrieren */}
         <ROICalculatorSection />
         
-        {/* 9. Pakete - Angebot klar machen */}
+        {/* 8. Pakete - Angebot klar machen */}
         <PackagesSection />
         
         {/* 9. FAQ - Einwände entkräften */}

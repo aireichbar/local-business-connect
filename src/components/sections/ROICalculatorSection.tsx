@@ -195,59 +195,60 @@ const ROICalculatorSection = () => {
             </div>
 
             {/* Savings Section */}
-            <div className="bg-white/5 rounded-xl p-6">
-              <h4 className="text-white/70 text-center mb-6 text-sm uppercase tracking-wider">
+            <div className="bg-white/5 rounded-xl p-4 md:p-6">
+              <h4 className="text-white/70 text-center mb-4 md:mb-6 text-sm uppercase tracking-wider">
                 Ihre monatliche Ersparnis
               </h4>
 
-              {/* Bar Chart */}
-              <div className="flex items-end justify-center gap-6 md:gap-10 mb-6 h-48">
+              {/* Bar Chart - Mobile optimized */}
+              <div className="flex items-end justify-center gap-3 sm:gap-6 md:gap-10 mb-4 md:mb-6 h-32 sm:h-40 md:h-48">
                 {/* Zeitwert Bar */}
                 <div className="flex flex-col items-center">
-                  <span className="text-white font-bold text-lg mb-2">
+                  <span className="text-white font-bold text-sm sm:text-lg mb-1 sm:mb-2">
                     {animatedValues.timeValue}€
                   </span>
                   <div
-                    className="w-16 md:w-20 bg-white/30 rounded-t-lg transition-all duration-1000"
+                    className="w-10 sm:w-14 md:w-20 bg-white/30 rounded-t-lg transition-all duration-1000"
                     style={{
-                      height: isVisible ? "140px" : "0px",
+                      height: isVisible ? "100%" : "0px",
+                      maxHeight: isVisible ? "100px" : "0px",
                     }}
                   />
-                  <span className="text-white/60 text-sm mt-2">Zeitwert</span>
+                  <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Zeitwert</span>
                 </div>
 
                 {/* Minus Sign */}
-                <div className="text-white/50 text-2xl font-light pb-8">−</div>
+                <div className="text-white/50 text-lg sm:text-2xl font-light pb-6 sm:pb-8">−</div>
 
                 {/* Kosten Bar */}
                 <div className="flex flex-col items-center">
-                  <span className="text-accent font-bold text-lg mb-2">
+                  <span className="text-accent font-bold text-sm sm:text-lg mb-1 sm:mb-2">
                     {targetValues.monthlyCost}€
                   </span>
                   <div
-                    className="w-16 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-1000 delay-300"
+                    className="w-10 sm:w-14 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-1000 delay-300"
                     style={{
-                      height: isVisible ? `${(targetValues.monthlyCost / targetValues.timeValue) * 140}px` : "0px",
+                      height: isVisible ? `${(targetValues.monthlyCost / targetValues.timeValue) * 100}px` : "0px",
                     }}
                   />
-                  <span className="text-white/60 text-sm mt-2">Kosten</span>
+                  <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Kosten</span>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-white/50 text-2xl font-light pb-8">=</div>
+                <div className="text-white/50 text-lg sm:text-2xl font-light pb-6 sm:pb-8">=</div>
 
                 {/* Ersparnis Bar */}
                 <div className="flex flex-col items-center">
-                  <span className="text-success font-bold text-lg mb-2">
+                  <span className="text-success font-bold text-sm sm:text-lg mb-1 sm:mb-2">
                     {animatedValues.savings}€
                   </span>
                   <div
-                    className="w-16 md:w-20 bg-success/70 rounded-t-lg transition-all duration-1000 delay-500"
+                    className="w-10 sm:w-14 md:w-20 bg-success/70 rounded-t-lg transition-all duration-1000 delay-500"
                     style={{
-                      height: isVisible ? `${(calculatedSavings / targetValues.timeValue) * 140}px` : "0px",
+                      height: isVisible ? `${(calculatedSavings / targetValues.timeValue) * 100}px` : "0px",
                     }}
                   />
-                  <span className="text-success text-sm mt-2 font-medium">
+                  <span className="text-success text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
                     Ersparnis
                   </span>
                 </div>
@@ -255,24 +256,24 @@ const ROICalculatorSection = () => {
             </div>
 
             {/* Pricing Summary */}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
-                <span className="text-white/60 text-sm">Einrichtung</span>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6">
+              <div className="bg-white/5 border border-white/10 rounded-xl p-3 sm:p-4 text-center">
+                <span className="text-white/60 text-xs sm:text-sm">Einrichtung</span>
                 <div className="mt-1">
-                  <span className="text-white text-2xl font-bold">
+                  <span className="text-white text-xl sm:text-2xl font-bold">
                     {targetValues.setupCost}
                   </span>
-                  <span className="text-white/60 text-sm">€</span>
+                  <span className="text-white/60 text-xs sm:text-sm">€</span>
                 </div>
                 <span className="text-white/50 text-xs">einmalig</span>
               </div>
-              <div className="bg-accent/20 border border-accent/30 rounded-xl p-4 text-center">
-                <span className="text-white/80 text-sm">Monatlich</span>
+              <div className="bg-accent/20 border border-accent/30 rounded-xl p-3 sm:p-4 text-center">
+                <span className="text-white/80 text-xs sm:text-sm">Monatlich</span>
                 <div className="mt-1">
-                  <span className="text-accent text-2xl font-bold">
+                  <span className="text-accent text-xl sm:text-2xl font-bold">
                     {targetValues.monthlyCost}
                   </span>
-                  <span className="text-accent/80 text-sm">€</span>
+                  <span className="text-accent/80 text-xs sm:text-sm">€</span>
                 </div>
                 <span className="text-white/60 text-xs">pro Monat</span>
               </div>
