@@ -30,14 +30,14 @@ const DigitalReceptionSection = () => {
       {/* Background decoration */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-2/3 bg-gradient-to-r from-primary/5 to-transparent" />
       
-      <div className="container mx-auto px-5 md:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
           {/* Content */}
           <div>
             <span className="trust-badge mb-4">
               Digitaler Empfang
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               Ihr Unternehmen antwortet – 
               <span className="text-muted-foreground"> auch wenn Sie nicht können</span>
             </h2>

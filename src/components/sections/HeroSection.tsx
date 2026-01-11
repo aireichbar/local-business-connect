@@ -33,55 +33,55 @@ const HeroSection = () => {
         <Wifi className="w-32 h-32 text-white" />
       </div>
 
-      <div className="container mx-auto px-5 md:px-8 py-32 md:py-40">
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 pt-24 pb-20 sm:pt-28 sm:pb-24 md:pt-36 md:pb-32 lg:pt-40 lg:pb-36">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-4 py-2 mb-8 animate-fade-in border border-white/20">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 animate-fade-in border border-white/20">
             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-white/90 text-sm font-medium">
+            <span className="text-white/90 text-xs sm:text-sm font-medium">
               Für lokale Unternehmen im Kreis Borken
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 animate-slide-up">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-4 sm:mb-6 animate-slide-up">
             Ihr Unternehmen ist
             <span className="text-accent"> immer erreichbar</span> – 
             auch wenn Sie es nicht sind.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
+          <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
             Während Sie arbeiten, beantwortet Ihr digitaler Empfang Kundenanfragen 
             automatisch – per Website, WhatsApp und mehr.
           </p>
 
           {/* Benefits */}
-          <div className="flex flex-wrap gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+          <div className="flex flex-wrap gap-2 sm:gap-4 mb-8 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             {benefits.map((benefit) => (
-              <div key={benefit} className="flex items-center gap-2 text-white/90 bg-white/10 rounded-full px-4 py-2">
-                <CheckCircle2 className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium">{benefit}</span>
+              <div key={benefit} className="flex items-center gap-1.5 sm:gap-2 text-white/90 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
+                <span className="text-xs sm:text-sm font-medium">{benefit}</span>
               </div>
             ))}
           </div>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
-            <a href="#kontakt">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+            <a href="#kontakt" className="w-full sm:w-auto">
               <Button 
                 variant="cta" 
-                size="xl" 
-                className="group bg-white text-primary hover:bg-white/90 shadow-xl"
+                size="lg" 
+                className="group bg-white text-primary hover:bg-white/90 shadow-xl w-full sm:w-auto"
               >
                 Kostenlose Beratung
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
             <Button 
               variant="ghost" 
-              size="xl" 
-              className="text-white hover:bg-white/10 gap-2"
+              size="lg" 
+              className="text-white hover:bg-white/10 gap-2 w-full sm:w-auto"
               onClick={scrollToDemo}
             >
               <Play className="w-4 h-4" />

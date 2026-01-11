@@ -50,9 +50,9 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-      <div className="container mx-auto px-5 md:px-8 relative">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+    <section ref={sectionRef} className="py-10 sm:py-12 md:py-16 relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 relative">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <div 
               key={stat.label}
@@ -63,7 +63,7 @@ const StatsSection = () => {
                 transition: `all 0.5s ease-out ${index * 0.1}s`
               }}
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
                 <AnimatedNumber 
                   value={stat.value} 
                   suffix={stat.suffix} 

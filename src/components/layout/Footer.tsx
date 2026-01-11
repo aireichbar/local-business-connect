@@ -29,7 +29,7 @@ const Footer = () => {
             <img 
               src={logo} 
               alt="aireichbar" 
-              className="h-10 w-auto brightness-0 invert mb-6"
+              className="h-8 sm:h-10 w-auto brightness-0 invert mb-4 sm:mb-6"
             />
             <p className="text-white/70 leading-relaxed text-sm mb-6">
               Digitale Lösungen für lokale Unternehmen im Kreis Borken. 
