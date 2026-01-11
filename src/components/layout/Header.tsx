@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logoOnDark from "@/assets/logo-header-white.png";
-import logoOnLight from "@/assets/logo-header-color.png";
+import Logo from "@/components/Logo";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isSolidHeader = isScrolled || isMobileMenuOpen;
-  // Switch logo color based on header background (transparent over hero vs. solid background when sticky/menu open)
-  const logoSrc = isSolidHeader ? logoOnLight : logoOnDark;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -37,15 +34,11 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 sm:px-5 md:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 md:h-24">
-          {/* Logo */}
+          {/* Logo – responsive width with clamp, variant based on header state */}
           <a href="/" className="flex items-center" aria-label="Zur Startseite">
-            <img
-              src={logoSrc}
-              alt="aireichbar Logo"
-              className="w-[clamp(130px,14vw,150px)] h-auto object-contain select-none transition-opacity duration-300"
-              width={150}
-              loading="eager"
-              decoding="async"
+            <Logo
+              variant={isSolidHeader ? "color" : "white"}
+              className="w-[clamp(120px,12vw,150px)] h-auto transition-opacity duration-300"
             />
           </a>
 
