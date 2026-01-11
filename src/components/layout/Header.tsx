@@ -1,89 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logoLight from "@/assets/logo-header-white.png";
+import logoDark from "@/assets/logo-header-dark.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState<string>(logo);
+
+  // Switch logo color based on header background (transparent over hero vs. solid background when sticky)
+  const logoSrc = isScrolled ? logoDark : logoLight;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Make the header logo fully transparent + tightly cropped (prevents any background box)
-  useEffect(() => {
-    const img = new Image();
-    img.src = logo;
-
-    img.onload = () => {
-      const w = img.naturalWidth || img.width;
-      const h = img.naturalHeight || img.height;
-      if (!w || !h) return;
-
-      const canvas = document.createElement("canvas");
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
-
-      ctx.drawImage(img, 0, 0);
-      const imageData = ctx.getImageData(0, 0, w, h);
-      const data = imageData.data;
-
-      // Keep only very bright pixels (logo), remove everything else (background)
-      const threshold = 235;
-      let minX = w,
-        minY = h,
-        maxX = 0,
-        maxY = 0;
-
-      for (let y = 0; y < h; y++) {
-        for (let x = 0; x < w; x++) {
-          const i = (y * w + x) * 4;
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          const a = data[i + 3];
-          const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-          if (a > 0 && luminance >= threshold) {
-            data[i] = 255;
-            data[i + 1] = 255;
-            data[i + 2] = 255;
-            data[i + 3] = 255;
-            if (x < minX) minX = x;
-            if (y < minY) minY = y;
-            if (x > maxX) maxX = x;
-            if (y > maxY) maxY = y;
-          } else {
-            data[i + 3] = 0;
-          }
-        }
-      }
-
-      if (minX > maxX || minY > maxY) {
-        setLogoSrc(logo);
-        return;
-      }
-
-      const cropW = maxX - minX + 1;
-      const cropH = maxY - minY + 1;
-      const cropCanvas = document.createElement("canvas");
-      cropCanvas.width = cropW;
-      cropCanvas.height = cropH;
-      const cropCtx = cropCanvas.getContext("2d");
-      if (!cropCtx) return;
-
-      cropCtx.putImageData(imageData, -minX, -minY);
-      setLogoSrc(cropCanvas.toDataURL("image/png"));
-    };
   }, []);
 
   const navLinks = [
@@ -104,13 +37,12 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-5 md:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 md:h-24">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center" aria-label="Zur Startseite">
             <img
               src={logoSrc}
               alt="aireichbar Logo"
-              className={`h-10 sm:h-12 md:h-14 w-auto max-w-[220px] object-contain select-none ${
-                isScrolled ? "filter invert" : ""
-              }`}
+              className="w-[150px] h-auto object-contain select-none"
+              width={150}
               loading="eager"
               decoding="async"
             />
