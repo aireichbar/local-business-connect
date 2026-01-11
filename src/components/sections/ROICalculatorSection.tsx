@@ -142,7 +142,7 @@ const ROICalculatorSection = () => {
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
           <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-white/10 text-white/90 mb-4">
-            Interaktiver ROI-Rechner
+            Ihr individueller Mehrwert in Zahlen
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Berechnen Sie Ihre

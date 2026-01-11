@@ -1,5 +1,6 @@
 import { MessageCircle, Clock, Smile, Shield } from "lucide-react";
 import WhatsAppChat from "@/components/WhatsAppChat";
+import PhoneMockup from "@/components/PhoneMockup";
 
 const DigitalReceptionSection = () => {
   const benefits = [
@@ -48,7 +49,7 @@ const DigitalReceptionSection = () => {
 
             {/* Benefits */}
             <div className="space-y-4">
-              {benefits.map((benefit, index) => (
+              {benefits.map((benefit) => (
                 <div 
                   key={benefit.title} 
                   className="group flex gap-4 p-4 rounded-xl hover:bg-secondary/50 transition-colors"
@@ -69,15 +70,17 @@ const DigitalReceptionSection = () => {
             </div>
           </div>
 
-          {/* WhatsApp Chat Mockup */}
+          {/* Phone Mockup with WhatsApp Chat */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 blur-[60px] rounded-full scale-90" />
               
-              {/* WhatsApp Chat */}
+              {/* Phone with WhatsApp Chat */}
               <div className="relative animate-float">
-                <WhatsAppChat />
+                <PhoneMockup>
+                  <WhatsAppChat />
+                </PhoneMockup>
               </div>
             </div>
           </div>
@@ -88,3 +91,4 @@ const DigitalReceptionSection = () => {
 };
 
 export default DigitalReceptionSection;
+
