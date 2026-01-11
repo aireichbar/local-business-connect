@@ -294,11 +294,11 @@ const Datenschutz = () => {
               </p>
             </section>
 
-            {/* 21. KI-Tool */}
+            {/* 21. Digitaler Empfang */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">21. KI-Tool</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">21. Digitaler Empfang</h2>
               <p className="mb-4">
-                Diese Website verwendet ein KI-Tool, um Ihnen erweiterte Funktionalitäten und personalisierte Erlebnisse zu bieten. Dieses Tool nutzt künstliche Intelligenz, um komplexe Aufgaben zu automatisieren, Analysen durchzuführen und mit Benutzern zu interagieren.
+                Diese Website verwendet einen Digitalen Empfang, um Ihnen erweiterte Funktionalitäten und personalisierte Erlebnisse zu bieten. Dieses System nutzt moderne Technologie, um komplexe Aufgaben zu automatisieren, Analysen durchzuführen und mit Benutzern zu interagieren.
               </p>
               <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">ChatGPT</h3>
               <p className="mb-4">
