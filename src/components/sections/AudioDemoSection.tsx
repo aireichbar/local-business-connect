@@ -1,15 +1,15 @@
-import { Volume2, Play, Square, Headphones } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 
 const AudioDemoSection = () => {
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration] = useState(15); // 15 seconds demo
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const demoText = `Willkommen bei aireichbar. Ich bin der digitale Empfang und kümmere mich um Ihr Anliegen. 
-  Wie kann ich Ihnen heute helfen? Sie können mir Fragen zu unseren Öffnungszeiten, Leistungen oder Preisen stellen. 
-  Oder ich kann einen Rückruf für Sie vereinbaren.`;
+  const demoText = `Willkommen bei Hairstyling Bocholt. Hier ist Alina, Ihre digitale Kollegin – rund um die Uhr für Sie erreichbar. Termine buchen, verschieben oder Fragen klären? Sagen Sie mir einfach, was Sie möchten – den Rest übernehme ich für Sie.`;
 
   useEffect(() => {
     const loadVoices = () => {
@@ -22,6 +22,7 @@ const AudioDemoSection = () => {
 
     return () => {
       speechSynthesis.cancel();
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
@@ -47,12 +48,14 @@ const AudioDemoSection = () => {
   };
 
   const togglePlay = () => {
-    if (isSpeaking) {
+    if (isPlaying) {
       speechSynthesis.cancel();
-      setIsSpeaking(false);
+      setIsPlaying(false);
+      if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
 
+    setCurrentTime(0);
     const utterance = new SpeechSynthesisUtterance(demoText);
     const voice = getGermanFemaleVoice();
     
@@ -64,76 +67,145 @@ const AudioDemoSection = () => {
     utterance.rate = 0.9;
     utterance.pitch = 1.1;
     
-    utterance.onstart = () => setIsSpeaking(true);
-    utterance.onend = () => setIsSpeaking(false);
-    utterance.onerror = () => setIsSpeaking(false);
+    utterance.onstart = () => {
+      setIsPlaying(true);
+      intervalRef.current = setInterval(() => {
+        setCurrentTime(prev => {
+          if (prev >= duration) {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+            return duration;
+          }
+          return prev + 0.1;
+        });
+      }, 100);
+    };
+    
+    utterance.onend = () => {
+      setIsPlaying(false);
+      setCurrentTime(duration);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+    
+    utterance.onerror = () => {
+      setIsPlaying(false);
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
 
     utteranceRef.current = utterance;
     speechSynthesis.speak(utterance);
   };
 
+  const formatTime = (time: number) => {
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Generate waveform bars
+  const waveformBars = Array.from({ length: 60 }, (_, i) => {
+    const height = Math.sin(i * 0.3) * 30 + Math.random() * 20 + 20;
+    return height;
+  });
+
   return (
-    <section className="section-padding relative overflow-hidden" style={{ background: "var(--gradient-subtle)" }}>
-      <div className="container mx-auto container-narrow relative">
-        <div className="bg-card rounded-3xl p-8 md:p-12 lg:p-16 border border-border/50 shadow-lg text-center relative overflow-hidden">
-          {/* Background accent */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
-          
-          <div className="relative">
-            {/* Icon */}
-            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-              <Headphones className="w-8 h-8 text-primary" />
-            </div>
+    <section id="audio-demo" className="section-padding bg-background">
+      <div className="container mx-auto container-narrow">
+        {/* Header */}
+        <div className="text-center mb-8 md:mb-12">
+          <span className="inline-block px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
+            Audio-Demo
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            Hören Sie Ihre neue Kollegin Alina in Aktion
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            So klingt es, wenn Alina Ihre Kundinnen begrüßt – natürlich, freundlich, professionell.
+          </p>
+        </div>
 
-            {/* Content */}
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Hören Sie selbst
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              So klingt Ihr digitaler Empfang – natürlich, freundlich und professionell.
-            </p>
+        {/* Audio Player Card */}
+        <div className="bg-[#1a1f25] rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
+          {/* Waveform Visualization */}
+          <div className="flex items-center justify-center gap-[2px] h-20 mb-8">
+            {waveformBars.map((height, i) => {
+              const progress = currentTime / duration;
+              const barProgress = i / waveformBars.length;
+              const isActive = barProgress <= progress;
+              
+              return (
+                <div
+                  key={i}
+                  className={`w-[3px] rounded-full transition-colors duration-150 ${
+                    isActive ? "bg-accent" : "bg-gray-600"
+                  }`}
+                  style={{
+                    height: `${isPlaying ? height : height * 0.6}px`,
+                    transition: isPlaying ? "height 0.15s ease" : "height 0.3s ease",
+                  }}
+                />
+              );
+            })}
+          </div>
 
-            {/* Audio player */}
-            <div className="flex flex-col items-center gap-6">
-              <Button 
-                variant="cta" 
-                size="xl" 
-                onClick={togglePlay}
-                className="gap-3 min-w-[200px] shadow-cta"
-              >
-                {isSpeaking ? (
-                  <>
-                    <Square className="w-5 h-5" />
-                    Stoppen
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-5 h-5" />
-                    Demo anhören
-                  </>
-                )}
-              </Button>
+          {/* Player Controls */}
+          <div className="flex items-center gap-4 mb-6">
+            {/* Play Button */}
+            <button
+              onClick={togglePlay}
+              className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0"
+              aria-label={isPlaying ? "Pause" : "Abspielen"}
+            >
+              {isPlaying ? (
+                <Pause className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground" />
+              ) : (
+                <Play className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground ml-1" />
+              )}
+            </button>
 
-              {/* Waveform visualization */}
-              <div className="flex items-center gap-1 h-8">
-                {[...Array(20)].map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-1 rounded-full transition-all duration-150 ${
-                      isSpeaking ? "bg-primary" : "bg-primary/30"
-                    }`}
-                    style={{
-                      height: isSpeaking ? `${Math.sin(i * 0.5) * 12 + 16}px` : "4px",
-                    }}
-                  />
-                ))}
+            {/* Track Info & Progress */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-white font-medium truncate pr-2">
+                  Hairstyling Bocholt - Ihr Digitaler Empfang
+                </span>
+                <span className="text-gray-400 text-sm flex-shrink-0">
+                  ({duration} Sek.)
+                </span>
               </div>
+              
+              {/* Progress Bar */}
+              <div className="relative h-1 bg-gray-600 rounded-full overflow-hidden mb-1">
+                <div 
+                  className="absolute left-0 top-0 h-full bg-accent rounded-full transition-all duration-100"
+                  style={{ width: `${(currentTime / duration) * 100}%` }}
+                />
+              </div>
+              
+              {/* Time Display */}
+              <div className="flex justify-between text-xs text-gray-400">
+                <span>{formatTime(currentTime)}</span>
+                <span>{formatTime(duration)}</span>
+              </div>
+            </div>
+          </div>
 
-              {/* Quote */}
-              <p className="text-muted-foreground text-sm italic max-w-sm">
-                „Willkommen bei aireichbar. Ich bin der digitale Empfang 
-                und kümmere mich um Ihr Anliegen..."
-              </p>
+          {/* Transcript Box */}
+          <div className="bg-[#252b33] rounded-xl p-4 md:p-5">
+            <div className="flex gap-3">
+              {/* Avatar */}
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                <span className="text-accent-foreground font-semibold text-sm md:text-base">A</span>
+              </div>
+              
+              {/* Text Content */}
+              <div className="flex-1 min-w-0">
+                <p className="text-accent font-medium text-sm md:text-base mb-1">
+                  Alina – Ihre digitale Kollegin
+                </p>
+                <p className="text-gray-300 text-sm md:text-base italic leading-relaxed">
+                  „{demoText}"
+                </p>
+              </div>
             </div>
           </div>
         </div>
