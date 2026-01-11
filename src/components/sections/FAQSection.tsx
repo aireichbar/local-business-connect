@@ -58,11 +58,11 @@ const FAQSection = () => {
     },
     {
       question: "Wie funktioniert die WhatsApp-Integration?",
-      answer: "Wir verbinden Ihre Geschäftsnummer mit dem digitalen Empfang. Kunden schreiben wie gewohnt – die KI antwortet automatisch."
+      answer: "Wir verbinden Ihre Geschäftsnummer mit dem Digitalen Empfang. Kunden schreiben wie gewohnt – der Digitale Empfang antwortet automatisch."
     },
     {
-      question: "Was passiert, wenn die KI eine Frage nicht beantworten kann?",
-      answer: "In diesem Fall sammelt sie die Kontaktdaten und Sie erhalten eine Benachrichtigung, um persönlich zu reagieren."
+      question: "Was passiert, wenn der Digitale Empfang eine Frage nicht beantworten kann?",
+      answer: "In diesem Fall sammelt er die Kontaktdaten und Sie erhalten eine Benachrichtigung, um persönlich zu reagieren."
     },
     {
       question: "Kann ich den digitalen Empfang testen?",

@@ -46,7 +46,7 @@ const Impressum = () => {
             <section className="mb-10">
               <h2 className="text-2xl font-bold text-foreground mb-4">Hinweis zur Tätigkeit</h2>
               <p className="text-foreground/80">
-                Diese Website dient der Information über digitale Dienstleistungen und KI-gestützte Lösungen.<br />
+                Diese Website dient der Information über digitale Dienstleistungen und den Digitalen Empfang.<br />
                 Die gewerbliche Tätigkeit befindet sich in Vorbereitung.
               </p>
             </section>
@@ -79,9 +79,9 @@ const Impressum = () => {
               </p>
             </section>
 
-            {/* Hinweis zu KI-gestützten Inhalten */}
+            {/* Hinweis zum Digitalen Empfang */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Hinweis zu KI-gestützten Inhalten</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-4">Hinweis zum Digitalen Empfang</h2>
               <p className="text-foreground/80">
                 Die angebotenen Inhalte und Systeme dienen der Unterstützung betrieblicher Prozesse.<br /><br />
                 Sie ersetzen keine rechtliche, steuerliche oder sonstige fachliche Beratung.<br /><br />
