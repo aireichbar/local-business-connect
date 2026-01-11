@@ -38,9 +38,10 @@ const Header = () => {
             <img 
               src={logo} 
               alt="aireichbar" 
-              className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${
+              className={`h-8 sm:h-10 md:h-12 w-auto object-contain transition-all duration-300 ${
                 isScrolled ? "" : "brightness-0 invert"
               }`}
+              style={{ background: 'none', border: 'none', boxShadow: 'none' }}
             />
           </a>
 
