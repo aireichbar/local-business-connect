@@ -27,14 +27,14 @@ const ContactSection = () => {
 
   return (
     <section id="kontakt" className="section-padding relative overflow-hidden" style={{ background: "var(--gradient-subtle)" }}>
-      <div className="container mx-auto px-5 md:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 max-w-5xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 relative">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 max-w-5xl mx-auto">
           {/* Info */}
           <div>
             <span className="trust-badge mb-4">
               Kontakt
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
               Lassen Sie uns sprechen
             </h2>
             <p className="text-muted-foreground mb-8 leading-relaxed">
