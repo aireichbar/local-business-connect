@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logoLight from "@/assets/logo-header-white.png";
-import logoDark from "@/assets/logo-header-dark.png";
+import logoOnDark from "@/assets/logo-header-white.png";
+import logoOnLight from "@/assets/logo-header-color.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Switch logo color based on header background (transparent over hero vs. solid background when sticky)
-  const logoSrc = isScrolled ? logoDark : logoLight;
+  const isSolidHeader = isScrolled || isMobileMenuOpen;
+  // Switch logo color based on header background (transparent over hero vs. solid background when sticky/menu open)
+  const logoSrc = isSolidHeader ? logoOnLight : logoOnDark;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -29,7 +30,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isSolidHeader
           ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
           : "bg-transparent"
       }`}
@@ -41,7 +42,7 @@ const Header = () => {
             <img
               src={logoSrc}
               alt="aireichbar Logo"
-              className="w-[150px] h-auto object-contain select-none"
+              className="w-[clamp(130px,14vw,150px)] h-auto object-contain select-none transition-opacity duration-300"
               width={150}
               loading="eager"
               decoding="async"
@@ -55,7 +56,7 @@ const Header = () => {
                 key={link.label}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isScrolled ? "text-foreground" : "text-primary-foreground"
+                  isSolidHeader ? "text-foreground" : "text-primary-foreground"
                 }`}
               >
                 {link.label}
@@ -65,7 +66,7 @@ const Header = () => {
               <Button
                 variant="cta"
                 size="default"
-                className={`${!isScrolled ? "shadow-lg" : ""}`}
+                className={`${!isSolidHeader ? "shadow-lg" : ""}`}
               >
                 Kostenlos beraten lassen
               </Button>
@@ -79,9 +80,17 @@ const Header = () => {
             aria-label="Menü öffnen"
           >
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <X
+                className={`w-6 h-6 ${
+                  isSolidHeader ? "text-foreground" : "text-primary-foreground"
+                }`}
+              />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-primary-foreground"}`} />
+              <Menu
+                className={`w-6 h-6 ${
+                  isSolidHeader ? "text-foreground" : "text-primary-foreground"
+                }`}
+              />
             )}
           </button>
         </div>
@@ -100,7 +109,11 @@ const Header = () => {
                   {link.label}
                 </a>
               ))}
-              <a href="#kontakt" onClick={() => setIsMobileMenuOpen(false)} className="mt-2">
+              <a
+                href="#kontakt"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2"
+              >
                 <Button variant="cta" size="lg" className="w-full">
                   Kostenlos beraten lassen
                 </Button>
