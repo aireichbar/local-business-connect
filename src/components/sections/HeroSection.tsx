@@ -15,7 +15,7 @@ const HeroSection = () => {
     { id: 'whatsapp' as const, label: 'WhatsApp', icon: MessageCircle },
     { id: 'telefon' as const, label: 'Telefon', icon: Phone },
     { id: 'email' as const, label: 'E-Mail', icon: Mail },
-    { id: 'website' as const, label: 'Website-Chat', icon: Globe },
+    { id: 'website' as const, label: 'Website', icon: Globe },
   ];
 
   const industries = [
@@ -49,7 +49,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-center overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 -z-10"
@@ -61,7 +61,7 @@ const HeroSection = () => {
       <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] rounded-full border border-white/10 opacity-20" style={{ animationDelay: '1s' }} />
       <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-white/5 blur-3xl" />
 
-      <div className="container mx-auto px-4 sm:px-5 md:px-8 pt-24 pb-20 sm:pt-28 sm:pb-24 md:pt-32 md:pb-28 lg:pt-36 lg:pb-32">
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 pt-20 pb-16 sm:pt-24 sm:pb-20 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Content */}
           <div className="order-2 lg:order-1">
@@ -130,19 +130,19 @@ const HeroSection = () => {
 
           {/* Right: Phone Mockup with Channel Tabs */}
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
-            {/* Channel Tabs - 2x2 grid on mobile, flex on larger screens */}
-            <div className="grid grid-cols-2 xs:flex xs:flex-wrap justify-center gap-2 mb-4 w-full max-w-[340px]">
+            {/* Channel Tabs - always in one row */}
+            <div className="flex justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 w-full">
               {channels.map((channel) => (
                 <button
                   key={channel.id}
                   onClick={() => setActiveChannel(channel.id)}
-                  className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`flex items-center justify-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium transition-all duration-300 whitespace-nowrap ${
                     activeChannel === channel.id
                       ? 'bg-white text-primary shadow-lg'
                       : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
                   }`}
                 >
-                  <channel.icon className="w-3.5 h-3.5 flex-shrink-0" />
+                  <channel.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
                   <span>{channel.label}</span>
                 </button>
               ))}
