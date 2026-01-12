@@ -1,6 +1,6 @@
-import { Zap, MapPin, Shield, Puzzle, Clock, HeartHandshake } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Zap, MapPin, Shield, Puzzle, Clock, HeartHandshake, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const SolutionSection = () => {
   const features = [
@@ -53,12 +53,12 @@ const SolutionSection = () => {
               und Kontaktdaten sammelt – während Sie sich auf Ihre Arbeit konzentrieren.
             </p>
             
-            <a href="#pakete">
+            <Link to="/#pakete">
               <Button variant="outline" size="lg" className="group gap-2">
                 Pakete ansehen
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Features grid */}

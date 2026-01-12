@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -38,7 +39,7 @@ const FinalCTASection = () => {
           </div>
 
           {/* CTA */}
-          <a href="#kontakt">
+          <Link to="/#kontakt">
             <Button 
               variant="cta" 
               size="xl" 
@@ -47,7 +48,7 @@ const FinalCTASection = () => {
               Jetzt Gespräch vereinbaren
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

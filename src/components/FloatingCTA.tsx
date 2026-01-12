@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
@@ -16,8 +17,8 @@ const FloatingCTA = () => {
   }, []);
 
   return (
-    <a
-      href="#kontakt"
+    <Link
+      to="/#kontakt"
       className={`fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 transition-all duration-500 ${
         showCTA ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
       }`}
@@ -26,7 +27,7 @@ const FloatingCTA = () => {
         <MessageCircle className="w-4 h-4" />
         <span className="hidden sm:inline">Anfragen</span>
       </Button>
-    </a>
+    </Link>
   );
 };
 
