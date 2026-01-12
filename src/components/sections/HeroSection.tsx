@@ -37,24 +37,6 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Content */}
           <div className="order-2 lg:order-1">
-            {/* Social Proof Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 animate-fade-in border border-white/20">
-              <div className="flex -space-x-1">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-5 h-5 rounded-full bg-accent/80 border-2 border-white/20 flex items-center justify-center">
-                    <span className="text-[8px] text-white font-bold">{i}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="w-3 h-3 fill-accent text-accent" />
-                ))}
-              </div>
-              <span className="text-white/90 text-xs font-medium">
-                50+ zufriedene Unternehmen
-              </span>
-            </div>
 
             {/* Headline - SHORTENED */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 animate-slide-up">
