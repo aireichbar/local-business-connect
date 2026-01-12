@@ -1,10 +1,23 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Star, Wrench, Scissors, Stethoscope, Car, Building2 } from "lucide-react";
+import { ArrowRight, Play, Wrench, Scissors, Stethoscope, Car, Building2, MessageCircle, Phone, Mail, Globe } from "lucide-react";
 import PhoneMockup from "@/components/PhoneMockup";
 import WhatsAppChat from "@/components/WhatsAppChat";
+import PhoneCallDemo from "@/components/PhoneCallDemo";
+import EmailDemo from "@/components/EmailDemo";
+import WebsiteChatDemo from "@/components/WebsiteChatDemo";
 
 const HeroSection = () => {
+  const [activeChannel, setActiveChannel] = useState<'whatsapp' | 'telefon' | 'email' | 'website'>('whatsapp');
+
+  const channels = [
+    { id: 'whatsapp' as const, label: 'WhatsApp', icon: MessageCircle },
+    { id: 'telefon' as const, label: 'Telefon', icon: Phone },
+    { id: 'email' as const, label: 'E-Mail', icon: Mail },
+    { id: 'website' as const, label: 'Website-Chat', icon: Globe },
+  ];
+
   const industries = [
     { icon: Wrench, label: "Handwerker" },
     { icon: Scissors, label: "Friseure" },
@@ -17,6 +30,21 @@ const HeroSection = () => {
     const demoSection = document.getElementById('digitaler-empfang');
     if (demoSection) {
       demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const renderDemo = () => {
+    switch (activeChannel) {
+      case 'whatsapp':
+        return <WhatsAppChat />;
+      case 'telefon':
+        return <PhoneCallDemo />;
+      case 'email':
+        return <EmailDemo />;
+      case 'website':
+        return <WebsiteChatDemo />;
+      default:
+        return <WhatsAppChat />;
     }
   };
 
@@ -38,16 +66,16 @@ const HeroSection = () => {
           {/* Left: Content */}
           <div className="order-2 lg:order-1">
 
-            {/* Headline - SHORTENED */}
+            {/* Headline - NEW */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 animate-slide-up">
-              Nie wieder Kunden verlieren.
-              <span className="block text-accent mt-1">Automatisch erreichbar.</span>
+              Kundenkontakt über
+              <span className="block text-accent mt-1">alle Kanäle.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
               Ihr digitaler Empfang beantwortet Kundenanfragen rund um die Uhr – 
-              per Website, WhatsApp und Telefon.
+              per WhatsApp, Telefon, E-Mail und Website-Chat.
             </p>
 
             {/* Industry Badges */}
@@ -100,14 +128,32 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right: Phone Mockup with WhatsApp Demo */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
+          {/* Right: Phone Mockup with Channel Tabs */}
+          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
+            {/* Channel Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 mb-4 w-full max-w-[340px]">
+              {channels.map((channel) => (
+                <button
+                  key={channel.id}
+                  onClick={() => setActiveChannel(channel.id)}
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                    activeChannel === channel.id
+                      ? 'bg-white text-primary shadow-lg'
+                      : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
+                  }`}
+                >
+                  <channel.icon className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>{channel.label}</span>
+                </button>
+              ))}
+            </div>
+
             <div className="relative">
               {/* Glow effect behind phone */}
               <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50" />
               
-              <PhoneMockup>
-                <WhatsAppChat />
+              <PhoneMockup key={activeChannel}>
+                {renderDemo()}
               </PhoneMockup>
               
               {/* Floating badge */}
