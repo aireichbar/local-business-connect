@@ -8,7 +8,6 @@ import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import PackagesSection from "@/components/sections/PackagesSection";
 import ROICalculatorSection from "@/components/sections/ROICalculatorSection";
 import DigitalReceptionSection from "@/components/sections/DigitalReceptionSection";
-import InteractiveWhatsAppDemoSection from "@/components/sections/InteractiveWhatsAppDemoSection";
 import AudioDemoSection from "@/components/sections/AudioDemoSection";
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
@@ -47,9 +46,6 @@ const Index = () => {
           <DigitalReceptionSection />
         </AnimatedSection>
         <AnimatedSection animation="fade-up" delay={100}>
-          <InteractiveWhatsAppDemoSection />
-        </AnimatedSection>
-        <AnimatedSection animation="fade-up" delay={200}>
           <AudioDemoSection />
         </AnimatedSection>
         
