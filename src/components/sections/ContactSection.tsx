@@ -46,23 +46,44 @@ const ContactSection = () => {
       return;
     }
 
-    // Build mailto link and open it
-    const subject = encodeURIComponent(`Kontaktanfrage von ${data.name}${data.company ? ` (${data.company})` : ""}`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\nUnternehmen: ${data.company || "-"}\nE-Mail: ${data.email}\n\nNachricht:\n${data.message}`
-    );
-    const mailtoLink = `mailto:info@aireichbar.de?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
-    // Open default mail client
-    window.location.href = mailtoLink;
+      const responseData = await response.json();
 
-    // Show success toast
-    toast({
-      title: "E-Mail-Programm geöffnet!",
-      description: "Bitte senden Sie die vorbereitete E-Mail ab.",
-    });
+      if (!response.ok) {
+        throw new Error(responseData.error || "Fehler beim Senden der Nachricht.");
+      }
 
-    setIsSubmitting(false);
+      // Success
+      toast({
+        title: "Nachricht gesendet!",
+        description: "Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.",
+      });
+
+      // Reset form
+      e.currentTarget.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast({
+        title: "Fehler",
+        description: error instanceof Error ? error.message : "Nachricht konnte nicht gesendet werden.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -204,4 +225,3 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
-

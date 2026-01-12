@@ -56,7 +56,6 @@ const PackagesSection = () => {
         "E-Mail-Automatisierung",
         "Kontaktformular inkl.",
         "24/7 erreichbar",
-        "DSGVO-konform",
         "Ihre Daten bleiben bei Ihnen"
       ],
       cta: "Empfang aktivieren",

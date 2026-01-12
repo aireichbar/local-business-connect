@@ -54,12 +54,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <img 
-              src={logoSrc} 
-              alt="Aireichbar – Ihr Partner für digitale Lösungen in Bocholt und Kreis Borken" 
-              loading="lazy"
-              className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6"
-            />
+            <Link to="/">
+              <img 
+                src={logoSrc} 
+                alt="Aireichbar – Ihr Partner für digitale Lösungen in Bocholt und Kreis Borken" 
+                loading="lazy"
+                className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6 hover:opacity-80 transition-opacity"
+              />
+            </Link>
             <p className="text-white/70 leading-relaxed text-sm mb-6">
               Digitale Lösungen für lokale Unternehmen im Kreis Borken. 
               Persönlich, verständlich und zuverlässig.
