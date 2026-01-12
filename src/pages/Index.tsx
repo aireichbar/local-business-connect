@@ -8,7 +8,7 @@ import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import PackagesSection from "@/components/sections/PackagesSection";
 import ROICalculatorSection from "@/components/sections/ROICalculatorSection";
 import DigitalReceptionSection from "@/components/sections/DigitalReceptionSection";
-import AudioDemoSection from "@/components/sections/AudioDemoSection";
+
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
@@ -44,9 +44,6 @@ const Index = () => {
         {/* 5. Demo - Produkt erlebbar machen */}
         <AnimatedSection animation="fade-up">
           <DigitalReceptionSection />
-        </AnimatedSection>
-        <AnimatedSection animation="fade-up" delay={100}>
-          <AudioDemoSection />
         </AnimatedSection>
         
         {/* 6. Wie es funktioniert - Einfachheit zeigen */}
