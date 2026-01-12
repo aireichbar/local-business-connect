@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Check, Star, ArrowRight, Shield, MessageCircle, Phone, Mail, FileText, Database } from "lucide-react";
 
@@ -154,7 +155,7 @@ const PackagesSection = () => {
               </ul>
 
               {/* CTA */}
-              <a href="#kontakt" className="mt-auto">
+              <Link to="/#kontakt" className="mt-auto">
                 <Button 
                   variant={pkg.highlighted ? "secondary" : "outline"} 
                   size="lg" 
@@ -163,7 +164,7 @@ const PackagesSection = () => {
                   {pkg.cta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </a>
+              </Link>
             </div>
           ))}
         </div>

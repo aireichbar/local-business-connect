@@ -14,14 +14,14 @@ const Footer = () => {
 
   const links = {
     leistungen: [
-      { label: "Einstieg", href: "#pakete" },
-      { label: "Wachstum", href: "#pakete" },
-      { label: "Digitaler Empfang", href: "#digitaler-empfang" },
+      { label: "Einstieg", href: "/#pakete" },
+      { label: "Wachstum", href: "/#pakete" },
+      { label: "Digitaler Empfang", href: "/#digitaler-empfang" },
     ],
     unternehmen: [
-      { label: "Über uns", href: "#so-funktioniert-es" },
-      { label: "Kontakt", href: "#kontakt" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Über uns", href: "/ueber-uns" },
+      { label: "Kontakt", href: "/#kontakt" },
+      { label: "FAQ", href: "/#faq" },
     ],
   };
 
@@ -78,13 +78,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {links.leistungen.map((link) => (
                 <li key={link.label}>
-                  <a 
-                    href={link.href} 
+                  <Link 
+                    to={link.href} 
                     className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-2 group"
                   >
                     {link.label}
                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,13 +98,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {links.unternehmen.map((link) => (
                 <li key={link.label}>
-                  <a 
-                    href={link.href} 
+                  <Link 
+                    to={link.href} 
                     className="text-white/70 hover:text-white transition-colors text-sm flex items-center gap-2 group"
                   >
                     {link.label}
                     <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

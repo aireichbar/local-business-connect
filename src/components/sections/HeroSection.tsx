@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Play, Wifi } from "lucide-react";
-
 
 const HeroSection = () => {
   const benefits = [
@@ -69,7 +69,7 @@ const HeroSection = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
-            <a href="#kontakt" className="w-full sm:w-auto">
+            <Link to="/#kontakt" className="w-full sm:w-auto">
               <Button 
                 variant="cta" 
                 size="lg" 
@@ -78,7 +78,7 @@ const HeroSection = () => {
                 Kostenlose Beratung
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </a>
+            </Link>
             <Button 
               variant="ghost" 
               size="lg" 
