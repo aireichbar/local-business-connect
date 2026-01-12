@@ -14,13 +14,15 @@ import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
 import ScrollToTop from "@/components/ScrollToTop";
+import SkipToContent from "@/components/SkipToContent";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SkipToContent />
       <Header />
-      <main>
+      <main id="main-content">
         {/* 1. Hook - Emotionaler Einstieg */}
         <HeroSection />
         

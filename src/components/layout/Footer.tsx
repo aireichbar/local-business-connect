@@ -57,6 +57,7 @@ const Footer = () => {
             <img 
               src={logoSrc} 
               alt="aireichbar" 
+              loading="lazy"
               className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6"
             />
             <p className="text-white/70 leading-relaxed text-sm mb-6">

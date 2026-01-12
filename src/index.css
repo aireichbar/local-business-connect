@@ -137,6 +137,16 @@
     @apply font-bold tracking-tight;
     text-wrap: balance;
   }
+
+  /* Improved focus states for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Skip link styling */
+  .sr-only:focus {
+    @apply not-sr-only;
+  }
 }
 
 @layer components {

@@ -15,10 +15,10 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        cta: "bg-cta text-cta-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
+        cta: "bg-cta text-cta-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700",
         accent: "bg-accent text-accent-foreground hover:bg-accent/90",
-        hero: "bg-cta text-cta-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] text-lg font-semibold",
-        heroOutline: "border-2 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm",
+        hero: "bg-cta text-cta-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] text-lg font-semibold relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:translate-x-full before:transition-transform before:duration-700",
+        heroOutline: "border-2 border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-all duration-300",
       },
       size: {
         default: "h-11 px-6 py-2",
