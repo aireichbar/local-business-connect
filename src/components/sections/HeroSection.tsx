@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Wrench, Scissors, Stethoscope, Car, Building2, MessageCircle, Phone, Mail, Globe } from "lucide-react";
@@ -17,6 +17,19 @@ const HeroSection = () => {
     { id: 'email' as const, label: 'E-Mail', icon: Mail },
     { id: 'website' as const, label: 'Website', icon: Globe },
   ];
+
+  // Auto-rotate channels every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveChannel((prev) => {
+        const currentIndex = channels.findIndex(c => c.id === prev);
+        const nextIndex = (currentIndex + 1) % channels.length;
+        return channels[nextIndex].id;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const industries = [
     { icon: Wrench, label: "Handwerker" },
@@ -66,16 +79,15 @@ const HeroSection = () => {
           {/* Left: Content */}
           <div className="order-2 lg:order-1">
 
-            {/* Headline - NEW */}
+            {/* Headline - Optimized for 5-second rule */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 animate-slide-up">
-              Kundenkontakt über
-              <span className="block text-accent mt-1">alle Kanäle.</span>
+              Nie wieder Anrufe
+              <span className="block text-accent mt-1">verpassen.</span>
             </h1>
 
-            {/* Subheadline */}
+            {/* Subheadline - Shorter, benefit-focused */}
             <p className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
-              Ihr digitaler Empfang beantwortet Kundenanfragen rund um die Uhr – 
-              per WhatsApp, Telefon, E-Mail und Website-Chat.
+              Ihr digitaler Empfang antwortet 24/7 – Sie konzentrieren sich auf Ihre Arbeit.
             </p>
 
             {/* Industry Badges */}

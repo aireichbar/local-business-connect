@@ -1,91 +1,64 @@
-import { Phone, Clock, TrendingDown, XCircle } from "lucide-react";
+import { Phone, Clock, XCircle, TrendingDown } from "lucide-react";
 
 const ProblemSection = () => {
   const problems = [
     {
       icon: Phone,
       title: "Nicht erreichbar",
-      description: "Auf der Baustelle, beim Kunden, in der Behandlung – Sie können nicht immer ans Telefon gehen.",
-      stat: "3-5",
-      statLabel: "verpasste Anrufe/Tag"
+      stat: "3-5 Anrufe/Tag verpasst"
     },
     {
       icon: Clock,
       title: "Anfragen nach Feierabend",
-      description: "Die meisten Menschen suchen abends oder am Wochenende – wenn Sie nicht im Büro sind.",
-      stat: "60%",
-      statLabel: "außerhalb Ihrer Zeiten"
+      stat: "60% außerhalb Ihrer Zeiten"
     },
     {
       icon: XCircle,
-      title: "Kunden gehen zur Konkurrenz",
-      description: "Wer keine schnelle Antwort bekommt, ruft beim nächsten Anbieter an.",
-      stat: "< 30s",
-      statLabel: "Geduld der Kunden"
+      title: "Kunden zur Konkurrenz",
+      stat: "< 30s Geduld"
     },
     {
       icon: TrendingDown,
-      title: "Zeit fehlt fürs Digitale",
-      description: "Website pflegen, Anfragen beantworten, Social Media – wann soll das noch passieren?",
-      stat: "5+",
-      statLabel: "Stunden/Woche verloren"
+      title: "Keine Zeit fürs Digitale",
+      stat: "5+ Stunden/Woche verloren"
     }
   ];
 
   return (
-    <section className="section-padding bg-background relative overflow-hidden">
-      {/* Subtle background */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-secondary/50 to-transparent" />
-      
-      <div className="container mx-auto container-narrow relative">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="trust-badge mb-4">
-            Das Problem
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+    <section className="py-12 md:py-16 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-5 md:px-8">
+        {/* Compact header */}
+        <div className="text-center mb-8 md:mb-10">
+          <span className="trust-badge mb-3">Das Problem</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
             Kommt Ihnen das bekannt vor?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Als lokaler Unternehmer kennen Sie diese Situationen – 
-            und sie kosten Sie jeden Tag bares Geld.
-          </p>
         </div>
 
-        {/* Problem grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {problems.map((problem, index) => (
+        {/* Horizontal problem cards - icon focused */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+          {problems.map((problem) => (
             <div 
               key={problem.title}
-              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-destructive/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="group bg-card rounded-xl p-4 md:p-5 border border-border/50 hover:border-destructive/30 hover:shadow-md transition-all duration-300 text-center"
             >
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0 group-hover:bg-destructive/20 transition-colors">
-                  <problem.icon className="w-6 h-6 text-destructive" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {problem.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {problem.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="text-xl font-bold text-destructive">{problem.stat}</span>
-                    <span className="text-muted-foreground">{problem.statLabel}</span>
-                  </div>
-                </div>
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-destructive/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-destructive/20 transition-colors">
+                <problem.icon className="w-6 h-6 md:w-7 md:h-7 text-destructive" />
               </div>
+              <h3 className="font-semibold text-foreground text-sm md:text-base mb-1">
+                {problem.title}
+              </h3>
+              <p className="text-xs md:text-sm text-destructive font-medium">
+                {problem.stat}
+              </p>
             </div>
           ))}
         </div>
 
         {/* Transition */}
-        <div className="text-center mt-16">
-          <p className="text-xl font-medium text-foreground">
-            Was wäre, wenn das alles <span className="text-primary font-bold">automatisch</span> funktionieren würde?
-          </p>
-        </div>
+        <p className="text-center text-lg md:text-xl font-medium text-foreground">
+          Was wäre, wenn das <span className="text-primary font-bold">automatisch</span> funktioniert?
+        </p>
       </div>
     </section>
   );
