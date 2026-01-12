@@ -1,16 +1,9 @@
-import { useState } from "react";
-import { Mail, MapPin, ArrowRight, Send, Cookie, Loader2 } from "lucide-react";
+import { Mail, MapPin, ArrowRight, Cookie } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import logoSrc from "@/assets/logo-header.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
   const links = {
     leistungen: [
@@ -23,21 +16,6 @@ const Footer = () => {
       { label: "Kontakt", href: "/#kontakt" },
       { label: "FAQ", href: "/#faq" },
     ],
-  };
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    setEmail("");
-    toast({
-      title: "Erfolgreich angemeldet!",
-      description: "Vielen Dank für Ihre Newsletter-Anmeldung.",
-    });
   };
 
   const handleCookieSettings = () => {
@@ -112,40 +90,14 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Kontakt */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider mb-6 text-white/90">
-              Newsletter
+              Kontakt
             </h3>
-            <p className="text-white/70 text-sm mb-4">
-              Tipps zur digitalen Erreichbarkeit direkt in Ihr Postfach.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Ihre E-Mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50 text-sm"
-                required
-              />
-              <Button
-                type="submit"
-                size="icon"
-                variant="ghost"
-                className="bg-white/10 hover:bg-white/20 text-white flex-shrink-0"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Send className="w-4 h-4" />
-                )}
-              </Button>
-            </form>
             <a 
               href="mailto:info@aireichbar.de" 
-              className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm mt-6"
+              className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm"
             >
               <Mail className="w-4 h-4" />
               info@aireichbar.de
