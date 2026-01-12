@@ -87,6 +87,10 @@ const AudioDemoSection = () => {
     setCurrentTime(0);
 
     try {
+      // Create AbortController for timeout handling
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/openai-tts`,
         {
@@ -100,8 +104,11 @@ const AudioDemoSection = () => {
             text: demoText,
             voice: 'nova',
           }),
+          signal: controller.signal,
         }
       );
+      
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -146,9 +153,19 @@ const AudioDemoSection = () => {
       setIsPlaying(true);
     } catch (error) {
       console.error('TTS Error:', error);
+      
+      let errorMessage = "Audio-Generierung fehlgeschlagen.";
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          errorMessage = "Zeitüberschreitung bei der Audio-Generierung. Bitte versuchen Sie es erneut.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
       toast({
         title: "Fehler",
-        description: error instanceof Error ? error.message : "Audio-Generierung fehlgeschlagen.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
