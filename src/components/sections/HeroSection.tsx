@@ -7,10 +7,13 @@ const HeroSection = () => {
     "Immer erreichbar",
     "Lokaler Partner",
     "Keine Technik-Kenntnisse nötig",
+    "DSGVO-konform",
+    "24/7 verfügbar",
+    "Schnelle Einrichtung",
   ];
 
   const scrollToDemo = () => {
-    const demoSection = document.getElementById('digitaler-empfang');
+    const demoSection = document.getElementById('audio-demo');
     if (demoSection) {
       demoSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -57,11 +60,11 @@ const HeroSection = () => {
             automatisch – per Website, WhatsApp und mehr.
           </p>
 
-          {/* Benefits */}
-          <div className="flex flex-wrap gap-2 sm:gap-4 mb-8 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+          {/* Benefits - 2 rows of 3 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 mb-8 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             {benefits.map((benefit) => (
               <div key={benefit} className="flex items-center gap-1.5 sm:gap-2 text-white/90 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
+                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent flex-shrink-0" />
                 <span className="text-xs sm:text-sm font-medium">{benefit}</span>
               </div>
             ))}
