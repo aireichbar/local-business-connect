@@ -55,7 +55,7 @@ const UeberUns = () => {
               </h1>
               
               <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl">
-                aireichbar ist Ihr Partner für digitale Erreichbarkeit – von Handwerkern und Friseuren 
+                Aireichbar ist Ihr Partner für digitale Erreichbarkeit – von Handwerkern und Friseuren 
                 bis zu Praxen und Restaurants im Kreis Borken.
               </p>
             </div>
