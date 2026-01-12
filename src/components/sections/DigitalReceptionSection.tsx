@@ -1,6 +1,9 @@
-import { MessageCircle, Clock, Smile, Shield } from "lucide-react";
+import { MessageCircle, Clock, Smile, Shield, Phone, Mail } from "lucide-react";
 import WhatsAppChat from "@/components/WhatsAppChat";
+import PhoneCallDemo from "@/components/PhoneCallDemo";
+import EmailDemo from "@/components/EmailDemo";
 import PhoneMockup from "@/components/PhoneMockup";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const DigitalReceptionSection = () => {
   const benefits = [
@@ -26,6 +29,12 @@ const DigitalReceptionSection = () => {
     }
   ];
 
+  const channels = [
+    { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
+    { id: "phone", label: "Telefon", icon: Phone },
+    { id: "email", label: "E-Mail", icon: Mail },
+  ];
+
   return (
     <section id="digitaler-empfang" className="section-padding bg-background relative overflow-hidden">
       {/* Background decoration */}
@@ -36,15 +45,15 @@ const DigitalReceptionSection = () => {
           {/* Content */}
           <div>
             <span className="trust-badge mb-4">
-              Digitaler Empfang
+              Omnichannel Lösung
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
-              Ihr Unternehmen antwortet – 
-              <span className="text-muted-foreground"> auch wenn Sie nicht können</span>
+              Ein Empfang für 
+              <span className="text-primary"> alle Kanäle</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              Ein Kunde schreibt über WhatsApp oder Ihre Website. Anstatt zu warten, 
-              bekommt er sofort eine freundliche Antwort. Das ist der digitale Empfang.
+              Ob WhatsApp, Telefon oder E-Mail – Ihr digitaler Empfang antwortet 
+              professionell auf jedem Kanal. Ihre Kunden wählen selbst, wie sie Sie erreichen möchten.
             </p>
 
             {/* Benefits */}
@@ -70,19 +79,49 @@ const DigitalReceptionSection = () => {
             </div>
           </div>
 
-          {/* Phone Mockup with WhatsApp Chat */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 blur-[60px] rounded-full scale-90" />
-              
-              {/* Phone with WhatsApp Chat */}
-              <div className="relative animate-float">
-                <PhoneMockup>
-                  <WhatsAppChat />
-                </PhoneMockup>
+          {/* Phone Mockup with Channel Tabs */}
+          <div className="flex flex-col items-center lg:items-end">
+            <Tabs defaultValue="whatsapp" className="w-full max-w-[320px]">
+              {/* Channel Tabs */}
+              <TabsList className="w-full mb-4 bg-secondary/50 p-1 rounded-xl">
+                {channels.map((channel) => (
+                  <TabsTrigger
+                    key={channel.id}
+                    value={channel.id}
+                    className="flex-1 flex items-center justify-center gap-1.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg py-2 text-xs sm:text-sm transition-all"
+                  >
+                    <channel.icon className="w-4 h-4" />
+                    <span className="hidden sm:inline">{channel.label}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 blur-[60px] rounded-full scale-90" />
+                
+                {/* Phone with different channel demos */}
+                <div className="relative animate-float">
+                  <TabsContent value="whatsapp" className="mt-0">
+                    <PhoneMockup>
+                      <WhatsAppChat />
+                    </PhoneMockup>
+                  </TabsContent>
+                  
+                  <TabsContent value="phone" className="mt-0">
+                    <PhoneMockup>
+                      <PhoneCallDemo />
+                    </PhoneMockup>
+                  </TabsContent>
+                  
+                  <TabsContent value="email" className="mt-0">
+                    <PhoneMockup>
+                      <EmailDemo />
+                    </PhoneMockup>
+                  </TabsContent>
+                </div>
               </div>
-            </div>
+            </Tabs>
           </div>
         </div>
       </div>
@@ -91,4 +130,3 @@ const DigitalReceptionSection = () => {
 };
 
 export default DigitalReceptionSection;
-
