@@ -13,6 +13,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
+import ScrollToTop from "@/components/ScrollToTop";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
@@ -80,6 +81,7 @@ const Index = () => {
       
       {/* Floating elements */}
       <FloatingCTA />
+      <ScrollToTop />
     </div>
   );
 };
