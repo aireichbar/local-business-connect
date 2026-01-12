@@ -1,26 +1,12 @@
-import { Play, Pause, Volume2, Loader2 } from "lucide-react";
+import { Play, Pause, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
-
-// OpenAI TTS Voices for gpt-4o-mini-tts
-const VOICES = [
-  { id: 'nova', name: 'Nova', description: 'Warm & freundlich' },
-  { id: 'alloy', name: 'Alloy', description: 'Neutral & professionell' },
-  { id: 'coral', name: 'Coral', description: 'Natürlich & einladend' },
-  { id: 'sage', name: 'Sage', description: 'Ruhig & vertrauensvoll' },
-  { id: 'ash', name: 'Ash', description: 'Klar & modern' },
-  { id: 'ballad', name: 'Ballad', description: 'Melodisch & sanft' },
-  { id: 'echo', name: 'Echo', description: 'Klar & deutlich' },
-  { id: 'shimmer', name: 'Shimmer', description: 'Hell & dynamisch' },
-  { id: 'verse', name: 'Verse', description: 'Ausdrucksstark' },
-];
 
 const AudioDemoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(15);
-  const [selectedVoice, setSelectedVoice] = useState('nova');
   const [waveformHeights, setWaveformHeights] = useState<number[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -103,7 +89,7 @@ const AudioDemoSection = () => {
           },
           body: JSON.stringify({
             text: demoText,
-            voice: selectedVoice,
+            voice: 'nova',
           }),
         }
       );
@@ -167,8 +153,6 @@ const AudioDemoSection = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const currentVoice = VOICES.find(v => v.id === selectedVoice);
-
   return (
     <section id="audio-demo" className="section-padding bg-background">
       <div className="container mx-auto container-narrow">
@@ -181,41 +165,9 @@ const AudioDemoSection = () => {
             Hören Sie Ihre neue Kollegin in Aktion
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Wählen Sie eine Stimme und hören Sie, wie natürlich Ihr digitaler Empfang klingen kann.
+            So klingt es, wenn Alina Ihre Kundinnen begrüßt – natürlich, freundlich, professionell.
           </p>
         </div>
-
-        {/* Voice Selection */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6 max-w-2xl mx-auto">
-          {VOICES.map((voice) => (
-            <button
-              key={voice.id}
-              onClick={() => {
-                setSelectedVoice(voice.id);
-                if (audioRef.current) {
-                  audioRef.current.pause();
-                  setIsPlaying(false);
-                  setCurrentTime(0);
-                }
-              }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                selectedVoice === voice.id
-                  ? 'bg-accent text-accent-foreground shadow-md'
-                  : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-              }`}
-            >
-              <span className="flex items-center gap-2">
-                <Volume2 className="w-3.5 h-3.5" />
-                {voice.name}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Selected Voice Description */}
-        <p className="text-center text-sm text-muted-foreground mb-6">
-          Stimme: <span className="font-medium text-foreground">{currentVoice?.name}</span> – {currentVoice?.description}
-        </p>
 
         {/* Audio Player Card */}
         <div className="bg-[#1a1f25] rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
