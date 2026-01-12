@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Play, Wifi } from "lucide-react";
+import { ArrowRight, Play, Star, Wrench, Scissors, Stethoscope, Car, Building2 } from "lucide-react";
+import PhoneMockup from "@/components/PhoneMockup";
+import WhatsAppChat from "@/components/WhatsAppChat";
 
 const HeroSection = () => {
-  const benefits = [
-    "Immer erreichbar",
-    "Lokaler Partner",
-    "Keine Technik-Kenntnisse nötig",
+  const industries = [
+    { icon: Wrench, label: "Handwerker" },
+    { icon: Scissors, label: "Friseure" },
+    { icon: Stethoscope, label: "Praxen" },
+    { icon: Car, label: "Werkstätten" },
+    { icon: Building2, label: "Dienstleister" },
   ];
 
   const scrollToDemo = () => {
@@ -28,72 +32,116 @@ const HeroSection = () => {
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full border border-white/10 opacity-30 animate-pulse-soft" />
       <div className="absolute top-1/3 right-1/3 w-[400px] h-[400px] rounded-full border border-white/10 opacity-20" style={{ animationDelay: '1s' }} />
       <div className="absolute bottom-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-white/5 blur-3xl" />
-      
-      {/* WiFi signal decoration - matching logo */}
-      <div className="absolute top-1/3 right-[15%] hidden lg:flex flex-col items-center gap-2 opacity-20">
-        <Wifi className="w-32 h-32 text-white" />
-      </div>
 
-      <div className="container mx-auto px-4 sm:px-5 md:px-8 pt-24 pb-20 sm:pt-28 sm:pb-24 md:pt-36 md:pb-32 lg:pt-40 lg:pb-36">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 animate-fade-in border border-white/20">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-white/90 text-xs sm:text-sm font-medium">
-              Für lokale Unternehmen im Kreis Borken
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-3 sm:mb-4 animate-slide-up">
-            Ihr Unternehmen ist
-            <span className="text-accent"> immer erreichbar</span> – 
-            auch wenn Sie es nicht sind.
-          </h1>
-          
-          <h2 className="text-sm sm:text-base text-white/70 font-medium mb-4 sm:mb-6 animate-slide-up" style={{ animationDelay: "0.05s" }}>
-            Digitale Erreichbarkeit für lokale Unternehmen im Kreis Borken
-          </h2>
-
-          {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
-            Während Sie arbeiten, beantwortet Ihr digitaler Empfang Kundenanfragen 
-            automatisch – per Website, WhatsApp und mehr.
-          </p>
-
-          {/* Benefits */}
-          <div className="flex flex-wrap gap-2 sm:gap-4 mb-8 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            {benefits.map((benefit) => (
-              <div key={benefit} className="flex items-center gap-1.5 sm:gap-2 text-white/90 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2">
-                <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent" />
-                <span className="text-xs sm:text-sm font-medium">{benefit}</span>
+      <div className="container mx-auto px-4 sm:px-5 md:px-8 pt-24 pb-20 sm:pt-28 sm:pb-24 md:pt-32 md:pb-28 lg:pt-36 lg:pb-32">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left: Content */}
+          <div className="order-2 lg:order-1">
+            {/* Social Proof Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6 animate-fade-in border border-white/20">
+              <div className="flex -space-x-1">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="w-5 h-5 rounded-full bg-accent/80 border-2 border-white/20 flex items-center justify-center">
+                    <span className="text-[8px] text-white font-bold">{i}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="w-3 h-3 fill-accent text-accent" />
+                ))}
+              </div>
+              <span className="text-white/90 text-xs font-medium">
+                50+ zufriedene Unternehmen
+              </span>
+            </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-slide-up" style={{ animationDelay: "0.3s" }}>
-            <Link to="/#kontakt" className="w-full sm:w-auto">
+            {/* Headline - SHORTENED */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 animate-slide-up">
+              Nie wieder Kunden verlieren.
+              <span className="block text-accent mt-1">Automatisch erreichbar.</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed max-w-xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
+              Ihr digitaler Empfang beantwortet Kundenanfragen rund um die Uhr – 
+              per Website, WhatsApp und Telefon.
+            </p>
+
+            {/* Industry Badges */}
+            <div className="mb-6 sm:mb-8 animate-slide-up" style={{ animationDelay: "0.15s" }}>
+              <p className="text-white/60 text-xs uppercase tracking-wider mb-3">Perfekt für:</p>
+              <div className="flex flex-wrap gap-2">
+                {industries.map((industry) => (
+                  <div 
+                    key={industry.label}
+                    className="flex items-center gap-1.5 bg-white/10 rounded-full px-3 py-1.5 text-white/90 text-xs sm:text-sm font-medium backdrop-blur-sm border border-white/10"
+                  >
+                    <industry.icon className="w-3.5 h-3.5" />
+                    <span>{industry.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              <Link to="/#kontakt" className="w-full sm:w-auto">
+                <Button 
+                  variant="cta" 
+                  size="lg" 
+                  className="group bg-white text-primary hover:bg-white/90 shadow-xl w-full sm:w-auto"
+                >
+                  Kostenlose Beratung
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
               <Button 
-                variant="cta" 
+                variant="ghost" 
                 size="lg" 
-                className="group bg-white text-primary hover:bg-white/90 shadow-xl w-full sm:w-auto"
+                className="text-white hover:bg-white/10 gap-2 w-full sm:w-auto"
+                onClick={scrollToDemo}
               >
-                Kostenlose Beratung
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                <Play className="w-4 h-4" />
+                Demo anhören
               </Button>
-            </Link>
-            <Button 
-              variant="ghost" 
-              size="lg" 
-              className="text-white hover:bg-white/10 gap-2 w-full sm:w-auto"
-              onClick={scrollToDemo}
-            >
-              <Play className="w-4 h-4" />
-              Demo anhören
-            </Button>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center gap-4 mt-6 sm:mt-8 text-white/60 text-xs animate-slide-up" style={{ animationDelay: "0.25s" }}>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-green-400"></span>
+                DSGVO-konform
+              </span>
+              <span>•</span>
+              <span>Lokaler Support aus Bocholt</span>
+            </div>
           </div>
 
+          {/* Right: Phone Mockup with WhatsApp Demo */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
+            <div className="relative">
+              {/* Glow effect behind phone */}
+              <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50" />
+              
+              <PhoneMockup>
+                <WhatsAppChat />
+              </PhoneMockup>
+              
+              {/* Floating badge */}
+              <div className="absolute -bottom-2 -left-4 sm:-left-8 bg-white rounded-xl shadow-xl px-3 sm:px-4 py-2 sm:py-3 animate-fade-in" style={{ animationDelay: "0.5s" }}>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                    <span className="text-white text-sm">✓</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Antwortzeit</p>
+                    <p className="text-sm font-bold text-foreground">&lt; 3 Sekunden</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
