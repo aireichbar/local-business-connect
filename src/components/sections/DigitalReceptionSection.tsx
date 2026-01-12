@@ -82,18 +82,18 @@ const DigitalReceptionSection = () => {
           </div>
 
           {/* Phone Mockup with Channel Tabs */}
-          <div className="flex flex-col items-center lg:items-end">
-            <Tabs defaultValue="whatsapp" className="w-full max-w-[320px]">
-              {/* Channel Tabs */}
-              <TabsList className="w-full mb-4 bg-secondary/50 p-1 rounded-xl">
+          <div className="flex flex-col items-center lg:items-end w-full">
+            <Tabs defaultValue="whatsapp" className="w-full max-w-[280px] xs:max-w-[300px] sm:max-w-[320px]">
+              {/* Channel Tabs - optimized for small screens */}
+              <TabsList className="w-full mb-3 sm:mb-4 bg-secondary/50 p-0.5 sm:p-1 rounded-lg sm:rounded-xl grid grid-cols-4 gap-0.5">
                 {channels.map((channel) => (
                   <TabsTrigger
                     key={channel.id}
                     value={channel.id}
-                    className="flex-1 flex items-center justify-center gap-1.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-lg py-2 text-xs sm:text-sm transition-all"
+                    className="flex items-center justify-center gap-1 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md sm:rounded-lg py-1.5 sm:py-2 px-1 text-[10px] xs:text-xs sm:text-sm transition-all"
                   >
-                    <channel.icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{channel.label}</span>
+                    <channel.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                    <span className="hidden xs:inline truncate">{channel.label}</span>
                   </TabsTrigger>
                 ))}
               </TabsList>

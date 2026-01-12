@@ -209,22 +209,22 @@ const AudioDemoSection = () => {
         </div>
 
         {/* Audio Player Card */}
-        <div className="bg-[#1a1f25] rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
-          {/* Waveform Visualization */}
-          <div className="flex items-center justify-center gap-[2px] h-20 mb-8">
-            {waveformHeights.map((height, i) => {
+        <div className="bg-[#1a1f25] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 max-w-2xl mx-auto">
+          {/* Waveform Visualization - responsive bar count */}
+          <div className="flex items-center justify-center gap-[1px] sm:gap-[2px] h-14 sm:h-16 md:h-20 mb-4 sm:mb-6 md:mb-8 overflow-hidden">
+            {waveformHeights.slice(0, 40).map((height, i) => {
               const progress = duration > 0 ? currentTime / duration : 0;
-              const barProgress = i / waveformHeights.length;
+              const barProgress = i / 40;
               const isActive = barProgress <= progress;
               
               return (
                 <div
                   key={i}
-                  className={`w-[3px] rounded-full ${
+                  className={`w-[2px] sm:w-[3px] rounded-full flex-shrink-0 ${
                     isActive ? "bg-accent" : "bg-gray-600"
                   }`}
                   style={{
-                    height: `${height}px`,
+                    height: `${Math.max(height * 0.7, 8)}px`,
                     transition: "height 0.08s ease-out, background-color 0.15s ease",
                   }}
                 />
@@ -233,30 +233,30 @@ const AudioDemoSection = () => {
           </div>
 
           {/* Player Controls */}
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
             {/* Play Button */}
             <button
               onClick={generateAndPlayAudio}
               disabled={isLoading}
-              className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label={isLoading ? "Laden..." : isPlaying ? "Pause" : "Abspielen"}
             >
               {isLoading ? (
-                <Loader2 className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground animate-spin" />
+                <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-foreground animate-spin" />
               ) : isPlaying ? (
-                <Pause className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground" />
+                <Pause className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-foreground" />
               ) : (
-                <Play className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground ml-1" />
+                <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-accent-foreground ml-0.5 sm:ml-1" />
               )}
             </button>
 
             {/* Track Info & Progress */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white font-medium truncate pr-2">
-                  Hairstyling Bocholt - Digitaler Empfang
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2 gap-2">
+                <span className="text-white text-sm sm:text-base font-medium truncate">
+                  Hairstyling Bocholt
                 </span>
-                <span className="text-gray-400 text-sm flex-shrink-0">
+                <span className="text-gray-400 text-[10px] sm:text-xs flex-shrink-0 hidden xs:block">
                   OpenAI TTS
                 </span>
               </div>
@@ -270,7 +270,7 @@ const AudioDemoSection = () => {
               </div>
               
               {/* Time Display */}
-              <div className="flex justify-between text-xs text-gray-400">
+              <div className="flex justify-between text-[10px] sm:text-xs text-gray-400">
                 <span>{formatTime(currentTime)}</span>
                 <span>{formatTime(duration)}</span>
               </div>
@@ -278,19 +278,19 @@ const AudioDemoSection = () => {
           </div>
 
           {/* Transcript Box with Synchronized Highlighting */}
-          <div className="bg-[#252b33] rounded-xl p-4 md:p-5">
-            <div className="flex gap-3">
+          <div className="bg-[#252b33] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5">
+            <div className="flex gap-2 sm:gap-3">
               {/* Avatar */}
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <span className="text-accent-foreground font-semibold text-sm md:text-base">A</span>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                <span className="text-accent-foreground font-semibold text-xs sm:text-sm md:text-base">A</span>
               </div>
               
               {/* Text Content with Highlighting */}
               <div className="flex-1 min-w-0">
-                <p className="text-accent font-medium text-sm md:text-base mb-2">
+                <p className="text-accent font-medium text-xs sm:text-sm md:text-base mb-1 sm:mb-2">
                   Alina – Ihre digitale Kollegin
                 </p>
-                <p className="text-sm md:text-base italic leading-relaxed">
+                <p className="text-xs sm:text-sm md:text-base italic leading-relaxed">
                   „{textSegments.map((segment, index) => (
                     <span
                       key={index}
