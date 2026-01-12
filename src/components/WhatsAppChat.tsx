@@ -69,8 +69,13 @@ const WhatsAppChat = () => {
         {messages.slice(0, visibleMessages).map((msg, index) => (
           <div
             key={index}
-            className={`flex ${msg.type === "sent" ? "justify-end" : "justify-start"} animate-fade-in`}
-            style={{ animationDelay: `${index * 0.1}s` }}
+            className={`flex ${msg.type === "sent" ? "justify-end" : "justify-start"}`}
+            style={{
+              opacity: 1,
+              transform: 'translateY(0)',
+              animation: 'message-appear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              willChange: 'transform, opacity'
+            }}
           >
             <div
               className={`max-w-[85%] rounded-lg px-3 py-2 shadow-sm ${
@@ -96,12 +101,27 @@ const WhatsAppChat = () => {
         
         {/* Typing indicator */}
         {visibleMessages < messages.length && visibleMessages > 0 && (
-          <div className="flex justify-start animate-fade-in">
+          <div 
+            className="flex justify-start"
+            style={{
+              animation: 'message-appear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+              willChange: 'transform, opacity'
+            }}
+          >
             <div className="bg-white rounded-lg px-4 py-2 rounded-bl-sm shadow-sm">
-              <div className="flex gap-1">
-                <span className="w-2 h-2 bg-[#667781] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <span className="w-2 h-2 bg-[#667781] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <span className="w-2 h-2 bg-[#667781] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+              <div className="flex gap-1.5">
+                <span 
+                  className="w-2 h-2 bg-[#667781] rounded-full"
+                  style={{ animation: 'typing-dot 1.4s ease-in-out infinite' }}
+                />
+                <span 
+                  className="w-2 h-2 bg-[#667781] rounded-full"
+                  style={{ animation: 'typing-dot 1.4s ease-in-out 0.2s infinite' }}
+                />
+                <span 
+                  className="w-2 h-2 bg-[#667781] rounded-full"
+                  style={{ animation: 'typing-dot 1.4s ease-in-out 0.4s infinite' }}
+                />
               </div>
             </div>
           </div>
