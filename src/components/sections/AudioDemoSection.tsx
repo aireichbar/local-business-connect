@@ -1,5 +1,5 @@
 import { Play, Pause, Loader2 } from "lucide-react";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const AudioDemoSection = () => {
@@ -13,6 +13,15 @@ const AudioDemoSection = () => {
   const { toast } = useToast();
 
   const demoText = `Herzlich willkommen bei Hairstyling Bocholt. Sie sprechen mit dem digitalen Empfang. Gerne vereinbare ich direkt einen Termin für Sie oder beantworte Ihre Fragen zu unseren Leistungen. Wie kann ich Ihnen heute helfen?`;
+
+  // Split text into segments with timing - approximate based on speech rate
+  const textSegments = useMemo(() => [
+    { text: "Herzlich willkommen bei Hairstyling Bocholt.", start: 0, end: 2.5 },
+    { text: "Sie sprechen mit dem digitalen Empfang.", start: 2.5, end: 5 },
+    { text: "Gerne vereinbare ich direkt einen Termin für Sie", start: 5, end: 8 },
+    { text: "oder beantworte Ihre Fragen zu unseren Leistungen.", start: 8, end: 11 },
+    { text: "Wie kann ich Ihnen heute helfen?", start: 11, end: 14 },
+  ], []);
 
   // Generate initial waveform heights
   const generateStaticWaveform = useCallback(() => {
@@ -153,6 +162,19 @@ const AudioDemoSection = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Get current active segment based on currentTime
+  const getActiveSegmentIndex = useCallback(() => {
+    if (!isPlaying && currentTime === 0) return -1;
+    for (let i = textSegments.length - 1; i >= 0; i--) {
+      if (currentTime >= textSegments[i].start) {
+        return i;
+      }
+    }
+    return -1;
+  }, [currentTime, isPlaying, textSegments]);
+
+  const activeSegmentIndex = getActiveSegmentIndex();
+
   return (
     <section id="audio-demo" className="section-padding bg-background">
       <div className="container mx-auto container-narrow">
@@ -238,7 +260,7 @@ const AudioDemoSection = () => {
             </div>
           </div>
 
-          {/* Transcript Box */}
+          {/* Transcript Box with Synchronized Highlighting */}
           <div className="bg-[#252b33] rounded-xl p-4 md:p-5">
             <div className="flex gap-3">
               {/* Avatar */}
@@ -246,13 +268,27 @@ const AudioDemoSection = () => {
                 <span className="text-accent-foreground font-semibold text-sm md:text-base">A</span>
               </div>
               
-              {/* Text Content */}
+              {/* Text Content with Highlighting */}
               <div className="flex-1 min-w-0">
-                <p className="text-accent font-medium text-sm md:text-base mb-1">
+                <p className="text-accent font-medium text-sm md:text-base mb-2">
                   Alina – Ihre digitale Kollegin
                 </p>
-                <p className="text-gray-300 text-sm md:text-base italic leading-relaxed">
-                  „{demoText}"
+                <p className="text-sm md:text-base italic leading-relaxed">
+                  „{textSegments.map((segment, index) => (
+                    <span
+                      key={index}
+                      className={`transition-colors duration-300 ${
+                        index === activeSegmentIndex
+                          ? "text-accent font-medium"
+                          : index < activeSegmentIndex
+                          ? "text-gray-300"
+                          : "text-gray-500"
+                      }`}
+                    >
+                      {segment.text}
+                      {index < textSegments.length - 1 && " "}
+                    </span>
+                  ))}"
                 </p>
               </div>
             </div>
