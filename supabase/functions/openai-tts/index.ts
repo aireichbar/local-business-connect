@@ -6,8 +6,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Available OpenAI TTS voices
-const AVAILABLE_VOICES = ['alloy', 'ash', 'ballad', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer'];
+// Available OpenAI TTS voices for gpt-4o-mini-tts
+const AVAILABLE_VOICES = ['alloy', 'ash', 'ballad', 'coral', 'echo', 'fable', 'nova', 'onyx', 'sage', 'shimmer', 'verse'];
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -15,7 +15,7 @@ serve(async (req) => {
   }
 
   try {
-    const { text, voice = 'nova' } = await req.json();
+    const { text, voice = 'nova', speed = 0.92 } = await req.json();
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
 
     if (!OPENAI_API_KEY) {
@@ -28,8 +28,10 @@ serve(async (req) => {
 
     // Validate voice
     const selectedVoice = AVAILABLE_VOICES.includes(voice) ? voice : 'nova';
+    // Validate speed (0.25 to 4.0)
+    const selectedSpeed = Math.min(4.0, Math.max(0.25, speed));
 
-    console.log(`Generating TTS for text: "${text.substring(0, 50)}..." with voice: ${selectedVoice}`);
+    console.log(`Generating TTS with gpt-4o-mini-tts: "${text.substring(0, 50)}..." | voice: ${selectedVoice} | speed: ${selectedSpeed}`);
 
     const response = await fetch('https://api.openai.com/v1/audio/speech', {
       method: 'POST',
@@ -38,18 +40,18 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'tts-1-hd',
+        model: 'gpt-4o-mini-tts',
         input: text,
         voice: selectedVoice,
         response_format: 'mp3',
-        speed: 1.0,
+        speed: selectedSpeed,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
       console.error('OpenAI TTS Error:', response.status, errorText);
-      throw new Error(`OpenAI TTS failed: ${response.status}`);
+      throw new Error(`OpenAI TTS failed: ${response.status} - ${errorText}`);
     }
 
     const audioBuffer = await response.arrayBuffer();
