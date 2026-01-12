@@ -56,7 +56,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <img 
               src={logoSrc} 
-              alt="Aireichbar" 
+              alt="Aireichbar – Ihr Partner für digitale Lösungen in Bocholt und Kreis Borken" 
               loading="lazy"
               className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6"
             />

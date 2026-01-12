@@ -38,7 +38,7 @@ const Header = () => {
           <a href="/" className="flex items-center" aria-label="Zur Startseite">
             <img
               src={logoSrc}
-              alt="Aireichbar Logo"
+              alt="Aireichbar – Digitale Erreichbarkeit für lokale Unternehmen im Kreis Borken"
               className={`w-[clamp(120px,12vw,150px)] h-auto transition-all duration-300 ${
                 isSolidHeader ? "" : "brightness-0 invert"
               }`}
