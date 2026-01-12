@@ -45,11 +45,15 @@ const HeroSection = () => {
           </div>
 
           {/* Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-4 sm:mb-6 animate-slide-up">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-3 sm:mb-4 animate-slide-up">
             Ihr Unternehmen ist
             <span className="text-accent"> immer erreichbar</span> – 
             auch wenn Sie es nicht sind.
           </h1>
+          
+          <h2 className="text-sm sm:text-base text-white/70 font-medium mb-4 sm:mb-6 animate-slide-up" style={{ animationDelay: "0.05s" }}>
+            Digitale Erreichbarkeit für lokale Unternehmen im Kreis Borken
+          </h2>
 
           {/* Subheadline */}
           <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 sm:mb-10 leading-relaxed max-w-2xl animate-slide-up" style={{ animationDelay: "0.1s" }}>
