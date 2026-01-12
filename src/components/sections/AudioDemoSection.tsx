@@ -2,14 +2,17 @@ import { Play, Pause, Volume2, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-// OpenAI TTS Voices with German-friendly descriptions
+// OpenAI TTS Voices for gpt-4o-mini-tts
 const VOICES = [
   { id: 'nova', name: 'Nova', description: 'Warm & freundlich' },
   { id: 'alloy', name: 'Alloy', description: 'Neutral & professionell' },
+  { id: 'coral', name: 'Coral', description: 'Natürlich & einladend' },
+  { id: 'sage', name: 'Sage', description: 'Ruhig & vertrauensvoll' },
+  { id: 'ash', name: 'Ash', description: 'Klar & modern' },
+  { id: 'ballad', name: 'Ballad', description: 'Melodisch & sanft' },
   { id: 'echo', name: 'Echo', description: 'Klar & deutlich' },
-  { id: 'fable', name: 'Fable', description: 'Erzählerisch' },
-  { id: 'onyx', name: 'Onyx', description: 'Tief & ruhig' },
   { id: 'shimmer', name: 'Shimmer', description: 'Hell & dynamisch' },
+  { id: 'verse', name: 'Verse', description: 'Ausdrucksstark' },
 ];
 
 const AudioDemoSection = () => {
@@ -23,7 +26,7 @@ const AudioDemoSection = () => {
   const animationFrameRef = useRef<number | null>(null);
   const { toast } = useToast();
 
-  const demoText = `Willkommen bei Hairstyling Bocholt. Hier ist Alina, Ihre digitale Kollegin – rund um die Uhr für Sie erreichbar. Termine buchen, verschieben oder Fragen klären? Sagen Sie mir einfach, was Sie möchten – den Rest übernehme ich für Sie.`;
+  const demoText = `Herzlich willkommen bei Hairstyling Bocholt. Sie sprechen mit dem digitalen Empfang. Gerne vereinbare ich direkt einen Termin für Sie oder beantworte Ihre Fragen zu unseren Leistungen. Wie kann ich Ihnen heute helfen?`;
 
   // Generate initial waveform heights
   const generateStaticWaveform = useCallback(() => {
