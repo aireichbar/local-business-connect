@@ -1,15 +1,27 @@
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Volume2, Loader2 } from "lucide-react";
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useToast } from "@/hooks/use-toast";
+
+// OpenAI TTS Voices with German-friendly descriptions
+const VOICES = [
+  { id: 'nova', name: 'Nova', description: 'Warm & freundlich' },
+  { id: 'alloy', name: 'Alloy', description: 'Neutral & professionell' },
+  { id: 'echo', name: 'Echo', description: 'Klar & deutlich' },
+  { id: 'fable', name: 'Fable', description: 'Erzählerisch' },
+  { id: 'onyx', name: 'Onyx', description: 'Tief & ruhig' },
+  { id: 'shimmer', name: 'Shimmer', description: 'Hell & dynamisch' },
+];
 
 const AudioDemoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration] = useState(15); // 15 seconds demo
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [duration, setDuration] = useState(15);
+  const [selectedVoice, setSelectedVoice] = useState('nova');
   const [waveformHeights, setWaveformHeights] = useState<number[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const animationFrameRef = useRef<number | null>(null);
+  const { toast } = useToast();
 
   const demoText = `Willkommen bei Hairstyling Bocholt. Hier ist Alina, Ihre digitale Kollegin – rund um die Uhr für Sie erreichbar. Termine buchen, verschieben oder Fragen klären? Sagen Sie mir einfach, was Sie möchten – den Rest übernehme ich für Sie.`;
 
@@ -56,88 +68,94 @@ const AudioDemoSection = () => {
     };
   }, [isPlaying, animateWaveform, generateStaticWaveform]);
 
+  // Cleanup audio on unmount
   useEffect(() => {
-    const loadVoices = () => {
-      const availableVoices = speechSynthesis.getVoices();
-      setVoices(availableVoices);
-    };
-
-    loadVoices();
-    speechSynthesis.onvoiceschanged = loadVoices;
-
     return () => {
-      speechSynthesis.cancel();
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
     };
   }, []);
 
-  const getGermanFemaleVoice = () => {
-    const preferredVoices = [
-      "Google Deutsch",
-      "Anna",
-      "Helena",
-      "Petra",
-      "Microsoft Katja",
-      "Vicki"
-    ];
-
-    for (const preferred of preferredVoices) {
-      const voice = voices.find(
-        v => v.name.includes(preferred) && v.lang.startsWith("de")
-      );
-      if (voice) return voice;
-    }
-
-    const germanVoice = voices.find(v => v.lang.startsWith("de"));
-    return germanVoice || voices[0];
-  };
-
-  const togglePlay = () => {
-    if (isPlaying) {
-      speechSynthesis.cancel();
+  const generateAndPlayAudio = async () => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.pause();
       setIsPlaying(false);
-      if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
 
+    setIsLoading(true);
     setCurrentTime(0);
-    const utterance = new SpeechSynthesisUtterance(demoText);
-    const voice = getGermanFemaleVoice();
-    
-    if (voice) {
-      utterance.voice = voice;
-    }
-    
-    utterance.lang = "de-DE";
-    utterance.rate = 0.9;
-    utterance.pitch = 1.1;
-    
-    utterance.onstart = () => {
-      setIsPlaying(true);
-      intervalRef.current = setInterval(() => {
-        setCurrentTime(prev => {
-          if (prev >= duration) {
-            if (intervalRef.current) clearInterval(intervalRef.current);
-            return duration;
-          }
-          return prev + 0.1;
-        });
-      }, 100);
-    };
-    
-    utterance.onend = () => {
-      setIsPlaying(false);
-      setCurrentTime(duration);
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-    
-    utterance.onerror = () => {
-      setIsPlaying(false);
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
 
-    utteranceRef.current = utterance;
-    speechSynthesis.speak(utterance);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/openai-tts`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify({
+            text: demoText,
+            voice: selectedVoice,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate audio');
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      // Clean up previous audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        URL.revokeObjectURL(audioRef.current.src);
+      }
+
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+
+      audio.onloadedmetadata = () => {
+        setDuration(audio.duration);
+      };
+
+      audio.ontimeupdate = () => {
+        setCurrentTime(audio.currentTime);
+      };
+
+      audio.onended = () => {
+        setIsPlaying(false);
+        setCurrentTime(duration);
+      };
+
+      audio.onerror = () => {
+        setIsPlaying(false);
+        toast({
+          title: "Fehler",
+          description: "Audio konnte nicht abgespielt werden.",
+          variant: "destructive",
+        });
+      };
+
+      await audio.play();
+      setIsPlaying(true);
+    } catch (error) {
+      console.error('TTS Error:', error);
+      toast({
+        title: "Fehler",
+        description: error instanceof Error ? error.message : "Audio-Generierung fehlgeschlagen.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const formatTime = (time: number) => {
@@ -145,6 +163,8 @@ const AudioDemoSection = () => {
     const secs = Math.floor(time % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
+
+  const currentVoice = VOICES.find(v => v.id === selectedVoice);
 
   return (
     <section id="audio-demo" className="section-padding bg-background">
@@ -155,19 +175,51 @@ const AudioDemoSection = () => {
             Audio-Demo
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Hören Sie Ihre neue Kollegin Alina in Aktion
+            Hören Sie Ihre neue Kollegin in Aktion
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            So klingt es, wenn Alina Ihre Kundinnen begrüßt – natürlich, freundlich, professionell.
+            Wählen Sie eine Stimme und hören Sie, wie natürlich Ihr digitaler Empfang klingen kann.
           </p>
         </div>
+
+        {/* Voice Selection */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6 max-w-2xl mx-auto">
+          {VOICES.map((voice) => (
+            <button
+              key={voice.id}
+              onClick={() => {
+                setSelectedVoice(voice.id);
+                if (audioRef.current) {
+                  audioRef.current.pause();
+                  setIsPlaying(false);
+                  setCurrentTime(0);
+                }
+              }}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                selectedVoice === voice.id
+                  ? 'bg-accent text-accent-foreground shadow-md'
+                  : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <Volume2 className="w-3.5 h-3.5" />
+                {voice.name}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Selected Voice Description */}
+        <p className="text-center text-sm text-muted-foreground mb-6">
+          Stimme: <span className="font-medium text-foreground">{currentVoice?.name}</span> – {currentVoice?.description}
+        </p>
 
         {/* Audio Player Card */}
         <div className="bg-[#1a1f25] rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
           {/* Waveform Visualization */}
           <div className="flex items-center justify-center gap-[2px] h-20 mb-8">
             {waveformHeights.map((height, i) => {
-              const progress = currentTime / duration;
+              const progress = duration > 0 ? currentTime / duration : 0;
               const barProgress = i / waveformHeights.length;
               const isActive = barProgress <= progress;
               
@@ -190,11 +242,14 @@ const AudioDemoSection = () => {
           <div className="flex items-center gap-4 mb-6">
             {/* Play Button */}
             <button
-              onClick={togglePlay}
-              className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0"
-              aria-label={isPlaying ? "Pause" : "Abspielen"}
+              onClick={generateAndPlayAudio}
+              disabled={isLoading}
+              className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label={isLoading ? "Laden..." : isPlaying ? "Pause" : "Abspielen"}
             >
-              {isPlaying ? (
+              {isLoading ? (
+                <Loader2 className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground animate-spin" />
+              ) : isPlaying ? (
                 <Pause className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground" />
               ) : (
                 <Play className="w-6 h-6 md:w-7 md:h-7 text-accent-foreground ml-1" />
@@ -205,10 +260,10 @@ const AudioDemoSection = () => {
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-white font-medium truncate pr-2">
-                  Hairstyling Bocholt - Ihr Digitaler Empfang
+                  Hairstyling Bocholt - Digitaler Empfang
                 </span>
                 <span className="text-gray-400 text-sm flex-shrink-0">
-                  ({duration} Sek.)
+                  OpenAI TTS
                 </span>
               </div>
               
@@ -216,7 +271,7 @@ const AudioDemoSection = () => {
               <div className="relative h-1 bg-gray-600 rounded-full overflow-hidden mb-1">
                 <div 
                   className="absolute left-0 top-0 h-full bg-accent rounded-full transition-all duration-100"
-                  style={{ width: `${(currentTime / duration) * 100}%` }}
+                  style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
                 />
               </div>
               
