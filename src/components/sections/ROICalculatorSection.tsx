@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Phone, Clock, Calculator, TrendingUp, CheckCircle, Settings2 } from "lucide-react";
+import { Phone, Clock, TrendingUp, Settings2 } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 
 const ROICalculatorSection = () => {
@@ -14,8 +14,7 @@ const ROICalculatorSection = () => {
     savings: 0,
   });
 
-  // Calculate derived values based on inputs
-  const minutesPerCall = 3; // Average minutes per call
+  const minutesPerCall = 3;
   const workDaysPerMonth = 22;
   const hoursPerMonth = Math.round((callsPerDay * minutesPerCall * workDaysPerMonth) / 60);
   const timeValue = hoursPerMonth * hourlyRate;
@@ -66,7 +65,6 @@ const ROICalculatorSection = () => {
     return () => clearInterval(timer);
   }, [isVisible, callsPerDay, hourlyRate, hoursPerMonth, timeValue, calculatedSavings]);
 
-  // Update animated values immediately when sliders change (after initial animation)
   useEffect(() => {
     if (isVisible) {
       setAnimatedValues({
@@ -77,54 +75,6 @@ const ROICalculatorSection = () => {
       });
     }
   }, [callsPerDay, hourlyRate, hoursPerMonth, timeValue, calculatedSavings, isVisible]);
-
-  const benefits = [
-    "Weniger Leerlauf",
-    "Weniger Rückrufe",
-    "Bessere Auslastung",
-  ];
-
-  const stats = [
-    {
-      icon: Phone,
-      label: "Durchschnittliche Anrufe pro Tag",
-      value: animatedValues.calls,
-      suffix: "Anrufe",
-      iconBg: "bg-primary/10",
-      iconColor: "text-primary",
-    },
-    {
-      icon: Clock,
-      label: "Zeitaufwand pro Monat",
-      value: animatedValues.hours,
-      suffix: "Stunden",
-      iconBg: "bg-accent/10",
-      iconColor: "text-accent",
-    },
-    {
-      icon: Calculator,
-      label: `Zeitwert (bei ${hourlyRate}€/h)`,
-      value: animatedValues.timeValue,
-      suffix: "€",
-      iconBg: "bg-success/10",
-      iconColor: "text-success",
-    },
-    {
-      icon: TrendingUp,
-      label: "Kosten Digitaler Empfang",
-      value: monthlyCost,
-      suffix: "€/Monat",
-      iconBg: "bg-accent/10",
-      iconColor: "text-accent",
-      highlight: true,
-    },
-  ];
-
-  // Calculate bar heights based on timeValue
-  const maxBarHeight = 80;
-  const timeValueBarHeight = maxBarHeight;
-  const costBarHeight = timeValue > 0 ? (monthlyCost / timeValue) * maxBarHeight : 0;
-  const savingsBarHeight = timeValue > 0 ? (calculatedSavings / timeValue) * maxBarHeight : 0;
 
   return (
     <section
@@ -139,210 +89,152 @@ const ROICalculatorSection = () => {
       </div>
 
       <div className="container mx-auto px-5 md:px-8 relative">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <span className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-white/10 text-white/90 mb-4">
-            Ihr individueller Mehrwert in Zahlen
+        {/* Header - Compact */}
+        <div className="text-center mb-8 md:mb-10">
+          <span className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium bg-white/10 text-white/90 mb-3">
+            Ihr individueller Mehrwert
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Berechnen Sie Ihre
-            <br className="hidden sm:block" />
-            <span className="text-accent"> persönliche Ersparnis</span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">
+            Berechnen Sie Ihre <span className="text-accent">persönliche Ersparnis</span>
           </h2>
-          <p className="text-white/70 max-w-xl mx-auto text-lg">
-            Passen Sie die Werte an Ihren Betrieb an und sehen Sie, wie sich der digitale Empfang für Sie rechnet.
-          </p>
         </div>
 
-        {/* Main Calculator Card */}
-        <div className="max-w-2xl mx-auto">
+        {/* Main Calculator - Two Column Layout */}
+        <div className="max-w-5xl mx-auto">
           <div
-            className={`bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 transition-all duration-700 ${
+            className={`bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 lg:p-8 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            {/* Interactive Sliders */}
-            <div className="bg-white/5 rounded-xl p-4 md:p-6 mb-6 border border-white/10">
-              <div className="flex items-center gap-2 mb-4">
-                <Settings2 className="w-5 h-5 text-accent" />
-                <h4 className="text-white font-semibold">Ihre Werte anpassen</h4>
-              </div>
-              
-              {/* Calls per day slider */}
-              <div className="mb-6">
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-white/80 text-sm">Anrufe pro Tag</label>
-                  <span className="text-accent font-bold text-lg">{callsPerDay}</span>
-                </div>
-                <Slider
-                  value={[callsPerDay]}
-                  onValueChange={(value) => setCallsPerDay(value[0])}
-                  min={5}
-                  max={50}
-                  step={1}
-                  className="w-full"
-                />
-                <div className="flex justify-between text-white/40 text-xs mt-1">
-                  <span>5</span>
-                  <span>50</span>
-                </div>
-              </div>
-              
-              {/* Hourly rate slider */}
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+              {/* Left: Input Controls */}
               <div>
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-white/80 text-sm">Stundensatz (€/h)</label>
-                  <span className="text-accent font-bold text-lg">{hourlyRate}€</span>
+                <div className="flex items-center gap-2 mb-4">
+                  <Settings2 className="w-4 h-4 text-accent" />
+                  <h4 className="text-white font-semibold text-sm">Ihre Werte</h4>
                 </div>
-                <Slider
-                  value={[hourlyRate]}
-                  onValueChange={(value) => setHourlyRate(value[0])}
-                  min={15}
-                  max={80}
-                  step={5}
-                  className="w-full"
-                />
-                <div className="flex justify-between text-white/40 text-xs mt-1">
-                  <span>15€</span>
-                  <span>80€</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="space-y-4 mb-8">
-              {stats.map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className={`flex items-center justify-between py-4 ${
-                    index < stats.length - 1 ? "border-b border-white/10" : ""
-                  }`}
-                  style={{
-                    transitionDelay: `${index * 100}ms`,
-                  }}
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        stat.highlight ? "bg-accent/20" : "bg-white/10"
-                      }`}
-                    >
-                      <stat.icon
-                        className={`w-5 h-5 ${
-                          stat.highlight ? "text-accent" : "text-white/70"
-                        }`}
-                      />
+                
+                {/* Sliders - Compact */}
+                <div className="space-y-5">
+                  {/* Calls per day */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-white/70 text-sm">Anrufe pro Tag</label>
+                      <span className="text-accent font-bold">{callsPerDay}</span>
                     </div>
-                    <span className="text-white/80 text-sm md:text-base">
-                      {stat.label}
-                    </span>
+                    <Slider
+                      value={[callsPerDay]}
+                      onValueChange={(value) => setCallsPerDay(value[0])}
+                      min={5}
+                      max={50}
+                      step={1}
+                      className="w-full"
+                    />
                   </div>
-                  <div
-                    className={`text-right font-bold ${
-                      stat.highlight ? "text-accent" : "text-white"
-                    }`}
-                  >
-                    <span className="text-2xl md:text-3xl">{stat.value}</span>
-                    <span className="text-sm ml-1 opacity-70">{stat.suffix}</span>
+                  
+                  {/* Hourly rate */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-white/70 text-sm">Stundensatz</label>
+                      <span className="text-accent font-bold">{hourlyRate}€/h</span>
+                    </div>
+                    <Slider
+                      value={[hourlyRate]}
+                      onValueChange={(value) => setHourlyRate(value[0])}
+                      min={15}
+                      max={80}
+                      step={5}
+                      className="w-full"
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Benefits Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {benefits.map((benefit) => (
-                <div
-                  key={benefit}
-                  className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2"
-                >
-                  <CheckCircle className="w-4 h-4 text-success" />
-                  <span className="text-white/80 text-sm">{benefit}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Savings Section */}
-            <div className="bg-white/5 rounded-xl p-4 md:p-6">
-              <h4 className="text-white/70 text-center mb-4 md:mb-6 text-sm uppercase tracking-wider">
-                Ihre monatliche Ersparnis
-              </h4>
-
-              {/* Bar Chart - Mobile optimized */}
-              <div className="flex items-end justify-center gap-3 sm:gap-6 md:gap-10 mb-4 md:mb-6 h-32 sm:h-40 md:h-48">
-                {/* Zeitwert Bar */}
-                <div className="flex flex-col items-center">
-                  <span className="text-white font-bold text-sm sm:text-lg mb-1 sm:mb-2">
-                    {animatedValues.timeValue}€
-                  </span>
-                  <div
-                    className="w-10 sm:w-14 md:w-20 bg-white/30 rounded-t-lg transition-all duration-500"
-                    style={{
-                      height: isVisible ? `${timeValueBarHeight}px` : "0px",
-                    }}
-                  />
-                  <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Zeitwert</span>
-                </div>
-
-                {/* Minus Sign */}
-                <div className="text-white/50 text-lg sm:text-2xl font-light pb-6 sm:pb-8">−</div>
-
-                {/* Kosten Bar */}
-                <div className="flex flex-col items-center">
-                  <span className="text-accent font-bold text-sm sm:text-lg mb-1 sm:mb-2">
-                    {monthlyCost}€
-                  </span>
-                  <div
-                    className="w-10 sm:w-14 md:w-20 bg-accent/60 rounded-t-lg transition-all duration-500 delay-150"
-                    style={{
-                      height: isVisible ? `${Math.max(costBarHeight, 10)}px` : "0px",
-                    }}
-                  />
-                  <span className="text-white/60 text-xs sm:text-sm mt-1 sm:mt-2">Kosten</span>
-                </div>
-
-                {/* Equals Sign */}
-                <div className="text-white/50 text-lg sm:text-2xl font-light pb-6 sm:pb-8">=</div>
-
-                {/* Ersparnis Bar */}
-                <div className="flex flex-col items-center">
-                  <span className="text-success font-bold text-sm sm:text-lg mb-1 sm:mb-2">
-                    {animatedValues.savings}€
-                  </span>
-                  <div
-                    className="w-10 sm:w-14 md:w-20 bg-success/70 rounded-t-lg transition-all duration-500 delay-300"
-                    style={{
-                      height: isVisible ? `${Math.max(savingsBarHeight, 5)}px` : "0px",
-                    }}
-                  />
-                  <span className="text-success text-xs sm:text-sm mt-1 sm:mt-2 font-medium">
-                    Ersparnis
-                  </span>
+                {/* Quick Stats - Horizontal */}
+                <div className="grid grid-cols-3 gap-3 mt-6 pt-5 border-t border-white/10">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Phone className="w-3.5 h-3.5 text-white/50" />
+                    </div>
+                    <p className="text-white font-bold text-lg">{animatedValues.calls}</p>
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider">Anrufe/Tag</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <Clock className="w-3.5 h-3.5 text-white/50" />
+                    </div>
+                    <p className="text-white font-bold text-lg">{animatedValues.hours}h</p>
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider">pro Monat</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-1">
+                      <TrendingUp className="w-3.5 h-3.5 text-white/50" />
+                    </div>
+                    <p className="text-white font-bold text-lg">{animatedValues.timeValue}€</p>
+                    <p className="text-white/50 text-[10px] uppercase tracking-wider">Zeitwert</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Pricing Summary */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-6">
-              <div className="bg-white/5 border border-white/10 rounded-xl p-3 sm:p-4 text-center">
-                <span className="text-white/60 text-xs sm:text-sm">Einrichtung</span>
-                <div className="mt-1">
-                  <span className="text-white text-xl sm:text-2xl font-bold">
-                    {setupCost}
-                  </span>
-                  <span className="text-white/60 text-xs sm:text-sm">€</span>
+              {/* Right: Results */}
+              <div className="bg-white/5 rounded-xl p-5 border border-white/10">
+                <h4 className="text-white/70 text-center mb-4 text-xs uppercase tracking-wider">
+                  Ihre monatliche Ersparnis
+                </h4>
+
+                {/* Visual Calculation */}
+                <div className="flex items-center justify-center gap-2 sm:gap-4 mb-5">
+                  <div className="text-center">
+                    <p className="text-white/60 text-[10px] uppercase mb-1">Zeitwert</p>
+                    <p className="text-white font-bold text-xl sm:text-2xl">{animatedValues.timeValue}€</p>
+                  </div>
+                  <span className="text-white/40 text-xl">−</span>
+                  <div className="text-center">
+                    <p className="text-white/60 text-[10px] uppercase mb-1">Kosten</p>
+                    <p className="text-accent font-bold text-xl sm:text-2xl">{monthlyCost}€</p>
+                  </div>
+                  <span className="text-white/40 text-xl">=</span>
+                  <div className="text-center">
+                    <p className="text-success text-[10px] uppercase mb-1 font-medium">Ersparnis</p>
+                    <p className="text-success font-bold text-2xl sm:text-3xl">{animatedValues.savings}€</p>
+                  </div>
                 </div>
-                <span className="text-white/50 text-xs">einmalig</span>
-              </div>
-              <div className="bg-accent/20 border border-accent/30 rounded-xl p-3 sm:p-4 text-center">
-                <span className="text-white/80 text-xs sm:text-sm">Monatlich</span>
-                <div className="mt-1">
-                  <span className="text-accent text-xl sm:text-2xl font-bold">
-                    {monthlyCost}
-                  </span>
-                  <span className="text-accent/80 text-xs sm:text-sm">€</span>
+
+                {/* Progress Bar Visualization */}
+                <div className="relative h-3 bg-white/10 rounded-full overflow-hidden mb-5">
+                  <div 
+                    className="absolute left-0 top-0 h-full bg-gradient-to-r from-success to-success/70 rounded-full transition-all duration-700"
+                    style={{ width: `${timeValue > 0 ? Math.min((calculatedSavings / timeValue) * 100, 100) : 0}%` }}
+                  />
+                  <div 
+                    className="absolute right-0 top-0 h-full bg-accent/50 rounded-full transition-all duration-700"
+                    style={{ width: `${timeValue > 0 ? Math.min((monthlyCost / timeValue) * 100, 100) : 0}%` }}
+                  />
                 </div>
-                <span className="text-white/60 text-xs">pro Monat</span>
+
+                {/* Pricing Summary - Integrated */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-white/5 rounded-lg p-3 text-center">
+                    <p className="text-white/50 text-[10px] uppercase">Einrichtung</p>
+                    <p className="text-white font-bold text-lg">{setupCost}€</p>
+                    <p className="text-white/40 text-[10px]">einmalig</p>
+                  </div>
+                  <div className="bg-accent/20 rounded-lg p-3 text-center border border-accent/30">
+                    <p className="text-white/70 text-[10px] uppercase">Monatlich</p>
+                    <p className="text-accent font-bold text-lg">{monthlyCost}€</p>
+                    <p className="text-white/50 text-[10px]">pro Monat</p>
+                  </div>
+                </div>
+
+                {/* ROI Highlight */}
+                <div className="mt-4 pt-4 border-t border-white/10 text-center">
+                  <p className="text-white/60 text-xs">
+                    Amortisation der Einrichtung in{" "}
+                    <span className="text-accent font-bold">
+                      {calculatedSavings > 0 ? Math.ceil(setupCost / calculatedSavings) : "–"}
+                    </span>{" "}
+                    Monaten
+                  </p>
+                </div>
               </div>
             </div>
           </div>
