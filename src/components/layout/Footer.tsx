@@ -1,4 +1,4 @@
-import { Mail, MapPin, ArrowRight, Cookie } from "lucide-react";
+import { Mail, MapPin, ArrowRight, Cookie, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoSrc from "@/assets/logo-header.svg";
 
@@ -90,18 +90,39 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Kontakt */}
+          {/* Kontakt & Social */}
           <div>
             <h3 className="font-semibold text-sm uppercase tracking-wider mb-6 text-white/90">
               Kontakt
             </h3>
             <a 
               href="mailto:info@aireichbar.de" 
-              className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm"
+              className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm mb-6"
             >
               <Mail className="w-4 h-4" />
               info@aireichbar.de
             </a>
+            
+            <div className="flex items-center gap-4">
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a 
+                href="#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
 
