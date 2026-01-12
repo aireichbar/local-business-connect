@@ -46,7 +46,7 @@ const SolutionSection = () => {
               Die Lösung
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              <span className="text-gradient-primary">aireichbar</span> macht Ihren Betrieb digital erreichbar
+              <span className="text-gradient-primary">Aireichbar</span> macht Ihren Betrieb digital erreichbar
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               Ein digitales System, das Ihre Kunden begrüßt, Fragen beantwortet 

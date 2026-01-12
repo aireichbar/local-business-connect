@@ -24,7 +24,7 @@ const FinalCTASection = () => {
             Bereit, immer erreichbar zu sein?
           </h2>
           <p className="text-lg text-white/80 mb-8">
-            Lassen Sie uns gemeinsam herausfinden, wie aireichbar Ihrem Unternehmen helfen kann.
+            Lassen Sie uns gemeinsam herausfinden, wie Aireichbar Ihrem Unternehmen helfen kann.
           </p>
 
           {/* Benefits */}

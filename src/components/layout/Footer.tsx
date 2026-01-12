@@ -56,7 +56,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <img 
               src={logoSrc} 
-              alt="aireichbar" 
+              alt="Aireichbar" 
               loading="lazy"
               className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6"
             />
@@ -154,7 +154,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-sm">
-            © {currentYear} aireichbar. Alle Rechte vorbehalten.
+            © {currentYear} Aireichbar. Alle Rechte vorbehalten.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
             <Link to="/impressum" className="text-white/50 hover:text-white transition-colors">
