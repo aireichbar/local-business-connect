@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import logo from "@/assets/logo.png";
+import logoSrc from "@/assets/logo-header.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -55,9 +55,9 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <img 
-              src={logo} 
+              src={logoSrc} 
               alt="aireichbar" 
-              className="h-8 sm:h-10 w-auto brightness-0 invert mb-4 sm:mb-6"
+              className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6"
             />
             <p className="text-white/70 leading-relaxed text-sm mb-6">
               Digitale Lösungen für lokale Unternehmen im Kreis Borken. 
