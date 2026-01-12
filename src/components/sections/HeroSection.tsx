@@ -130,13 +130,13 @@ const HeroSection = () => {
 
           {/* Right: Phone Mockup with Channel Tabs */}
           <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
-            {/* Channel Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-4 w-full max-w-[340px]">
+            {/* Channel Tabs - 2x2 grid on mobile, flex on larger screens */}
+            <div className="grid grid-cols-2 xs:flex xs:flex-wrap justify-center gap-2 mb-4 w-full max-w-[340px]">
               {channels.map((channel) => (
                 <button
                   key={channel.id}
                   onClick={() => setActiveChannel(channel.id)}
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                     activeChannel === channel.id
                       ? 'bg-white text-primary shadow-lg'
                       : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
