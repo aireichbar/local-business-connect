@@ -1,7 +1,8 @@
-import { MessageCircle, Clock, Smile, Shield, Phone, Mail } from "lucide-react";
+import { MessageCircle, Clock, Smile, Shield, Phone, Mail, Globe } from "lucide-react";
 import WhatsAppChat from "@/components/WhatsAppChat";
 import PhoneCallDemo from "@/components/PhoneCallDemo";
 import EmailDemo from "@/components/EmailDemo";
+import WebsiteChatDemo from "@/components/WebsiteChatDemo";
 import PhoneMockup from "@/components/PhoneMockup";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
@@ -33,6 +34,7 @@ const DigitalReceptionSection = () => {
     { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
     { id: "phone", label: "Telefon", icon: Phone },
     { id: "email", label: "E-Mail", icon: Mail },
+    { id: "website", label: "Website", icon: Globe },
   ];
 
   return (
@@ -117,6 +119,12 @@ const DigitalReceptionSection = () => {
                   <TabsContent value="email" className="mt-0">
                     <PhoneMockup>
                       <EmailDemo />
+                    </PhoneMockup>
+                  </TabsContent>
+                  
+                  <TabsContent value="website" className="mt-0">
+                    <PhoneMockup>
+                      <WebsiteChatDemo />
                     </PhoneMockup>
                   </TabsContent>
                 </div>
