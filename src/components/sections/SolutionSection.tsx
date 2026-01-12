@@ -66,7 +66,7 @@ const SolutionSection = () => {
             {features.map((feature, index) => (
               <div 
                 key={feature.title}
-                className="group bg-card rounded-xl p-5 border border-border/50 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+                className="group bg-card rounded-xl p-5 border border-border/50 hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <feature.icon className="w-5 h-5 text-primary" />

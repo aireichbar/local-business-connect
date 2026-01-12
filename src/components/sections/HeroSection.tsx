@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Play, Wifi } from "lucide-react";
+import TrustBadges from "@/components/TrustBadges";
 
 const HeroSection = () => {
   const benefits = [
@@ -87,6 +88,11 @@ const HeroSection = () => {
               <Play className="w-4 h-4" />
               Demo anhören
             </Button>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="mt-10 sm:mt-12 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+            <TrustBadges />
           </div>
         </div>
       </div>

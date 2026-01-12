@@ -57,7 +57,7 @@ const ProblemSection = () => {
           {problems.map((problem, index) => (
             <div 
               key={problem.title}
-              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-destructive/30 hover:shadow-lg transition-all duration-300"
+              className="group bg-card rounded-2xl p-8 border border-border/50 hover:border-destructive/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex items-start gap-5">
                 <div className="w-12 h-12 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0 group-hover:bg-destructive/20 transition-colors">
