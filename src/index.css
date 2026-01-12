@@ -300,4 +300,27 @@
       background-position: 0% 50%;
     }
   }
+
+  /* WhatsApp Chat Animations - smooth and performant */
+  @keyframes message-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(8px) scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes typing-dot {
+    0%, 60%, 100% {
+      opacity: 0.4;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
 }
