@@ -141,9 +141,9 @@ const HeroSection = () => {
           </div>
 
           {/* Right: Phone Mockup with Channel Tabs */}
-          <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end animate-slide-up" style={{ animationDelay: "0.15s" }}>
-            {/* Channel Tabs - always in one row */}
-            <div className="flex justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 w-full">
+          <div className="order-1 lg:order-2 flex flex-col items-center animate-slide-up" style={{ animationDelay: "0.15s" }}>
+            {/* Channel Tabs - always in one row, centered */}
+            <div className="flex justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
               {channels.map((channel) => (
                 <button
                   key={channel.id}
@@ -160,7 +160,8 @@ const HeroSection = () => {
               ))}
             </div>
 
-            <div className="relative">
+            {/* Phone centered below tabs */}
+            <div className="relative flex justify-center">
               {/* Glow effect behind phone */}
               <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50" />
               
