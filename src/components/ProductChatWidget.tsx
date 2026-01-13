@@ -14,7 +14,7 @@ const ProductChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hallo! 👋 Ich bin der Dialogify-Assistent. Wie kann ich Ihnen helfen?",
+      content: "Hallo! 👋 Ich bin Christian von Aireichbar. Wie kann ich Ihnen helfen?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -153,8 +153,8 @@ const ProductChatWidget = () => {
               <MessageCircle className="w-5 h-5 text-white" />
             </div>
             <div className="flex-1">
-              <p className="text-white font-semibold text-sm">Dialogify Assistent</p>
-              <p className="text-white/80 text-xs">Fragen Sie uns alles</p>
+              <p className="text-white font-semibold text-sm">Christian von Aireichbar</p>
+              <p className="text-white/80 text-xs">Ihr persönlicher Berater</p>
             </div>
           </div>
 
