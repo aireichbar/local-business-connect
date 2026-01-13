@@ -8,13 +8,13 @@ import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import PackagesSection from "@/components/sections/PackagesSection";
 import ROICalculatorSection from "@/components/sections/ROICalculatorSection";
 import DigitalReceptionSection from "@/components/sections/DigitalReceptionSection";
-
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
 import ScrollToTop from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
+import ProductChatWidget from "@/components/ProductChatWidget";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
@@ -81,6 +81,7 @@ const Index = () => {
       {/* Floating elements */}
       <FloatingCTA />
       <ScrollToTop />
+      <ProductChatWidget />
     </div>
   );
 };
