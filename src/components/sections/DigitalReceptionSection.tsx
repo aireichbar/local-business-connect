@@ -110,7 +110,7 @@ const DigitalReceptionSection = () => {
       const timeoutId = setTimeout(() => controller.abort(), 30000);
       
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/openai-tts`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-tts`,
         {
           method: 'POST',
           headers: {
@@ -120,7 +120,6 @@ const DigitalReceptionSection = () => {
           },
           body: JSON.stringify({
             text: demoText,
-            voice: 'nova',
           }),
           signal: controller.signal,
         }
@@ -311,7 +310,7 @@ const DigitalReceptionSection = () => {
                         Hairstyling Bocholt
                       </span>
                       <span className="text-gray-400 text-xs flex-shrink-0">
-                        OpenAI TTS
+                        ElevenLabs
                       </span>
                     </div>
                     
