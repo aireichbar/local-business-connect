@@ -18,7 +18,7 @@ export const packages: Package[] = [
       description: "Alle Seiten entsprechen der DSGVO mit Impressum und Datenschutzerklärung.",
     },
     pricing: {
-      monthly: "39",
+      monthly: "49",
       setup: "299",
     },
     cta: "Jetzt starten",
@@ -43,13 +43,13 @@ export const packages: Package[] = [
       description: "Änderungen werden innerhalb von 48h umgesetzt. Ihr Auftritt bleibt aktuell.",
     },
     pricing: {
-      monthly: "79",
+      monthly: "99",
       setup: "499",
       anchor: "Günstiger als eine Teilzeit-Aushilfe",
     },
     cta: "Jetzt beraten lassen",
-    isHighlighted: true,
-    badge: "Empfohlen",
+    isHighlighted: false,
+    badge: null,
   },
   {
     name: "Digitaler Empfang",
@@ -73,7 +73,7 @@ export const packages: Package[] = [
       anchor: "Ersetzt teure Telefonservice-Anbieter",
     },
     cta: "Empfang aktivieren",
-    isHighlighted: false,
-    badge: "Premium",
+    isHighlighted: true,
+    badge: "Empfohlen",
   },
 ];
