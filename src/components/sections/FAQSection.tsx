@@ -17,52 +17,12 @@ const FAQSection = () => {
       answer: "Ein OnePager ist in 1-2 Wochen fertig. Bei umfangreicheren Projekten planen wir 2-4 Wochen ein."
     },
     {
-      question: "Was passiert, wenn ich später mehr brauche?",
-      answer: "Kein Problem! Sie können jederzeit upgraden. Die bereits gezahlten Einmalkosten werden angerechnet."
-    },
-    {
-      question: "Was kostet der digitale Empfang im Monat?",
-      answer: "Der digitale Empfang kostet 139 €/Monat, inklusive aller Features. Keine versteckten Kosten."
-    },
-    {
       question: "Funktioniert das auch für meine Branche?",
       answer: "Der digitale Empfang eignet sich für alle Branchen mit Kundenkontakt: Handwerker, Therapeuten, Friseure, Restaurants und mehr."
     },
     {
-      question: 'Was ist im Wachstum-Paket mit "6 Anpassungen/Jahr" gemeint?',
-      answer: "Sie können bis zu sechs Mal im Jahr kleinere Änderungen an Texten, Bildern oder Layouts anfragen – wir setzen diese zeitnah um."
-    },
-    {
-      question: "Welche Domain bekomme ich?",
-      answer: "Sie können Ihre bestehende Domain nutzen oder wir registrieren eine neue für Sie. Die Domain gehört selbstverständlich Ihnen."
-    },
-    {
-      question: "Kann ich meine bestehende Website behalten?",
-      answer: "Ja! Der Digitale Empfang kann problemlos in Ihre bereits vorhandene Website integriert werden."
-    },
-    {
       question: "Wer hat Zugriff auf meine Kundendaten?",
       answer: "Nur Sie. Alle erfassten Daten verbleiben ausschließlich bei Ihnen – volle Kontrolle, volle Transparenz, DSGVO-konform."
-    },
-    {
-      question: "Wie läuft der Onboarding-Prozess ab?",
-      answer: "Nach Auftragserteilung führen wir ein kurzes Gespräch, sammeln Ihre Inhalte und setzen alles um. Sie müssen sich um nichts kümmern."
-    },
-    {
-      question: "Gibt es Vertragslaufzeiten?",
-      answer: "Ja, die monatlichen Pakete haben eine Mindestlaufzeit von 24 Monaten. Das einmalige Einstieg-Paket ist ohne Laufzeit."
-    },
-    {
-      question: "Wie schnell erhalte ich Support bei Problemen?",
-      answer: "In der Regel antworten wir innerhalb von 24 Stunden. Bei dringenden Anliegen sind wir oft noch schneller."
-    },
-    {
-      question: "Wie funktioniert die WhatsApp-Integration?",
-      answer: "Wir verbinden Ihre Geschäftsnummer mit dem Digitalen Empfang. Kunden schreiben wie gewohnt – der Digitale Empfang antwortet automatisch."
-    },
-    {
-      question: "Was passiert, wenn der Digitale Empfang eine Frage nicht beantworten kann?",
-      answer: "In diesem Fall sammelt er die Kontaktdaten und Sie erhalten eine Benachrichtigung, um persönlich zu reagieren."
     },
     {
       question: "Kann ich den digitalen Empfang testen?",
