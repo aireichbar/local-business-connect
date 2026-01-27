@@ -114,16 +114,18 @@ const PricingCard = ({ pkg, index }: PricingCardProps) => {
       </div>
 
       {/* Feeling Quote */}
-      <div className="min-h-[40px]">
-        <p
-          className={cn(
-            "text-xs",
-            pkg.isHighlighted ? "text-background/50" : "text-muted-foreground/70"
-          )}
-        >
-          „{pkg.feelingQuote}"
-        </p>
-      </div>
+      {pkg.feelingQuote && (
+        <div className="min-h-[40px]">
+          <p
+            className={cn(
+              "text-xs",
+              pkg.isHighlighted ? "text-background/50" : "text-muted-foreground/70"
+            )}
+          >
+            „{pkg.feelingQuote}"
+          </p>
+        </div>
+      )}
 
       {/* Trust Anchor Box */}
       <div
