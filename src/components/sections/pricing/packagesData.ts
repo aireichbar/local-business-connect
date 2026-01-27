@@ -24,7 +24,6 @@ export const packages: Package[] = [
   {
     name: "Ihre Termin-Sicherung",
     tagline: "Ihre Termine finden statt – nicht nur im Kalender",
-    premiumSubtitle: "Ideal, wenn Termine oft kurzfristig platzen",
     problemStatement: "Termine platzen oft genau dann, wenn alles voll geplant ist.",
     benefits: [
       "Termine werden vorab aktiv bestätigt",
@@ -45,7 +44,6 @@ export const packages: Package[] = [
   {
     name: "Ihre digitale Empfangskraft",
     tagline: "Ihr Betrieb ist erreichbar – ohne Sie zu stören",
-    premiumSubtitle: "Empfohlen für Betriebe, die wirklich Ruhe wollen",
     problemStatement: "Das Telefon klingelt genau dann, wenn ich arbeite.",
     benefits: [
       "Kein Telefonklingeln mehr während der Arbeit",
