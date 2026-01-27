@@ -25,6 +25,10 @@ const FAQSection = () => {
       answer: "Nur Sie. Alle erfassten Daten verbleiben ausschließlich bei Ihnen – volle Kontrolle, volle Transparenz, DSGVO-konform."
     },
     {
+      question: "Gibt es eine Mindestlaufzeit?",
+      answer: "Ja, die monatlichen Pakete haben eine Mindestlaufzeit von 24 Monaten. Das gibt uns die Planungssicherheit, Ihnen einen optimalen Service zu bieten."
+    },
+    {
       question: "Kann ich den digitalen Empfang testen?",
       answer: "Gerne zeigen wir Ihnen in einem kostenlosen Beratungsgespräch eine Live-Demo, damit Sie sehen, wie es in der Praxis funktioniert."
     }
