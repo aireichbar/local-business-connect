@@ -251,20 +251,27 @@ const DigitalReceptionSection = () => {
             </div>
           </div>
 
-          {/* Audio Demo Player */}
+          {/* Audio Demo Player - Glassmorphism */}
           <div className="flex flex-col items-center lg:items-end w-full">
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md relative">
+              {/* Decorative background blur circles */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/30 rounded-full blur-3xl" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
+              
               {/* Audio Demo Label */}
-              <div className="text-center lg:text-right mb-4">
-                <span className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-medium">
+              <div className="text-center lg:text-right mb-4 relative z-10">
+                <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md text-accent rounded-full text-xs font-medium border border-white/20">
                   Audio-Demo
                 </span>
               </div>
 
-              {/* Audio Player Card */}
-              <div className="bg-[#1a1f25] rounded-2xl p-5 sm:p-6 shadow-2xl">
+              {/* Audio Player Card - Glassmorphism */}
+              <div className="relative z-10 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/20 dark:border-white/10">
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+                
                 {/* Waveform Visualization */}
-                <div className="flex items-center justify-center gap-[2px] h-16 mb-6 overflow-hidden">
+                <div className="relative flex items-center justify-center gap-[3px] h-20 mb-6 overflow-hidden">
                   {waveformHeights.map((height, i) => {
                     const progress = duration > 0 ? currentTime / duration : 0;
                     const barProgress = i / waveformHeights.length;
@@ -274,11 +281,14 @@ const DigitalReceptionSection = () => {
                       <div
                         key={i}
                         className={`w-[3px] rounded-full flex-shrink-0 ${
-                          isActive ? "bg-accent" : "bg-gray-600"
+                          isActive 
+                            ? "bg-gradient-to-t from-accent to-accent/60" 
+                            : "bg-white/20"
                         }`}
                         style={{
-                          height: `${Math.max(height * 0.8, 8)}px`,
+                          height: `${Math.max(height * 0.9, 10)}px`,
                           transition: "height 0.08s ease-out, background-color 0.15s ease",
+                          boxShadow: isActive ? "0 0 8px rgba(var(--accent), 0.3)" : "none",
                         }}
                       />
                     );
@@ -286,62 +296,67 @@ const DigitalReceptionSection = () => {
                 </div>
 
                 {/* Player Controls */}
-                <div className="flex items-center gap-4 mb-5">
-                  {/* Play Button */}
+                <div className="relative flex items-center gap-4 mb-6">
+                  {/* Play Button - Glassmorphism */}
                   <button
                     onClick={generateAndPlayAudio}
                     disabled={isLoading}
-                    className="w-14 h-14 rounded-full bg-accent hover:bg-accent/90 flex items-center justify-center transition-colors shadow-lg flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-16 h-16 rounded-full bg-accent/90 backdrop-blur-sm hover:bg-accent flex items-center justify-center transition-all duration-300 shadow-lg shadow-accent/30 flex-shrink-0 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 hover:shadow-xl hover:shadow-accent/40"
                     aria-label={isLoading ? "Laden..." : isPlaying ? "Pause" : "Abspielen"}
                   >
                     {isLoading ? (
-                      <Loader2 className="w-6 h-6 text-accent-foreground animate-spin" />
+                      <Loader2 className="w-7 h-7 text-white animate-spin" />
                     ) : isPlaying ? (
-                      <Pause className="w-6 h-6 text-accent-foreground" />
+                      <Pause className="w-7 h-7 text-white" />
                     ) : (
-                      <Play className="w-6 h-6 text-accent-foreground ml-1" />
+                      <Play className="w-7 h-7 text-white ml-1" />
                     )}
                   </button>
 
                   {/* Track Info & Progress */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-white text-sm font-medium truncate">
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="text-foreground text-sm font-semibold truncate">
                         Hairstyling Bocholt
                       </span>
-                      <span className="text-gray-400 text-xs flex-shrink-0">
+                      <span className="text-muted-foreground text-xs flex-shrink-0 bg-white/10 backdrop-blur-sm px-2 py-0.5 rounded-full">
                         ElevenLabs
                       </span>
                     </div>
                     
-                    {/* Progress Bar */}
-                    <div className="relative h-1.5 bg-gray-600 rounded-full overflow-hidden mb-1.5">
+                    {/* Progress Bar - Glassmorphism */}
+                    <div className="relative h-2 bg-white/10 backdrop-blur-sm rounded-full overflow-hidden mb-2">
                       <div 
-                        className="absolute left-0 top-0 h-full bg-accent rounded-full transition-all duration-100"
+                        className="absolute left-0 top-0 h-full bg-gradient-to-r from-accent to-accent/80 rounded-full transition-all duration-100"
                         style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                      />
+                      {/* Progress glow */}
+                      <div 
+                        className="absolute top-0 h-full w-4 bg-white/50 blur-sm rounded-full transition-all duration-100"
+                        style={{ left: `calc(${duration > 0 ? (currentTime / duration) * 100 : 0}% - 8px)` }}
                       />
                     </div>
                     
                     {/* Time Display */}
-                    <div className="flex justify-between text-xs text-gray-400">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>{formatTime(currentTime)}</span>
                       <span>{formatTime(duration)}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Transcript Box */}
-                <div className="bg-[#252b33] rounded-xl p-4">
+                {/* Transcript Box - Glassmorphism */}
+                <div className="relative bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-white/10">
                   <div className="flex gap-3">
-                    {/* Avatar */}
-                    <div className="w-9 h-9 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                      <span className="text-accent-foreground font-semibold text-sm">A</span>
+                    {/* Avatar with glow */}
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center flex-shrink-0 shadow-lg shadow-accent/20">
+                      <span className="text-white font-semibold text-sm">R</span>
                     </div>
                     
                     {/* Text Content */}
                     <div className="flex-1 min-w-0">
                       <p className="text-accent font-medium text-sm mb-1.5">
-                        Alina – Ihre digitale Kollegin
+                        Rachel – Ihre digitale Kollegin
                       </p>
                       <p className="text-xs sm:text-sm italic leading-relaxed">
                         „{textSegments.map((segment, index) => (
@@ -351,8 +366,8 @@ const DigitalReceptionSection = () => {
                               index === activeSegmentIndex
                                 ? "text-accent font-medium"
                                 : index < activeSegmentIndex
-                                ? "text-gray-300"
-                                : "text-gray-500"
+                                ? "text-foreground/80"
+                                : "text-muted-foreground/60"
                             }`}
                           >
                             {segment.text}
