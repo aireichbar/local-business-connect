@@ -5,8 +5,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// ElevenLabs voice ID for German female voice
-const DEFAULT_VOICE_ID = 'XrExE9yKIg1WjnnlVkGX'; // Matilda - warm, friendly
+// ElevenLabs voice ID - Rachel (warm, conversational)
+const DEFAULT_VOICE_ID = '21m00Tcm4TlvDq8ikWAM'; // Rachel
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
