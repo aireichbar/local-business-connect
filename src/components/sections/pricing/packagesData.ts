@@ -10,7 +10,6 @@ export const packages: Package[] = [
       "Seriöser erster Eindruck",
       "Weniger Rückfragen",
     ],
-    feelingQuote: "",
     trustAnchor: "14 Tage testen – ohne Risiko.",
     pricing: {
       monthly: "49",
@@ -30,7 +29,7 @@ export const packages: Package[] = [
       "Kurzfristige Absagen werden früh erkannt",
       "Mehr Planungssicherheit für Ihr Team",
     ],
-    feelingQuote: "",
+    
     trustAnchor: "14 Tage testen – ohne Risiko. Nur behalten, wenn es wirklich entlastet.",
     pricing: {
       monthly: "89",
@@ -52,8 +51,6 @@ export const packages: Package[] = [
       "Mehr Ruhe im Team",
       "Mehr angenommene Termine",
     ],
-    
-    feelingQuote: "Endlich kümmert sich jemand darum.",
     trustAnchor: "30 Tage testen. Nur behalten, wenn es wirklich entlastet. Kein Umbau. Keine neue Nummer.",
     pricing: {
       monthly: "149",

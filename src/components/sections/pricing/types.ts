@@ -5,7 +5,7 @@ export interface Package {
   problemStatement: string;
   benefits: string[];
   coreStatement?: string;
-  feelingQuote: string;
+  feelingQuote?: string;
   trustAnchor: string;
   pricing: {
     monthly: string;
