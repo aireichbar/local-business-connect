@@ -1,24 +1,22 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, Phone, ArrowRight, Shield, Clock, Zap } from "lucide-react";
+import { Check, Phone, ArrowRight } from "lucide-react";
 import { Package } from "./types";
 import { cn } from "@/lib/utils";
 
 interface PricingCardProps {
   pkg: Package;
+  index: number;
 }
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  shield: Shield,
-  clock: Clock,
-  zap: Zap,
-};
-
-const PricingCard = ({ pkg }: PricingCardProps) => {
-  const TrustIcon = iconMap[pkg.trustAnchor.icon] || Shield;
-
+const PricingCard = ({ pkg, index }: PricingCardProps) => {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
       className={cn(
         "relative rounded-2xl p-5 md:p-6 flex flex-col h-full transition-all duration-300",
         pkg.isHighlighted
@@ -29,14 +27,7 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
       {/* Badge */}
       {pkg.badge && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <div
-            className={cn(
-              "flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold",
-              pkg.isHighlighted
-                ? "bg-primary text-primary-foreground"
-                : "bg-primary text-primary-foreground"
-            )}
-          >
+          <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-primary text-primary-foreground">
             {pkg.badge}
           </div>
         </div>
@@ -60,6 +51,16 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
         >
           {pkg.tagline}
         </p>
+        {pkg.premiumSubtitle && (
+          <p
+            className={cn(
+              "text-xs mt-1 font-medium",
+              pkg.isHighlighted ? "text-primary" : "text-primary"
+            )}
+          >
+            {pkg.premiumSubtitle}
+          </p>
+        )}
       </div>
 
       {/* Problem Statement */}
@@ -120,7 +121,7 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
             pkg.isHighlighted ? "text-background/50" : "text-muted-foreground/70"
           )}
         >
-          {pkg.feelingQuote}
+          „{pkg.feelingQuote}"
         </p>
       </div>
 
@@ -131,36 +132,18 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
           pkg.isHighlighted ? "bg-background/10" : "bg-muted/50"
         )}
       >
-        <div className="flex items-start gap-3">
-          <TrustIcon
-            className={cn(
-              "w-5 h-5 flex-shrink-0",
-              pkg.isHighlighted ? "text-primary" : "text-primary"
-            )}
-          />
-          <div>
-            <p
-              className={cn(
-                "text-sm font-semibold",
-                pkg.isHighlighted ? "text-background" : "text-foreground"
-              )}
-            >
-              {pkg.trustAnchor.title}
-            </p>
-            <p
-              className={cn(
-                "text-xs mt-1",
-                pkg.isHighlighted ? "text-background/70" : "text-muted-foreground"
-              )}
-            >
-              {pkg.trustAnchor.description}
-            </p>
-          </div>
-        </div>
+        <p
+          className={cn(
+            "text-sm",
+            pkg.isHighlighted ? "text-background/80" : "text-muted-foreground"
+          )}
+        >
+          {pkg.trustAnchor}
+        </p>
       </div>
 
       {/* Pricing Block */}
-      <div className="min-h-[85px]">
+      <div className="min-h-[90px]">
         <div className="flex items-baseline gap-1">
           <span
             className={cn(
@@ -185,7 +168,7 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
             pkg.isHighlighted ? "text-background/60" : "text-muted-foreground"
           )}
         >
-          + {pkg.pricing.setup}€ einmalig
+          + {pkg.pricing.setup}€ einmalig ({pkg.pricing.setupNote})
         </p>
         {pkg.pricing.anchor && (
           <p
@@ -226,7 +209,7 @@ const PricingCard = ({ pkg }: PricingCardProps) => {
           </Button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
