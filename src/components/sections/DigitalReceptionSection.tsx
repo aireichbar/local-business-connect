@@ -38,11 +38,6 @@ const DigitalReceptionSection = () => {
       title: "Freundlich & professionell",
       description: "Natürliche Kommunikation, die zu Ihrem Betrieb passt."
     },
-    {
-      icon: Shield,
-      title: "Sammelt Kontaktdaten",
-      description: "Wenn persönliche Beratung nötig ist, werden alle wichtigen Daten erfasst."
-    }
   ];
 
   const generateStaticWaveform = useCallback(() => {
