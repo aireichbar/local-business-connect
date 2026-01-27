@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Send, MapPin, Mail, CheckCircle2 } from "lucide-react";
+import { Send, MapPin, Mail, Phone, CheckCircle2, MessageCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 
@@ -105,6 +105,38 @@ const ContactSection = () => {
 
             {/* Contact info */}
             <div className="space-y-4 mb-8">
+              <a 
+                href="https://wa.me/4917553187011?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center group-hover:bg-success/20 transition-colors">
+                  <MessageCircle className="w-5 h-5 text-success" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">WhatsApp</p>
+                  <p className="text-foreground font-medium group-hover:text-success transition-colors">
+                    0175 531 87 01
+                  </p>
+                </div>
+              </a>
+
+              <a 
+                href="tel:+4917553187011"
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Telefon</p>
+                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">
+                    0175 531 87 01
+                  </p>
+                </div>
+              </a>
+
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                   <Mail className="w-5 h-5 text-primary" />

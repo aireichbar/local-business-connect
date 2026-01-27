@@ -12,6 +12,7 @@ import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 import ContactSection from "@/components/sections/ContactSection";
 import FloatingCTA from "@/components/FloatingCTA";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import ScrollToTop from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
 import ProductChatWidget from "@/components/ProductChatWidget";
@@ -80,6 +81,7 @@ const Index = () => {
       
       {/* Floating elements */}
       <FloatingCTA />
+      <FloatingWhatsApp />
       <ScrollToTop />
       <ProductChatWidget />
     </div>
