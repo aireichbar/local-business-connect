@@ -4,12 +4,11 @@ import TrustIndicators from "./pricing/TrustIndicators";
 import { packages } from "./pricing/packagesData";
 
 const PackagesSection = () => {
-  // On mobile, show highlighted package first
-  const mobileOrderedPackages = [...packages].sort((a, b) => {
-    if (a.isHighlighted) return -1;
-    if (b.isHighlighted) return 1;
-    return 0;
-  });
+  // Mobile order: Package 3 (highlighted) first, then 2, then 1
+  const mobileOrderedPackages = [packages[2], packages[1], packages[0]];
+
+  // Staircase offsets for desktop (ascending left to right)
+  const staircaseOffsets = [0, -28, -56]; // Card 1: baseline, Card 2: +28px up, Card 3: +56px up
 
   return (
     <section id="pakete" className="py-20 md:py-28 bg-background relative overflow-hidden">
@@ -30,17 +29,35 @@ const PackagesSection = () => {
           </p>
         </motion.div>
 
-        {/* Mobile: Stacked with highlighted first */}
+        {/* Mobile: Stacked with Package 3 first, label above */}
         <div className="md:hidden space-y-6">
           {mobileOrderedPackages.map((pkg, index) => (
-            <PricingCard key={pkg.name} pkg={pkg} index={index} />
+            <div key={pkg.name}>
+              {/* Label above Package 3 (first on mobile) */}
+              {index === 0 && (
+                <p className="text-center text-sm text-muted-foreground mb-3 font-medium">
+                  Empfohlene Lösung für die meisten Betriebe
+                </p>
+              )}
+              <PricingCard pkg={pkg} index={index} />
+            </div>
           ))}
         </div>
 
-        {/* Desktop: Grid in original order */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        {/* Desktop: Staircase layout - ascending left to right */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-end pb-14">
           {packages.map((pkg, index) => (
-            <PricingCard key={pkg.name} pkg={pkg} index={index} />
+            <motion.div
+              key={pkg.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              style={{ marginTop: `${-staircaseOffsets[index]}px` }}
+              className="h-full"
+            >
+              <PricingCard pkg={pkg} index={index} isStaircase />
+            </motion.div>
           ))}
         </div>
 
