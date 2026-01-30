@@ -17,8 +17,8 @@ const WELCOME_MESSAGE: ChatMessage = {
   content: '',
   html: `
     <div style="line-height: 1.6;">
-      <p><strong>Willkommen beim aireichbar Demo-Assistenten!</strong> 👋</p>
-      <p>Ich kann Ihnen zeigen, wie unsere KI-gestützte Terminbuchung funktioniert.</p>
+      <p><strong>Hallo und Willkommen beim Digitalen Empfang von Aireichbar</strong> 👋</p>
+      <p>Ich kann Ihnen zeigen, wie unsere komfortable Terminbuchung funktioniert.</p>
       <p style="margin-top: 12px;">Probieren Sie es aus:</p>
       <ul style="margin: 8px 0; padding-left: 20px;">
         <li>„Ich möchte einen Termin buchen"</li>
