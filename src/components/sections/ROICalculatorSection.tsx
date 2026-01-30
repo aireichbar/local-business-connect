@@ -19,7 +19,7 @@ const ROICalculatorSection = () => {
   const hoursPerMonth = Math.round((callsPerDay * minutesPerCall * workDaysPerMonth) / 60);
   const timeValue = hoursPerMonth * hourlyRate;
   const monthlyCost = 169;
-  const setupCost = 699;
+  const setupCost = 1199;
   const calculatedSavings = Math.max(0, timeValue - monthlyCost);
 
   useEffect(() => {
