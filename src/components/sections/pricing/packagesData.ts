@@ -31,7 +31,7 @@ export const packages: Package[] = [
       "Strukturierte Terminabwicklung",
       "Reduzierte No-Shows",
       "Spürbare Entlastung im Tagesgeschäft",
-      "Klare Übersicht für den Betrieb",
+      "inkl. 300 WhatsApp Konversationen/Monat",
     ],
     trustAnchor: "",
     pricing: {
