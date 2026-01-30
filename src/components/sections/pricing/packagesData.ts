@@ -63,6 +63,6 @@ export const packages: Package[] = [
     },
     cta: "Digitalen Empfang einrichten",
     isHighlighted: true,
-    badge: "⭐ Beliebteste Lösung für lokale Betriebe",
+    badge: "Standardlösung für professionelle Betriebe",
   },
 ];
