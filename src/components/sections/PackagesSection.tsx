@@ -42,25 +42,30 @@ const PackagesSection = () => {
           ))}
         </div>
 
-        {/* Desktop: Staircase layout - ascending left to right with size progression */}
-        <div className="hidden md:flex md:items-end md:justify-center gap-6 lg:gap-8 pb-14">
-          {packages.map((pkg, index) => {
-            // Progressive heights: Card 1 shortest, Card 3 tallest
-            const minHeights = ["min-h-[520px]", "min-h-[560px]", "min-h-[620px]"];
-            
-            return (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`flex-1 max-w-[380px] ${minHeights[index]}`}
-              >
-                <PricingCard pkg={pkg} index={index} isStaircase />
-              </motion.div>
-            );
-          })}
+        {/* Desktop: Staircase layout - all cards equal height with CTAs aligned */}
+        <div className="hidden md:block pb-14">
+          <div className="grid grid-cols-3 gap-6 lg:gap-8">
+            {packages.map((pkg, index) => {
+              // Staircase offset: Card 1 lowest, Card 2 medium, Card 3 highest
+              // Using padding-top inside a wrapper to push cards down, creating the staircase effect
+              const paddingTop = ["pt-16", "pt-8", "pt-0"];
+              
+              return (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`${paddingTop[index]} flex`}
+                >
+                  <div className="flex-1">
+                    <PricingCard pkg={pkg} index={index} isStaircase />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Trust Indicators */}
