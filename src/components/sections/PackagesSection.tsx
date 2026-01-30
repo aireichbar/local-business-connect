@@ -7,8 +7,6 @@ const PackagesSection = () => {
   // Mobile order: Package 3 (highlighted) first, then 2, then 1
   const mobileOrderedPackages = [packages[2], packages[1], packages[0]];
 
-  // Staircase offsets for desktop (ascending left to right)
-  const staircaseOffsets = [0, -28, -56]; // Card 1: baseline, Card 2: +28px up, Card 3: +56px up
 
   return (
     <section id="pakete" className="py-20 md:py-28 bg-background relative overflow-hidden">
@@ -44,21 +42,25 @@ const PackagesSection = () => {
           ))}
         </div>
 
-        {/* Desktop: Staircase layout - ascending left to right */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-end pb-14">
-          {packages.map((pkg, index) => (
-            <motion.div
-              key={pkg.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              style={{ marginTop: `${-staircaseOffsets[index]}px` }}
-              className="h-full"
-            >
-              <PricingCard pkg={pkg} index={index} isStaircase />
-            </motion.div>
-          ))}
+        {/* Desktop: Staircase layout - ascending left to right with size progression */}
+        <div className="hidden md:flex md:items-end md:justify-center gap-6 lg:gap-8 pb-14">
+          {packages.map((pkg, index) => {
+            // Progressive heights: Card 1 shortest, Card 3 tallest
+            const minHeights = ["min-h-[520px]", "min-h-[560px]", "min-h-[620px]"];
+            
+            return (
+              <motion.div
+                key={pkg.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`flex-1 max-w-[380px] ${minHeights[index]}`}
+              >
+                <PricingCard pkg={pkg} index={index} isStaircase />
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Trust Indicators */}
