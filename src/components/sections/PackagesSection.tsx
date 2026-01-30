@@ -1,66 +1,55 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import PricingCard from "./pricing/PricingCard";
+import TrustIndicators from "./pricing/TrustIndicators";
 import { packages } from "./pricing/packagesData";
 
 const PackagesSection = () => {
+  // On mobile, show highlighted package first
+  const mobileOrderedPackages = [...packages].sort((a, b) => {
+    if (a.isHighlighted) return -1;
+    if (b.isHighlighted) return 1;
+    return 0;
+  });
+
   return (
-    <section id="pakete" className="py-20 md:py-24 bg-background relative overflow-hidden">
+    <section id="pakete" className="py-20 md:py-28 bg-background relative overflow-hidden">
       <div className="container mx-auto px-5 md:px-8 relative max-w-6xl">
         {/* Section header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-14 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Eine Sache weniger, um die Sie sich kümmern müssen
+          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground mb-4 tracking-tight">
+            Drei Wege zu mehr Ruhe im Arbeitsalltag
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Nicht jeder Betrieb braucht sofort alles – aber jeder braucht Entlastung.
-          </p>
-          <p className="text-muted-foreground max-w-xl mx-auto mt-2">
-            Deshalb können Sie klein starten und jederzeit erweitern.
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+            Vom digitalen Aushängeschild bis zur vollautomatischen Empfangskraft.
           </p>
         </motion.div>
 
-        {/* Packages grid */}
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        {/* Mobile: Stacked with highlighted first */}
+        <div className="md:hidden space-y-6">
+          {mobileOrderedPackages.map((pkg, index) => (
+            <PricingCard key={pkg.name} pkg={pkg} index={index} />
+          ))}
+        </div>
+
+        {/* Desktop: Grid in original order */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {packages.map((pkg, index) => (
             <PricingCard key={pkg.name} pkg={pkg} index={index} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <p className="text-muted-foreground mb-4">
-            Nicht sicher? In einem kurzen Gespräch finden wir heraus, was zu Ihrem Betrieb passt.
-          </p>
-          <Link to="/#kontakt">
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="rounded-full group"
-            >
-              Kostenloses Gespräch vereinbaren
-              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-        </motion.div>
+        {/* Trust Indicators */}
+        <TrustIndicators />
 
-        {/* Trust note */}
-        <p className="text-center text-muted-foreground text-sm mt-8">
-          Alle Preise zzgl. MwSt. • Monatliche Gebühren bei 24 Monaten Mindestlaufzeit
+        {/* Pricing note */}
+        <p className="text-center text-muted-foreground text-xs mt-10">
+          Alle Preise zzgl. MwSt.
         </p>
       </div>
     </section>

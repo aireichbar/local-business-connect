@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, Phone, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { Package } from "./types";
 import { cn } from "@/lib/utils";
 
@@ -13,201 +13,134 @@ interface PricingCardProps {
 const PricingCard = ({ pkg, index }: PricingCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
       viewport={{ once: true }}
       className={cn(
-        "relative rounded-2xl p-5 md:p-6 flex flex-col h-full transition-all duration-300",
+        "relative rounded-2xl flex flex-col h-full transition-all duration-300",
         pkg.isHighlighted
-          ? "bg-foreground text-background border-2 border-primary shadow-xl md:scale-105 z-10 animate-pulse-glow"
-          : "bg-card border border-border/50 hover:shadow-lg"
+          ? "bg-foreground text-background shadow-2xl md:scale-[1.03] z-10 ring-2 ring-primary/20"
+          : "bg-card border border-border/60 hover:border-border hover:shadow-md"
       )}
     >
       {/* Badge */}
       {pkg.badge && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <div className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-primary text-primary-foreground">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
+          <div className="px-4 py-2 rounded-full text-xs font-medium bg-primary text-primary-foreground shadow-lg">
             {pkg.badge}
           </div>
         </div>
       )}
 
-      {/* Header - Name + Tagline */}
-      <div className="min-h-[90px] pt-2">
-        <h3
-          className={cn(
-            "text-xl font-bold mb-1",
-            pkg.isHighlighted ? "text-background" : "text-foreground"
-          )}
-        >
-          {pkg.name}
-        </h3>
-        <p
-          className={cn(
-            "text-sm",
-            pkg.isHighlighted ? "text-background/70" : "text-muted-foreground"
-          )}
-        >
-          {pkg.tagline}
-        </p>
-        {pkg.premiumSubtitle && (
-          <p
+      <div className={cn("p-6 md:p-8 flex flex-col h-full", pkg.badge && "pt-8")}>
+        {/* Header */}
+        <div className="mb-6">
+          <h3
             className={cn(
-              "text-xs mt-1 font-medium",
-              pkg.isHighlighted ? "text-primary" : "text-primary"
-            )}
-          >
-            {pkg.premiumSubtitle}
-          </p>
-        )}
-      </div>
-
-      {/* Problem Statement */}
-      <div className="min-h-[70px]">
-        <p
-          className={cn(
-            "text-sm italic",
-            pkg.isHighlighted ? "text-background/60" : "text-muted-foreground"
-          )}
-        >
-          „{pkg.problemStatement}"
-        </p>
-      </div>
-
-      {/* Benefits List */}
-      <ul className="min-h-[140px] space-y-2">
-        {pkg.benefits.map((benefit) => (
-          <li key={benefit} className="flex items-start gap-2">
-            <Check
-              className={cn(
-                "w-4 h-4 mt-0.5 flex-shrink-0",
-                pkg.isHighlighted ? "text-primary" : "text-success"
-              )}
-            />
-            <span
-              className={cn(
-                "text-sm",
-                pkg.isHighlighted ? "text-background/90" : "text-foreground"
-              )}
-            >
-              {benefit}
-            </span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Core Statement (Premium only) */}
-      <div className="min-h-[60px]">
-        {pkg.coreStatement && (
-          <p
-            className={cn(
-              "text-sm font-medium border-l-2 pl-3",
-              pkg.isHighlighted
-                ? "border-primary text-primary"
-                : "border-primary text-foreground"
-            )}
-          >
-            {pkg.coreStatement}
-          </p>
-        )}
-      </div>
-
-      {/* Feeling Quote */}
-      {pkg.feelingQuote && (
-        <div className="min-h-[40px]">
-          <p
-            className={cn(
-              "text-xs",
-              pkg.isHighlighted ? "text-background/50" : "text-muted-foreground/70"
-            )}
-          >
-            „{pkg.feelingQuote}"
-          </p>
-        </div>
-      )}
-
-      {/* Trust Anchor Box */}
-      <div
-        className={cn(
-          "min-h-[100px] rounded-xl p-4 my-4",
-          pkg.isHighlighted ? "bg-background/10" : "bg-muted/50"
-        )}
-      >
-        <p
-          className={cn(
-            "text-sm",
-            pkg.isHighlighted ? "text-background/80" : "text-muted-foreground"
-          )}
-        >
-          {pkg.trustAnchor}
-        </p>
-      </div>
-
-      {/* Pricing Block */}
-      <div className="min-h-[90px]">
-        <div className="flex items-baseline gap-1">
-          <span
-            className={cn(
-              "text-3xl font-bold",
+              "text-xl font-semibold mb-2",
               pkg.isHighlighted ? "text-background" : "text-foreground"
             )}
           >
-            {pkg.pricing.monthly}€
-          </span>
-          <span
+            {pkg.name}
+          </h3>
+          <p
+            className={cn(
+              "text-sm leading-relaxed",
+              pkg.isHighlighted ? "text-background/70" : "text-muted-foreground"
+            )}
+          >
+            {pkg.tagline}
+          </p>
+        </div>
+
+        {/* Benefits */}
+        <ul className="space-y-3 mb-8 flex-grow">
+          {pkg.benefits.map((benefit) => (
+            <li key={benefit} className="flex items-start gap-3">
+              <div
+                className={cn(
+                  "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5",
+                  pkg.isHighlighted
+                    ? "bg-primary/20"
+                    : "bg-primary/10"
+                )}
+              >
+                <Check
+                  className={cn(
+                    "w-3 h-3",
+                    pkg.isHighlighted ? "text-primary" : "text-primary"
+                  )}
+                />
+              </div>
+              <span
+                className={cn(
+                  "text-sm",
+                  pkg.isHighlighted ? "text-background/90" : "text-foreground/80"
+                )}
+              >
+                {benefit}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Pricing */}
+        <div className="mb-6">
+          <div className="flex items-baseline gap-1 mb-1">
+            <span
+              className={cn(
+                "text-3xl font-bold tracking-tight",
+                pkg.isHighlighted ? "text-background" : "text-foreground"
+              )}
+            >
+              {pkg.pricing.monthly} €
+            </span>
+            <span
+              className={cn(
+                "text-sm",
+                pkg.isHighlighted ? "text-background/60" : "text-muted-foreground"
+              )}
+            >
+              / Monat
+            </span>
+          </div>
+          <p
             className={cn(
               "text-sm",
               pkg.isHighlighted ? "text-background/60" : "text-muted-foreground"
             )}
           >
-            /Monat
-          </span>
-        </div>
-        <p
-          className={cn(
-            "text-sm mt-1",
-            pkg.isHighlighted ? "text-background/60" : "text-muted-foreground"
-          )}
-        >
-          + {pkg.pricing.setup}€ einmalig ({pkg.pricing.setupNote})
-        </p>
-        {pkg.pricing.anchor && (
-          <p
-            className={cn(
-              "text-xs mt-2 font-medium",
-              pkg.isHighlighted ? "text-primary" : "text-primary"
-            )}
-          >
-            {pkg.pricing.anchor}
+            {pkg.pricing.setup} € {pkg.pricing.setupNote}
           </p>
-        )}
-      </div>
+          
+          {/* Trust Anchor for highlighted */}
+          {pkg.trustAnchor && (
+            <p
+              className={cn(
+                "text-sm font-medium mt-3 flex items-center gap-1.5",
+                pkg.isHighlighted ? "text-primary" : "text-primary"
+              )}
+            >
+              <Check className="w-4 h-4" />
+              {pkg.trustAnchor}
+            </p>
+          )}
+        </div>
 
-      {/* CTA Button */}
-      <div className="mt-auto pt-4">
-        <Link to="/#kontakt" className="block">
+        {/* CTA */}
+        <Link to="/#kontakt" className="block mt-auto">
           <Button
-            variant={pkg.isHighlighted ? "default" : "secondary"}
             size="lg"
             className={cn(
-              "w-full rounded-full group",
+              "w-full rounded-xl font-medium group h-12",
               pkg.isHighlighted
                 ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                : "bg-foreground hover:bg-foreground/90 text-background"
+                : "bg-foreground/5 hover:bg-foreground/10 text-foreground border border-border"
             )}
           >
-            {pkg.isHighlighted ? (
-              <>
-                <Phone className="w-4 h-4" />
-                {pkg.cta}
-              </>
-            ) : (
-              <>
-                {pkg.cta}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </>
-            )}
+            {pkg.cta}
+            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-0.5 transition-transform" />
           </Button>
         </Link>
       </div>
