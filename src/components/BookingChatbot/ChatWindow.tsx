@@ -43,7 +43,7 @@ const ChatWindow = ({
           <Calendar className="w-5 h-5 text-primary-foreground" />
         </div>
         <div className="flex-1">
-          <p className="text-primary-foreground font-semibold text-sm">aireichbar Demo-Assistent</p>
+          <p className="text-primary-foreground font-semibold text-sm">Aireichbar - Christian Schubert</p>
           <p className="text-primary-foreground/80 text-xs">Online • Antwortet sofort</p>
         </div>
         <button
