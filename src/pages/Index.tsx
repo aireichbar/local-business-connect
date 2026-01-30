@@ -15,7 +15,7 @@ import FloatingCTA from "@/components/FloatingCTA";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import ScrollToTop from "@/components/ScrollToTop";
 import SkipToContent from "@/components/SkipToContent";
-import ProductChatWidget from "@/components/ProductChatWidget";
+import BookingChatbot from "@/components/BookingChatbot";
 import { AnimatedSection } from "@/hooks/useScrollAnimation";
 
 const Index = () => {
@@ -83,7 +83,7 @@ const Index = () => {
       <FloatingCTA />
       <FloatingWhatsApp />
       <ScrollToTop />
-      <ProductChatWidget />
+      <BookingChatbot />
     </div>
   );
 };
