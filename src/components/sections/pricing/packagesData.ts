@@ -53,6 +53,7 @@ export const packages: Package[] = [
       "Kunden erhalten sofort Antworten",
       "Ihr Team wird deutlich entlastet",
       "Sie behalten jederzeit die Kontrolle",
+      "inkl. 600 WhatsApp Konversationen/Monat",
     ],
     trustAnchor: "30 Tage risikofrei testen",
     pricing: {
