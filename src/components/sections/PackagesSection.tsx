@@ -44,7 +44,7 @@ const PackagesSection = () => {
 
         {/* Desktop: Staircase layout - all cards equal height with CTAs aligned */}
         <div className="hidden md:block pb-14">
-          <div className="grid grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-3 gap-4 lg:gap-6">
             {packages.map((pkg, index) => {
               // Staircase offset: Card 1 lowest, Card 2 medium, Card 3 highest
               // Using padding-top inside a wrapper to push cards down, creating the staircase effect
