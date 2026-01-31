@@ -39,7 +39,7 @@ export const packages: Package[] = [
       setup: "899",
       setupNote: "einmalig",
     },
-    cta: "Ich gewinne Überblick",
+    cta: "Ich schaffe Überblick",
     isHighlighted: false,
     badge: null,
   },
