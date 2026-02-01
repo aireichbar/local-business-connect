@@ -17,11 +17,11 @@ const PackagesSection = () => {
           viewport={{ once: true }}
           className="text-center mb-14 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground mb-4 tracking-tight">
-            Ihr digitaler Empfang – zum Festpreis
+        <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-foreground mb-4 tracking-tight">
+            Kein Anruf & keine Nachricht geht mehr verloren.
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-            Automatisierte Kundenkommunikation ohne versteckte Kosten.
+            Ihr digitaler Empfang übernimmt – per Telefon, WhatsApp und E-Mail
           </p>
         </motion.div>
 
