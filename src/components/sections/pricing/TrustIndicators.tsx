@@ -4,19 +4,23 @@ import { motion } from "framer-motion";
 const indicators = [
   {
     icon: Shield,
-    text: "DSGVO-konform & EU-Hosting",
+    text: "DSGVO-konform",
+    subtext: "EU-Hosting",
   },
   {
     icon: Users,
-    text: "Persönliche Einrichtung – kein Baukasten",
+    text: "Persönliche Einrichtung",
+    subtext: "Kein Baukasten",
   },
   {
     icon: Calendar,
-    text: "Feste Vertragslaufzeit von 24 Monaten",
+    text: "24 Monate Laufzeit",
+    subtext: "Faire Konditionen",
   },
   {
     icon: Headphones,
-    text: "Support & laufende Betreuung inklusive",
+    text: "Support inklusive",
+    subtext: "Laufende Betreuung",
   },
 ];
 
@@ -38,7 +42,10 @@ const TrustIndicators = () => {
             <div className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center flex-shrink-0">
               <indicator.icon className="w-5 h-5 text-foreground/60" />
             </div>
-            <span className="text-sm">{indicator.text}</span>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium text-foreground/80">{indicator.text}</span>
+              <span className="text-xs text-muted-foreground">{indicator.subtext}</span>
+            </div>
           </div>
         ))}
       </div>
