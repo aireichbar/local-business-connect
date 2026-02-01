@@ -204,7 +204,7 @@ const AudioDemoSection = () => {
             Hören Sie Ihre neue Kollegin in Aktion
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            So klingt es, wenn Alina Ihre Kundinnen begrüßt – natürlich, freundlich, professionell.
+            So klingt es, wenn Christina Ihre Kundinnen begrüßt – natürlich, freundlich, professionell.
           </p>
         </div>
 
@@ -288,7 +288,7 @@ const AudioDemoSection = () => {
               {/* Text Content with Highlighting */}
               <div className="flex-1 min-w-0">
                 <p className="text-accent font-medium text-xs sm:text-sm md:text-base mb-1 sm:mb-2">
-                  Alina – Ihre digitale Kollegin
+                  Christina – Ihre digitale Kollegin
                 </p>
                 <p className="text-xs sm:text-sm md:text-base italic leading-relaxed">
                   „{textSegments.map((segment, index) => (
