@@ -135,7 +135,7 @@ const PricingCard = ({ pkg, index, isStaircase = false }: PricingCardProps) => {
             <p
               className={cn(
                 "text-sm font-medium mt-3 flex items-center gap-1.5",
-                pkg.isHighlighted ? "text-primary" : "text-primary"
+                pkg.isHighlighted ? "text-background" : "text-primary"
               )}
             >
               <Check className="w-4 h-4" />
