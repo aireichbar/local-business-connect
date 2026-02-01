@@ -30,14 +30,14 @@ const ScrollToTop = () => {
       variant="outline"
       size="icon"
       onClick={scrollToTop}
-      className={`fixed bottom-24 right-6 z-40 rounded-full shadow-lg bg-card hover:bg-secondary border-border transition-all duration-300 ${
+      className={`fixed bottom-52 right-4 sm:bottom-24 sm:right-6 z-40 w-10 h-10 sm:w-10 sm:h-10 rounded-full shadow-lg bg-card hover:bg-secondary border-border transition-all duration-300 ${
         isVisible 
           ? "translate-y-0 opacity-100" 
           : "translate-y-4 opacity-0 pointer-events-none"
       }`}
       aria-label="Nach oben scrollen"
     >
-      <ArrowUp className="h-5 w-5" />
+      <ArrowUp className="h-4 w-4 sm:h-5 sm:w-5" />
     </Button>
   );
 };

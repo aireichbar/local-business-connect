@@ -7,9 +7,9 @@ const Footer = () => {
 
   const links = {
     leistungen: [
-      { label: "Einstieg", href: "/#pakete" },
-      { label: "Wachstum", href: "/#pakete" },
-      { label: "Digitaler Empfang", href: "/#digitaler-empfang" },
+      { label: "Digitaler Empfang", href: "/#pakete" },
+      { label: "Demo anhören", href: "/#digitaler-empfang" },
+      { label: "ROI-Rechner", href: "/#roi-rechner" },
     ],
     unternehmen: [
       { label: "Über uns", href: "/ueber-uns" },

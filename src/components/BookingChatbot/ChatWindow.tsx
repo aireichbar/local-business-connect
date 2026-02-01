@@ -36,7 +36,7 @@ const ChatWindow = ({
   }, [messages, isLoading]);
 
   return (
-    <div className="fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 h-[500px] max-h-[calc(100vh-150px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300 max-sm:inset-0 max-sm:w-full max-sm:h-full max-sm:max-h-none max-sm:rounded-none max-sm:bottom-0 max-sm:right-0">
+    <div className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 h-[60vh] sm:h-[500px] max-h-[calc(100vh-10rem)] sm:max-h-[calc(100vh-150px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
       {/* Header */}
       <div className="bg-primary px-4 py-3 flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
