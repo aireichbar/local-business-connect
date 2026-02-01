@@ -351,7 +351,7 @@ const DigitalReceptionSection = () => {
                     {/* Text Content */}
                     <div className="flex-1 min-w-0">
                       <p className="text-accent font-medium text-sm mb-1.5">
-                        Alina – Ihre digitale Kollegin
+                        Christina – Ihre digitale Kollegin
                       </p>
                       <p className="text-xs sm:text-sm italic leading-relaxed">
                         „{textSegments.map((segment, index) => (
