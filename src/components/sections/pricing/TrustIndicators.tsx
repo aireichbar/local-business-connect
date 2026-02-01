@@ -42,9 +42,9 @@ const TrustIndicators = () => {
             <div className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center flex-shrink-0">
               <indicator.icon className="w-5 h-5 text-foreground/60" />
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-foreground/80">{indicator.text}</span>
-              <span className="text-xs text-muted-foreground">{indicator.subtext}</span>
+            <div className="flex flex-col min-w-0">
+              <span className="text-sm font-medium text-foreground/80 whitespace-nowrap">{indicator.text}</span>
+              <span className="text-xs text-muted-foreground whitespace-nowrap">{indicator.subtext}</span>
             </div>
           </div>
         ))}
