@@ -33,7 +33,7 @@ const TrustIndicators = () => {
       viewport={{ once: true }}
       className="mt-16 pt-10 border-t border-border/50"
     >
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {indicators.map((indicator) => (
           <div
             key={indicator.text}
@@ -43,8 +43,8 @@ const TrustIndicators = () => {
               <indicator.icon className="w-5 h-5 text-foreground/60" />
             </div>
             <div className="flex flex-col min-w-0">
-              <span className="text-sm font-medium text-foreground/80 whitespace-nowrap">{indicator.text}</span>
-              <span className="text-xs text-muted-foreground whitespace-nowrap">{indicator.subtext}</span>
+              <span className="text-sm font-medium text-foreground/80">{indicator.text}</span>
+              <span className="text-xs text-muted-foreground">{indicator.subtext}</span>
             </div>
           </div>
         ))}
