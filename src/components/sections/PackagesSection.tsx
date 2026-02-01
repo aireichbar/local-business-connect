@@ -21,7 +21,7 @@ const PackagesSection = () => {
             Kein Anruf & keine Nachricht geht mehr verloren.
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-            Ihr digitaler Empfang übernimmt – per Telefon, WhatsApp und E-Mail
+            Ihr digitaler Empfang übernimmt – per Telefon, Chat, WhatsApp und E-Mail
           </p>
         </motion.div>
 
