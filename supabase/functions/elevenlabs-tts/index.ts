@@ -5,8 +5,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// ElevenLabs voice ID - Joanna v2 (Articulate Narrator and Storyteller)
-const DEFAULT_VOICE_ID = 'H3IcxEgdFxIEJAqMc0Bc'; // Joanna v2
+// ElevenLabs voice ID - Rachel (Classic American Female)
+const DEFAULT_VOICE_ID = '21m00Tcm4TlvDq8ikWAM'; // Rachel
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
