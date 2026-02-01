@@ -13,8 +13,8 @@ const FAQSection = () => {
       answer: "Nein, überhaupt nicht. Wir kümmern uns um alles – von der Erstellung bis zur Wartung. Keine IT-Kenntnisse nötig."
     },
     {
-      question: "Wie lange dauert es, bis meine Website online ist?",
-      answer: "Ein OnePager ist in 1-2 Wochen fertig. Bei umfangreicheren Projekten planen wir 2-4 Wochen ein."
+      question: "Wie lange dauert es, bis der Digitale Empfang für mich verfügbar ist?",
+      answer: "Die Inbetriebnahme Ihres digitalen Empfangs dauert ca. 2 Wochen."
     },
     {
       question: "Funktioniert das auch für meine Branche?",
