@@ -1,21 +1,25 @@
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTopOnNavigate = () => {
   const { pathname, hash } = useLocation();
+  const isInitialLoad = useRef(true);
 
-  // Use useLayoutEffect to scroll before paint on initial load
+  // Use useLayoutEffect to scroll to top BEFORE paint on initial page load
   useLayoutEffect(() => {
-    // On initial page load, if there's no hash, scroll to top immediately
-    if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
+    // Always scroll to top on initial page load, regardless of hash
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
 
   useEffect(() => {
-    // If there's a hash, scroll to that element
+    // Skip hash-based scrolling on initial load
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      return;
+    }
+
+    // If there's a hash (from user click), scroll to that element
     if (hash) {
-      // Small delay to ensure the page has rendered
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
