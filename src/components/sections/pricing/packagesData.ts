@@ -13,10 +13,10 @@ export const packages: Package[] = [
       "Ihr Team wird spürbar entlastet",
       "Sie behalten jederzeit die volle Kontrolle",
     ],
-    trustAnchor: "30 Tage Zufriedenheitsgarantie",
+    trustAnchor: "",
     pricing: {
-      monthly: "249",
-      setup: "1.990",
+      monthly: "299",
+      setup: "499",
       setupNote: "einmalig",
     },
     cta: "Ich gewinne Zeit",
