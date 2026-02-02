@@ -219,8 +219,7 @@ const DigitalReceptionSection = () => {
               <span className="text-primary"> alle Kanäle</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
-              Ob WhatsApp, Telefon oder E-Mail – Ihr digitaler Empfang antwortet 
-              professionell auf jedem Kanal. Ihre Kunden wählen selbst, wie sie Sie erreichen möchten.
+              Ob WhatsApp, Telefon, Chat oder E-Mail – Ihre Kunden wählen selbst, wie sie Sie erreichen möchten. Sie antworten – auf allen Kanälen, Tag & Nacht.
             </p>
 
             {/* Benefits */}
