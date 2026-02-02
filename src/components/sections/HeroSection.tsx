@@ -143,18 +143,21 @@ const HeroSection = () => {
           {/* Right: Phone Mockup with Channel Tabs */}
           <div className="order-1 lg:order-2 flex flex-col items-center animate-slide-up" style={{ animationDelay: "0.15s" }}>
             {/* Channel Tabs - always in one row, centered */}
-            <div className="flex justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+            <div className="flex justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6" role="tablist" aria-label="Kommunikationskanäle">
               {channels.map((channel) => (
                 <button
                   key={channel.id}
                   onClick={() => setActiveChannel(channel.id)}
-                  className={`flex items-center justify-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium transition-all duration-300 whitespace-nowrap ${
+                  role="tab"
+                  aria-selected={activeChannel === channel.id}
+                  aria-controls={`panel-${channel.id}`}
+                  className={`flex items-center justify-center gap-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium transition-all duration-300 whitespace-nowrap min-h-[44px] ${
                     activeChannel === channel.id
                       ? 'bg-white text-primary shadow-lg'
                       : 'bg-white/10 text-white/80 hover:bg-white/20 border border-white/10'
                   }`}
                 >
-                  <channel.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+                  <channel.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
                   <span>{channel.label}</span>
                 </button>
               ))}
@@ -165,9 +168,11 @@ const HeroSection = () => {
               {/* Glow effect behind phone */}
               <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50" />
               
-              <PhoneMockup key={activeChannel}>
-                {renderDemo()}
-              </PhoneMockup>
+              <div role="tabpanel" id={`panel-${activeChannel}`} aria-label={`Demo: ${activeChannel}`}>
+                <PhoneMockup key={activeChannel}>
+                  {renderDemo()}
+                </PhoneMockup>
+              </div>
               
               {/* Floating badge */}
               <div className="absolute -bottom-2 -left-4 sm:-left-8 bg-white rounded-xl shadow-xl px-3 sm:px-4 py-2 sm:py-3 animate-fade-in" style={{ animationDelay: "0.5s" }}>

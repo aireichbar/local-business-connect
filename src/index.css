@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Font is preloaded in index.html for better performance */
 
 @layer base {
   :root {
@@ -140,12 +140,31 @@
 
   /* Improved focus states for accessibility */
   :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background rounded-sm;
+  }
+
+  /* Enhanced focus for buttons and interactive elements */
+  button:focus-visible,
+  a:focus-visible,
+  [role="button"]:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 
   /* Skip link styling */
   .sr-only:focus {
-    @apply not-sr-only;
+    @apply not-sr-only absolute top-4 left-4 z-[100] bg-primary text-primary-foreground px-4 py-2 rounded-md font-medium;
+  }
+
+  /* Minimum touch target size for mobile */
+  @media (pointer: coarse) {
+    button,
+    a,
+    [role="button"],
+    input[type="checkbox"],
+    input[type="radio"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
   }
 }
 
