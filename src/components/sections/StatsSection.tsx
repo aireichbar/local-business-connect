@@ -26,9 +26,10 @@ const StatsSection = () => {
     },
     {
       icon: Zap,
-      value: 30,
-      suffix: "s",
-      label: "Antwortzeit"
+      value: 3,
+      suffix: " Sek",
+      label: "Antwortzeit",
+      prefix: "<"
     }
   ];
 
@@ -66,7 +67,8 @@ const StatsSection = () => {
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
                 <AnimatedNumber 
                   value={stat.value} 
-                  suffix={stat.suffix} 
+                  suffix={stat.suffix}
+                  prefix={stat.prefix}
                   isVisible={isVisible} 
                   delay={index * 100}
                 />
@@ -82,12 +84,14 @@ const StatsSection = () => {
 
 const AnimatedNumber = ({ 
   value, 
-  suffix, 
+  suffix,
+  prefix,
   isVisible, 
   delay 
 }: { 
   value: number; 
-  suffix: string; 
+  suffix: string;
+  prefix?: string;
   isVisible: boolean; 
   delay: number;
 }) => {
@@ -120,7 +124,7 @@ const AnimatedNumber = ({
     return () => clearTimeout(timeout);
   }, [isVisible, value, delay]);
 
-  return <span>{displayValue}{suffix}</span>;
+  return <span>{prefix}{displayValue}{suffix}</span>;
 };
 
 export default StatsSection;
