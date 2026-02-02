@@ -81,7 +81,7 @@ const HeroSection = () => {
 
             {/* Headline - Optimized for 5-second rule */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-4 sm:mb-5 animate-slide-up">
-              Nie wieder Anrufe & Nachrichten
+              Nie wieder Kundenanfragen
               <span className="block text-accent mt-1">verpassen.</span>
             </h1>
 
