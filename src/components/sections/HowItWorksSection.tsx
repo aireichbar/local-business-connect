@@ -12,13 +12,13 @@ const HowItWorksSection = () => {
       number: "02",
       icon: Settings,
       title: "Umsetzung",
-      description: "Wir erstellen Ihre Website und richten den digitalen Empfang ein."
+      description: "Auf Basis Ihrer Informationen richten wir den Digitalen Empfang für Sie ein."
     },
     {
       number: "03",
       icon: Rocket,
       title: "Live",
-      description: "Ihr digitales System ist online. Wir bleiben Ihr Ansprechpartner."
+      description: "Sie profitieren vom Digitalen Empfang ab Tag 1. Wir bleiben Ihr Ansprechpartner."
     }
   ];
 
