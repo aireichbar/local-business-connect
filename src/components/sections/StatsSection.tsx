@@ -20,9 +20,9 @@ const StatsSection = () => {
     },
     {
       icon: Users,
-      value: 3,
+      value: 22,
       suffix: " Std",
-      label: "Zeit gespart/Woche"
+      label: "Zeit gespart/Monat"
     },
     {
       icon: Zap,
