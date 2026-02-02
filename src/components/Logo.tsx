@@ -23,6 +23,8 @@ const Logo = ({ variant = "color", className, ...props }: LogoProps) => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="280 340 950 240"
       className={className}
+      role="img"
+      aria-label="Aireichbar Logo"
       {...props}
     >
       <path
