@@ -14,7 +14,7 @@ const indicators = [
   },
   {
     icon: Calendar,
-    text: "24 Monate Laufzeit",
+    text: "12 Monate Laufzeit",
     subtext: "Faire Konditionen",
   },
   {
