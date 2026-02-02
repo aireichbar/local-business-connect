@@ -14,9 +14,10 @@ const StatsSection = () => {
     },
     {
       icon: TrendingUp,
-      value: 40,
+      value: 88,
       suffix: "%",
-      label: "Mehr Anfragen"
+      label: "Kosten vs. Empfangskraft",
+      prefix: "-"
     },
     {
       icon: Users,
