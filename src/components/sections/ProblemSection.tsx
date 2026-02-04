@@ -141,16 +141,19 @@ const ProblemSection = () => {
           viewport={{ once: true }}
           className="text-center text-lg md:text-xl font-medium text-foreground mb-8 md:mb-10"
         >
-          Was wäre, wenn das <span className="text-primary font-bold relative">
+          Was wäre, wenn das{" "}
+          <span className="relative inline-block font-bold text-foreground">
             automatisch
+            {/* Marker highlight effect */}
             <motion.span 
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-              initial={{ scaleX: 0 }}
+              className="absolute inset-0 -inset-x-1 bg-primary/20 -skew-x-3 rounded-sm -z-10"
+              initial={{ scaleX: 0, originX: 0 }}
               whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
               viewport={{ once: true }}
             />
-          </span> funktioniert?
+          </span>{" "}
+          funktioniert?
         </motion.p>
 
         {/* Before/After Comparison */}
