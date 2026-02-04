@@ -1,7 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
-import TrustBar from "@/components/sections/TrustBar";
 import ProblemSection from "@/components/sections/ProblemSection";
 import SolutionSection from "@/components/sections/SolutionSection";
 import StatsSection from "@/components/sections/StatsSection";
@@ -27,9 +26,6 @@ const Index = () => {
       <main id="main-content">
         {/* 1. Hook - Emotionaler Einstieg */}
         <HeroSection />
-        
-        {/* 1.5 Trust Bar - Vertrauen aufbauen */}
-        <TrustBar />
         
         {/* 2. Problem - Schmerz verstärken */}
         <AnimatedSection animation="fade-up">
