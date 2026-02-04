@@ -1,8 +1,6 @@
 import { Mail, MapPin, ArrowRight, Cookie, Facebook, Instagram, MessageCircle, Phone, Shield, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import logoSrc from "@/assets/logo-header.svg";
-import { motion } from "framer-motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -35,37 +33,6 @@ const Footer = () => {
     <footer className="bg-primary text-white relative overflow-hidden">
       {/* Gradient overlay */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-dark)" }} />
-      
-      {/* Mini CTA Banner */}
-      <div className="relative border-b border-white/10">
-        <div className="container mx-auto px-5 md:px-8 py-8 md:py-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto"
-          >
-            <div className="text-center md:text-left">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
-                Bereit für bessere Erreichbarkeit?
-              </h3>
-              <p className="text-white/70 text-sm">
-                Starten Sie jetzt – kostenlos und unverbindlich.
-              </p>
-            </div>
-            <Link to="/#kontakt">
-              <Button 
-                variant="cta" 
-                size="lg" 
-                className="bg-white text-primary hover:bg-white/90 shadow-xl group whitespace-nowrap"
-              >
-                Kostenlose Beratung
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </div>
 
       <div className="container mx-auto px-5 md:px-8 py-12 md:py-16 relative">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
