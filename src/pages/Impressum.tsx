@@ -1,8 +1,25 @@
+import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Mail, MapPin } from "lucide-react";
 
 const Impressum = () => {
+  useEffect(() => {
+    document.title = "Impressum – Aireichbar";
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Impressum und rechtliche Angaben zu Aireichbar – Christian Schubert, Bocholt.");
+    }
+    
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", "https://www.aireichbar.de/impressum");
+    }
+    
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Impressum – Aireichbar");
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://www.aireichbar.de/impressum");
+  }, []);
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
