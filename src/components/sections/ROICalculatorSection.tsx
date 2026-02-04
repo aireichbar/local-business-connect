@@ -136,7 +136,7 @@ const ROICalculatorSection = () => {
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <label className="text-white/70 text-sm">Stundensatz</label>
-                      <span className="text-accent font-bold">{hourlyRate}€/h</span>
+                      <span className="text-accent font-bold">{hourlyRate}€/Std.</span>
                     </div>
                     <Slider
                       value={[hourlyRate]}
