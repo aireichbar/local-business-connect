@@ -106,7 +106,7 @@ const ContactSection = () => {
             {/* Contact info */}
             <div className="space-y-4 mb-8">
               <a 
-                href="https://wa.me/4917553187011?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
+                href="https://wa.me/491755318701?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -123,7 +123,7 @@ const ContactSection = () => {
               </a>
 
               <a 
-                href="tel:+4917553187011"
+                href="tel:+491755318701"
                 className="flex items-center gap-4 group"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
