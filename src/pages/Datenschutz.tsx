@@ -1,7 +1,24 @@
+import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 const Datenschutz = () => {
+  useEffect(() => {
+    document.title = "Datenschutzerklärung – Aireichbar";
+    
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Datenschutzerklärung von Aireichbar – Informationen zur Datenverarbeitung gemäß DSGVO.");
+    }
+    
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", "https://www.aireichbar.de/datenschutz");
+    }
+    
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Datenschutz – Aireichbar");
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://www.aireichbar.de/datenschutz");
+  }, []);
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />

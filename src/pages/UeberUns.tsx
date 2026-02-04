@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,46 @@ import { ArrowRight, MapPin, Heart, Users, Target, Shield, CheckCircle2 } from "
 import { Link } from "react-router-dom";
 
 const UeberUns = () => {
+  useEffect(() => {
+    document.title = "Über uns – Aireichbar | Digitale Lösungen aus Bocholt";
+    
+    // Meta description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Lernen Sie Aireichbar kennen – Ihr lokaler Partner für digitale Erreichbarkeit im Kreis Borken. Persönlich, pragmatisch und verlässlich.");
+    }
+    
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", "https://www.aireichbar.de/ueber-uns");
+    }
+    
+    // OG tags
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Über uns – Aireichbar");
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", "Ihr lokaler Partner für digitale Erreichbarkeit im Kreis Borken.");
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://www.aireichbar.de/ueber-uns");
+    
+    // Breadcrumb JSON-LD
+    const breadcrumbScript = document.createElement('script');
+    breadcrumbScript.type = 'application/ld+json';
+    breadcrumbScript.id = 'breadcrumb-jsonld';
+    breadcrumbScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.aireichbar.de" },
+        { "@type": "ListItem", "position": 2, "name": "Über uns", "item": "https://www.aireichbar.de/ueber-uns" }
+      ]
+    });
+    document.head.appendChild(breadcrumbScript);
+    
+    return () => {
+      const script = document.getElementById('breadcrumb-jsonld');
+      if (script) script.remove();
+    };
+  }, []);
+
   const values = [
     {
       icon: Heart,
