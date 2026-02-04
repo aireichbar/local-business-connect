@@ -1,6 +1,8 @@
-import { Mail, MapPin, ArrowRight, Cookie, Facebook, Instagram, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, ArrowRight, Cookie, Facebook, Instagram, MessageCircle, Phone, Shield, Clock, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import logoSrc from "@/assets/logo-header.svg";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,6 +20,12 @@ const Footer = () => {
     ],
   };
 
+  const trustBadges = [
+    { icon: Shield, text: "DSGVO-konform" },
+    { icon: Clock, text: "24/7 Erreichbar" },
+    { icon: CheckCircle2, text: "Made in Germany" },
+  ];
+
   const handleCookieSettings = () => {
     localStorage.removeItem("cookie-consent");
     window.location.reload();
@@ -28,8 +36,39 @@ const Footer = () => {
       {/* Gradient overlay */}
       <div className="absolute inset-0" style={{ background: "var(--gradient-dark)" }} />
       
-      <div className="container mx-auto px-5 md:px-8 py-16 md:py-20 relative">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      {/* Mini CTA Banner */}
+      <div className="relative border-b border-white/10">
+        <div className="container mx-auto px-5 md:px-8 py-8 md:py-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto"
+          >
+            <div className="text-center md:text-left">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                Bereit für bessere Erreichbarkeit?
+              </h3>
+              <p className="text-white/70 text-sm">
+                Starten Sie jetzt – kostenlos und unverbindlich.
+              </p>
+            </div>
+            <Link to="/#kontakt">
+              <Button 
+                variant="cta" 
+                size="lg" 
+                className="bg-white text-primary hover:bg-white/90 shadow-xl group whitespace-nowrap"
+              >
+                Kostenlose Beratung
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-5 md:px-8 py-12 md:py-16 relative">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/">
@@ -37,10 +76,10 @@ const Footer = () => {
                 src={logoSrc} 
                 alt="Aireichbar – Ihr Partner für digitale Lösungen in Bocholt und Kreis Borken" 
                 loading="lazy"
-                className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-6 hover:opacity-80 transition-opacity"
+                className="w-[clamp(120px,12vw,150px)] h-auto brightness-0 invert mb-4 sm:mb-5 hover:opacity-80 transition-opacity"
               />
             </Link>
-            <p className="text-white/70 leading-relaxed text-sm mb-6">
+            <p className="text-white/70 leading-relaxed text-sm mb-5">
               Digitale Lösungen für lokale Unternehmen im Kreis Borken. 
               Persönlich, verständlich und zuverlässig.
             </p>
@@ -52,7 +91,7 @@ const Footer = () => {
 
           {/* Leistungen */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-6 text-white/90">
+            <h3 className="font-semibold text-sm uppercase tracking-wider mb-5 text-white/90">
               Leistungen
             </h3>
             <ul className="space-y-3">
@@ -72,7 +111,7 @@ const Footer = () => {
 
           {/* Unternehmen */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-6 text-white/90">
+            <h3 className="font-semibold text-sm uppercase tracking-wider mb-5 text-white/90">
               Unternehmen
             </h3>
             <ul className="space-y-3">
@@ -92,10 +131,10 @@ const Footer = () => {
 
           {/* Kontakt & Social */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-wider mb-6 text-white/90">
+            <h3 className="font-semibold text-sm uppercase tracking-wider mb-5 text-white/90">
               Kontakt
             </h3>
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-5">
               <a 
                 href="https://wa.me/491755318701?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
                 target="_blank"
@@ -121,12 +160,12 @@ const Footer = () => {
               </a>
             </div>
             
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <a 
                 href="https://wa.me/491755318701?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-success/20 hover:bg-success/30 flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-success/20 hover:bg-success/30 flex items-center justify-center transition-all hover:scale-110"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="w-4 h-4 text-success" />
@@ -135,7 +174,7 @@ const Footer = () => {
                 href="https://www.facebook.com/share/16uLQs6yCu/?mibextid=wwXIfr" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all hover:scale-110"
                 aria-label="Facebook"
               >
                 <Facebook className="w-4 h-4" />
@@ -144,7 +183,7 @@ const Footer = () => {
                 href="https://www.instagram.com/aireichbar" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all hover:scale-110"
                 aria-label="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -153,8 +192,23 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Trust Badges */}
+        <div className="border-t border-white/10 mt-10 pt-8">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
+            {trustBadges.map((badge) => (
+              <div 
+                key={badge.text}
+                className="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors"
+              >
+                <badge.icon className="w-4 h-4" />
+                <span className="text-sm">{badge.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom */}
-        <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-sm">
             © {currentYear} Aireichbar. Alle Rechte vorbehalten.
           </p>

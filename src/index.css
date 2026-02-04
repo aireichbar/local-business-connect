@@ -354,4 +354,10 @@
       transform: translateY(-4px);
     }
   }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }

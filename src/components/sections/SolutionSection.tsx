@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { Zap, MapPin, Shield, Clock, HeartHandshake, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Zap, MapPin, Shield, Clock, HeartHandshake } from "lucide-react";
 import { motion } from "framer-motion";
 
 const SolutionSection = () => {
@@ -52,7 +50,7 @@ const SolutionSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-3 mb-8"
+            className="flex flex-wrap justify-center gap-3"
           >
             {benefits.map((benefit, index) => (
               <motion.div 
@@ -72,20 +70,6 @@ const SolutionSection = () => {
                 <span className="text-sm font-medium text-foreground">{benefit.text}</span>
               </motion.div>
             ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <Link to="/#pakete">
-              <Button variant="outline" size="lg" className="group gap-2">
-                Pakete ansehen
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
           </motion.div>
         </div>
       </div>
