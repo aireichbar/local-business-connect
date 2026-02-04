@@ -133,13 +133,33 @@ const ProblemSection = () => {
           ))}
         </motion.div>
 
+        {/* Transition text - between cards and split screen */}
+        <motion.p 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center text-lg md:text-xl font-medium text-foreground mb-8 md:mb-10"
+        >
+          Was wäre, wenn das <span className="text-primary font-bold relative">
+            automatisch
+            <motion.span 
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true }}
+            />
+          </span> funktioniert?
+        </motion.p>
+
         {/* Before/After Comparison */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto mb-10"
+          className="max-w-3xl mx-auto"
         >
           <div className="grid md:grid-cols-2 gap-4 md:gap-6">
             {/* Before */}
@@ -201,26 +221,6 @@ const ProblemSection = () => {
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Transition with animation */}
-        <motion.p 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-center text-lg md:text-xl font-medium text-foreground"
-        >
-          Was wäre, wenn das <span className="text-primary font-bold relative">
-            automatisch
-            <motion.span 
-              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              viewport={{ once: true }}
-            />
-          </span> funktioniert?
-        </motion.p>
       </div>
     </section>
   );
