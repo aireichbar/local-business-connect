@@ -165,8 +165,13 @@ const HeroSection = () => {
 
             {/* Phone centered below tabs */}
             <div className="relative flex justify-center">
-              {/* Glow effect behind phone */}
-              <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50" />
+              {/* Animated glow effect behind phone */}
+              <div className="absolute -inset-8 bg-accent/20 rounded-full blur-3xl opacity-50 animate-pulse-soft" />
+              
+              {/* Pulsing ring animation */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] rounded-full border-2 border-white/10 animate-[ping_3s_ease-in-out_infinite]" style={{ animationDuration: '3s' }} />
+              </div>
               
               <div role="tabpanel" id={`panel-${activeChannel}`} aria-label={`Demo: ${activeChannel}`}>
                 <PhoneMockup key={activeChannel}>
@@ -174,15 +179,29 @@ const HeroSection = () => {
                 </PhoneMockup>
               </div>
               
-              {/* Floating badge */}
+              {/* Floating badge with pulse animation */}
               <div className="absolute -bottom-2 -left-4 sm:-left-8 bg-white rounded-xl shadow-xl px-3 sm:px-4 py-2 sm:py-3 animate-fade-in" style={{ animationDelay: "0.5s" }}>
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center relative">
                     <span className="text-white text-sm">✓</span>
+                    <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-30" />
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Antwortzeit</p>
                     <p className="text-sm font-bold text-foreground">&lt; 3 Sekunden</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* New floating stat badge - right side */}
+              <div className="absolute -bottom-2 -right-4 sm:-right-8 bg-white rounded-xl shadow-xl px-3 sm:px-4 py-2 sm:py-3 animate-fade-in hidden sm:block" style={{ animationDelay: "0.7s" }}>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">24/7</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Verfügbarkeit</p>
+                    <p className="text-sm font-bold text-foreground">Immer erreichbar</p>
                   </div>
                 </div>
               </div>

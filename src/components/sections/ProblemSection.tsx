@@ -1,4 +1,4 @@
-import { Phone, Clock, XCircle, TrendingDown } from "lucide-react";
+import { Phone, Clock, XCircle, TrendingDown, ArrowRight, CheckCircle2, XCircle as XIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ProblemSection = () => {
@@ -53,6 +53,20 @@ const ProblemSection = () => {
     },
   };
 
+  const beforeItems = [
+    "Anrufe gehen ins Leere",
+    "Kunden warten vergeblich",
+    "Termine werden vergessen",
+    "Stress & Überlastung",
+  ];
+
+  const afterItems = [
+    "24/7 Erreichbarkeit",
+    "Sofortige Antworten",
+    "Automatische Buchungen",
+    "Mehr Zeit für Ihre Arbeit",
+  ];
+
   return (
     <section className="py-12 md:py-16 bg-background relative overflow-hidden">
       {/* Subtle background pattern */}
@@ -84,7 +98,7 @@ const ProblemSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10"
         >
           {problems.map((problem) => (
             <motion.div 
@@ -117,6 +131,75 @@ const ProblemSection = () => {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Before/After Comparison */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto mb-10"
+        >
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+            {/* Before */}
+            <motion.div 
+              className="bg-gradient-to-br from-destructive/5 to-destructive/10 rounded-2xl p-5 md:p-6 border border-destructive/20"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-full bg-destructive/20 flex items-center justify-center">
+                  <XIcon className="w-4 h-4 text-destructive" />
+                </div>
+                <h3 className="font-bold text-foreground">Ohne Aireichbar</h3>
+              </div>
+              <ul className="space-y-2.5">
+                {beforeItems.map((item, index) => (
+                  <motion.li 
+                    key={item}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-2 text-sm text-muted-foreground"
+                  >
+                    <XIcon className="w-4 h-4 text-destructive/60 flex-shrink-0" />
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* After */}
+            <motion.div 
+              className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-5 md:p-6 border border-primary/20"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                </div>
+                <h3 className="font-bold text-foreground">Mit Aireichbar</h3>
+              </div>
+              <ul className="space-y-2.5">
+                {afterItems.map((item, index) => (
+                  <motion.li 
+                    key={item}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-2 text-sm text-foreground"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Transition with animation */}
