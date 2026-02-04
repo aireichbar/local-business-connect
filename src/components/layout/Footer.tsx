@@ -97,7 +97,7 @@ const Footer = () => {
             </h3>
             <div className="space-y-3 mb-6">
               <a 
-                href="https://wa.me/4917553187011?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
+                href="https://wa.me/491755318701?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-white/70 hover:text-success transition-colors text-sm"
@@ -106,7 +106,7 @@ const Footer = () => {
                 0175 531 87 01
               </a>
               <a 
-                href="tel:+4917553187011"
+                href="tel:+491755318701"
                 className="flex items-center gap-3 text-white/70 hover:text-white transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
@@ -123,7 +123,7 @@ const Footer = () => {
             
             <div className="flex items-center gap-4">
               <a 
-                href="https://wa.me/4917553187011?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
+                href="https://wa.me/491755318701?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20digitalen%20L%C3%B6sungen."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-success/20 hover:bg-success/30 flex items-center justify-center transition-colors"
