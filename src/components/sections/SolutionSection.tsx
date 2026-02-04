@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Zap, MapPin, Shield, Clock, HeartHandshake, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Zap, MapPin, Shield, Clock, HeartHandshake, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const SolutionSection = () => {
   const benefits = [
@@ -15,36 +16,77 @@ const SolutionSection = () => {
     <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: "var(--gradient-subtle)" }}>
       <div className="container mx-auto px-5 md:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="trust-badge mb-3">Die Lösung</span>
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="trust-badge mb-3"
+          >
+            Die Lösung
+          </motion.span>
           
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight"
+          >
             <span className="text-gradient-primary">Aireichbar</span> übernimmt Ihren Empfang
-          </h2>
+          </motion.h2>
           
-          <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto"
+          >
             Ihr digitales System begrüßt Kunden, beantwortet Fragen und sammelt Kontaktdaten – 
             automatisch und zuverlässig.
-          </p>
+          </motion.p>
 
-          {/* Benefits as horizontal pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {benefits.map((benefit) => (
-              <div 
+          {/* Benefits as horizontal pills with hover effects */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-3 mb-8"
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div 
                 key={benefit.text}
-                className="flex items-center gap-2 bg-card rounded-full px-4 py-2 border border-border/50 hover:border-primary/30 hover:shadow-sm transition-all"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 * index }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -2,
+                  transition: { type: "spring", stiffness: 400, damping: 17 }
+                }}
+                className="flex items-center gap-2 bg-card rounded-full px-4 py-2 border border-border/50 hover:border-primary/40 hover:shadow-md hover:bg-primary/5 transition-all duration-300 cursor-default"
               >
                 <benefit.icon className="w-4 h-4 text-primary flex-shrink-0" />
                 <span className="text-sm font-medium text-foreground">{benefit.text}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <Link to="/#pakete">
-            <Button variant="outline" size="lg" className="group gap-2">
-              Pakete ansehen
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <Link to="/#pakete">
+              <Button variant="outline" size="lg" className="group gap-2">
+                Pakete ansehen
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
