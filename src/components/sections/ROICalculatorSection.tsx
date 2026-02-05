@@ -6,7 +6,7 @@ const ROICalculatorSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [callsPerDay, setCallsPerDay] = useState(25);
-  const [hourlyRate, setHourlyRate] = useState(25);
+  const [hourlyRate, setHourlyRate] = useState(30);
   const [animatedValues, setAnimatedValues] = useState({
     calls: 0,
     hours: 0,
