@@ -15,8 +15,8 @@ export const packages: Package[] = [
     ],
     trustAnchor: "",
     pricing: {
-      monthly: "299",
-      setup: "499",
+      monthly: "399",
+      setup: "399",
       setupNote: "einmalig",
     },
     cta: "Ich gewinne Zeit",
