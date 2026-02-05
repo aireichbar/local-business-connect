@@ -6,7 +6,7 @@ const ROICalculatorSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [callsPerDay, setCallsPerDay] = useState(25);
-  const [hourlyRate, setHourlyRate] = useState(30);
+  const [hourlyRate, setHourlyRate] = useState(25);
   const [animatedValues, setAnimatedValues] = useState({
     calls: 0,
     hours: 0,
@@ -18,8 +18,8 @@ const ROICalculatorSection = () => {
   const workDaysPerMonth = 22;
   const hoursPerMonth = Math.round((callsPerDay * minutesPerCall * workDaysPerMonth) / 60);
   const timeValue = hoursPerMonth * hourlyRate;
-  const monthlyCost = 399;
-  const setupCost = 399;
+  const monthlyCost = 299;
+  const setupCost = 499;
   const calculatedSavings = Math.max(0, timeValue - monthlyCost);
 
   useEffect(() => {
