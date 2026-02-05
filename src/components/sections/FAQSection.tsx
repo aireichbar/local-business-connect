@@ -26,7 +26,7 @@ const FAQSection = () => {
     },
     {
       question: "Gibt es eine Mindestlaufzeit?",
-      answer: "Ja, der Vertrag läuft zeitlich deutlich unter dem eines klassischen Handyvertrags. Die Vertragslaufzeit beläuft sich auf 12 Monate."
+      answer: "Ja, der Vertrag hat eine Mindestlaufzeit von 18 Monaten."
     },
     {
       question: "Kann ich den digitalen Empfang testen?",
