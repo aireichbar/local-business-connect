@@ -38,9 +38,6 @@ const BranchHero = ({ badge, breadcrumb, h1Line1, h1Line2, subheadline, trustIte
           <Button size="lg" asChild>
             <Link to="/#kontakt">Kostenlose Beratung <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </Button>
-          <Button size="lg" variant="outline" asChild>
-            <a href="tel:+4932221802294">Demo anrufen: +49 322 218 02294</a>
-          </Button>
         </div>
 
         {trustItems && (
