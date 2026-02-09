@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logoSrc from "@/assets/logo-header.svg";
@@ -21,12 +21,14 @@ const regionenLinks = [
 ];
 
 const Header = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [branchenOpen, setBranchenOpen] = useState(false);
   const [regionenOpen, setRegionenOpen] = useState(false);
 
-  const isSolidHeader = isScrolled || isMobileMenuOpen;
+  const isHomePage = location.pathname === "/";
+  const isSolidHeader = isScrolled || isMobileMenuOpen || !isHomePage;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);

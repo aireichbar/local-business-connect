@@ -16,14 +16,6 @@ const BranchCTASection = ({ title, subtitle }: BranchCTASectionProps) => {
           <Button size="lg" variant="secondary" asChild>
             <Link to="/#kontakt">Kostenlose Beratung</Link>
           </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-            asChild
-          >
-            <a href="tel:+4932221802294">Jetzt Demo anrufen</a>
-          </Button>
         </div>
       </div>
     </section>
