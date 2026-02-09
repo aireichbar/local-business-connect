@@ -7,7 +7,7 @@ import logoSrc from "@/assets/logo-header.svg";
 const branchenLinks = [
   { title: "Handwerk", href: "/handwerk", description: "Für Elektriker, Maler, Dachdecker und mehr" },
   { title: "Friseursalons", href: "/friseur", description: "Nie wieder Kunden verlieren während Sie schneiden" },
-  { title: "Physiotherapie", href: "/physiotherapie", description: "Behandeln statt telefonieren" },
+  
   { title: "SHK-Betriebe", href: "/shk", description: "Notfälle sofort, Routine automatisch" },
   { title: "Elektrobetriebe", href: "/elektro", description: "Erreichbar auch während der Installation" },
 ];

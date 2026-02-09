@@ -23,7 +23,7 @@ const painPoints = [
 const features = [
   { title: "Automatische Terminbuchung", description: "Kunden nennen ihren Wunschtermin, der digitale Empfang prüft die Verfügbarkeit und bestätigt – alles automatisch.", icon: Calendar },
   { title: "Preisauskunft ohne Unterbrechung", description: "'Was kostet Balayage?' – Ihr digitaler Empfang kennt Ihre Preisliste und antwortet sofort.", icon: Euro },
-  { title: "No-Show-Reduktion", description: "Automatische Erinnerungen per WhatsApp. Weniger leere Stühle, mehr Umsatz.", icon: BellRing },
+  { title: "Termin-Erinnerungen", description: "Automatische Erinnerungen per WhatsApp. Weniger leere Stühle, mehr Umsatz.", icon: BellRing },
   { title: "Wartelisten-Management", description: "Jemand sagt ab? Der nächste auf der Warteliste wird automatisch benachrichtigt.", icon: Users },
   { title: "Alle Kanäle, ein Posteingang", description: "Telefon, WhatsApp, Instagram, E-Mail – alle Anfragen zentral an einem Ort.", icon: Inbox },
   { title: "Ihr Stil, Ihre Stimme", description: "Der digitale Empfang begrüßt Ihre Kunden so, wie Sie es tun würden.", icon: Mic },
@@ -40,7 +40,7 @@ const faqs = [
 const pkg = {
   name: "Digitaler Empfang",
   tagline: "Nie wieder Kunden verlieren – auch wenn Sie schneiden.",
-  benefits: ["Automatische Terminbuchung per Telefon & WhatsApp", "Preisauskunft ohne Unterbrechung", "Erinnerungen gegen No-Shows", "Wartelisten-Management inklusive", "Alle Kanäle in einem Posteingang", "inkl. 200 WhatsApp-Konversationen/Monat"],
+  benefits: ["Automatische Terminbuchung per Telefon & WhatsApp", "Preisauskunft ohne Unterbrechung", "Automatische Termin-Erinnerungen", "Wartelisten-Management inklusive", "Alle Kanäle in einem Posteingang", "inkl. 200 WhatsApp-Konversationen/Monat"],
   monthly: "299",
   setup: "499",
   cta: "Ich gewinne Zeit",

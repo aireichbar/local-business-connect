@@ -14,7 +14,7 @@ import ScrollToTopOnNavigate from "./components/ScrollToTopOnNavigate";
 // Branchen-Seiten
 import HandwerkPage from "./pages/HandwerkPage";
 import FriseurPage from "./pages/FriseurPage";
-import PhysiotherapiePage from "./pages/PhysiotherapiePage";
+
 import SHKPage from "./pages/SHKPage";
 import ElektroPage from "./pages/ElektroPage";
 
@@ -47,7 +47,7 @@ const App = () => (
           {/* Branchen-Seiten */}
           <Route path="/handwerk" element={<HandwerkPage />} />
           <Route path="/friseur" element={<FriseurPage />} />
-          <Route path="/physiotherapie" element={<PhysiotherapiePage />} />
+          
           <Route path="/shk" element={<SHKPage />} />
           <Route path="/elektro" element={<ElektroPage />} />
           
