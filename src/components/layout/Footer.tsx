@@ -9,7 +9,7 @@ const Footer = () => {
     branchen: [
       { label: "Handwerk", href: "/handwerk" },
       { label: "Friseursalons", href: "/friseur" },
-      { label: "Physiotherapie", href: "/physiotherapie" },
+      
       { label: "SHK-Betriebe", href: "/shk" },
       { label: "Elektrobetriebe", href: "/elektro" },
     ],
