@@ -1,16 +1,23 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# robots.txt für aireichbar.de
 
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://www.aireichbar.de/sitemap.xml
+
+# Dashboard/interne Bereiche ausschließen
+Disallow: /kompass/
+Disallow: /dashboard/
+Disallow: /api/
+
+# Assets erlauben (wichtig für Rendering)
+Allow: /assets/
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
+
+# Crawl-Delay (optional, für Server-Schonung)
+Crawl-delay: 1
