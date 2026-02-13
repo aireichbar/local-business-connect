@@ -246,7 +246,8 @@ const ContactSection = () => {
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.
+                Mit dem Absenden stimmen Sie unserer{" "}
+                <a href="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</a> zu.
               </p>
             </form>
           </div>

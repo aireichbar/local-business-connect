@@ -4,11 +4,11 @@ import Footer from "@/components/layout/Footer";
 
 const Datenschutz = () => {
   useEffect(() => {
-    document.title = "Datenschutzerklärung – Aireichbar";
+    document.title = "Datenschutzerklärung – aireichbar";
     
     let metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute("content", "Datenschutzerklärung von Aireichbar – Informationen zur Datenverarbeitung gemäß DSGVO.");
+      metaDesc.setAttribute("content", "Datenschutzerklärung von aireichbar – Informationen zur Datenverarbeitung gemäß DSGVO.");
     }
     
     let canonical = document.querySelector('link[rel="canonical"]');
@@ -16,9 +16,10 @@ const Datenschutz = () => {
       canonical.setAttribute("href", "https://www.aireichbar.de/datenschutz");
     }
     
-    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Datenschutz – Aireichbar");
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", "Datenschutz – aireichbar");
     document.querySelector('meta[property="og:url"]')?.setAttribute("content", "https://www.aireichbar.de/datenschutz");
   }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -31,122 +32,87 @@ const Datenschutz = () => {
           <div className="prose prose-lg max-w-none text-foreground/90">
             {/* 1. Einleitung */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">1. Einleitung</h2>
-              <p className="mb-4">
-                Der Schutz Ihrer persönlichen Daten hat höchste Priorität. Diese Datenschutzerklärung erläutert die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten (im Folgenden „Daten" genannt) in Zusammenhang mit dem Onlineangebot. Dies umfasst die zugehörige Website, Funktionen und Inhalte sowie die externen Onlinepräsenzen, wie beispielsweise die Social-Media-Profile (im Folgenden zusammengefasst als „Onlineangebot"). Ihre personenbezogenen Daten werden vertraulich behandelt und es wird strikt den gesetzlichen Datenschutzvorschriften sowie den Bestimmungen dieser Datenschutzerklärung entsprochen.
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Allgemeine Hinweise</h3>
-              <p className="mb-4">
-                Diese Datenschutzerklärung gibt Ihnen einen umfassenden Überblick darüber, was mit Ihren personenbezogenen Daten geschieht, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Informationen, die dazu genutzt werden können, Sie persönlich zu identifizieren. Detaillierte Informationen zum Datenschutz entnehmen Sie bitte dieser vollständigen Datenschutzerklärung.
-              </p>
-
+              <h2 className="text-2xl font-bold text-foreground mb-4">1. Einleitung und Übersicht</h2>
+              <p className="mb-4">Der Schutz Ihrer persönlichen Daten hat für uns höchste Priorität. Diese Datenschutzerklärung erläutert die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten im Rahmen unseres Digitalen Empfangs und unserer Website.</p>
               <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Verantwortliche Stelle</h3>
-              <p className="mb-4">
-                Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Die Kontaktdaten des Verantwortlichen finden Sie im Abschnitt „Verantwortlicher" in dieser Datenschutzerklärung.
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Erhebung Ihrer Daten</h3>
-              <p className="mb-4">
-                Personenbezogene Daten werden zum einen dadurch erhoben, dass Sie diese aktiv mitteilen, z.B. durch das Ausfüllen eines Kontaktformulars. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch die IT-Systeme des Verantwortlichen erfasst. Hierbei handelt es sich vor allem um technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs).
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Verwendung Ihrer Daten</h3>
-              <p className="mb-4">
-                Ein Teil der Daten wird erhoben, um die fehlerfreie Bereitstellung der Website sicherzustellen. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden, um das Angebot zu optimieren und auf Ihre Bedürfnisse anzupassen.
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Datenübermittlung an externe Stellen</h3>
-              <p className="mb-4">
-                Im Rahmen der Geschäftstätigkeit des Verantwortlichen kann es erforderlich sein, personenbezogene Daten an externe Stellen zu übermitteln. Diese Übermittlung erfolgt ausschließlich unter bestimmten Bedingungen: wenn die Weitergabe zur Erfüllung eines Vertrags notwendig ist, wenn eine gesetzliche Verpflichtung besteht, beispielsweise an Steuerbehörden, wenn ein berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO vorliegt, oder wenn eine andere rechtliche Grundlage die Datenübermittlung erlaubt.
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Widerruf von Einwilligungen zur Datenverarbeitung</h3>
-              <p className="mb-4">
-                Bestimmte Datenverarbeitungen können nur mit Ihrer ausdrücklichen Einwilligung erfolgen. Diese Einwilligung kann jederzeit widerrufen werden. Die Rechtmäßigkeit der bis zum Zeitpunkt des Widerrufs erfolgten Datenverarbeitung bleibt durch den Widerruf unberührt.
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Widerspruchsrecht bei spezifischen Datenverarbeitungen und Werbemaßnahmen (Art. 21 DSGVO)</h3>
-              <p className="mb-4">
-                Erfolgt die Verarbeitung Ihrer personenbezogenen Daten auf der Basis von Art. 6 Abs. 1 lit. e oder f DSGVO, haben Sie das Recht, jederzeit gegen diese Verarbeitung Widerspruch einzulegen, sofern Sie Gründe haben, die sich aus Ihrer besonderen Situation ergeben. Dies betrifft auch das Profiling, das auf diesen Bestimmungen basiert.
-              </p>
-              <p className="mb-4">
-                Werden Ihre personenbezogenen Daten für Zwecke der Direktwerbung genutzt, steht Ihnen das Recht zu, jederzeit Widerspruch gegen diese Verarbeitung einzulegen (Widerspruch gemäß Art. 21 Abs. 2 DSGVO).
-              </p>
-
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Rechte gemäß Datenschutz-Grundverordnung</h3>
-              <p className="mb-4">
-                Sie haben das Recht, bei Verstößen gegen die DSGVO eine Beschwerde bei einer zuständigen Aufsichtsbehörde einzureichen. Personenbezogene Daten, die auf Basis einer Einwilligung oder zur Erfüllung eines Vertrags automatisiert verarbeitet werden, können in einem strukturierten, gängigen und maschinenlesbaren Format angefordert werden.
-              </p>
-              <p className="mb-4">
-                Jede betroffene Person hat das Recht, unentgeltlich Auskunft über ihre gespeicherten personenbezogenen Daten, deren Herkunft, Empfänger sowie den Zweck der Datenverarbeitung zu erhalten. Darüber hinaus besteht ein Recht auf Berichtigung oder Löschung dieser Daten, sofern gesetzliche Bestimmungen dies zulassen.
-              </p>
+              <p className="mb-4">Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Die Kontaktdaten finden Sie im Abschnitt „Verantwortlicher".</p>
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Widerruf von Einwilligungen</h3>
+              <p className="mb-4">Bestimmte Datenverarbeitungen können nur mit Ihrer ausdrücklichen Einwilligung erfolgen. Diese Einwilligung kann jederzeit formlos per E-Mail an info@aireichbar.de widerrufen werden.</p>
             </section>
 
             {/* 2. Verantwortlicher */}
             <section className="mb-10">
               <h2 className="text-2xl font-bold text-foreground mb-4">2. Verantwortlicher</h2>
-              <p className="mb-4">
-                Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
-              </p>
               <address className="not-italic bg-muted/50 p-4 rounded-lg mb-4">
-                <strong>Firma:</strong> Aireichbar Einzelunternehmen<br />
-                <strong>Vertreten durch:</strong> Christian Schubert<br />
-                <strong>Adresse:</strong> Arnold-Janssen-Straße 2A, 46397 Bocholt<br />
-                <strong>Website:</strong> www.aireichbar.de<br />
+                <strong>Firma:</strong> aireichbar Einzelunternehmen<br />
+                <strong>Inhaber:</strong> Christian Schubert<br />
+                <strong>Adresse:</strong> Arnold-Janssen-Straße 2A, 46397 Bocholt, Deutschland<br />
+                <strong>Telefon:</strong> +49 175 5318701<br />
                 <strong>E-Mail:</strong> info@aireichbar.de<br />
-                <strong>Telefon:</strong> +49 1567 975199
+                <strong>Website:</strong> www.aireichbar.de
               </address>
             </section>
 
             {/* 3. Auftragsverarbeiter */}
             <section className="mb-10">
               <h2 className="text-2xl font-bold text-foreground mb-4">3. Auftragsverarbeiter</h2>
-              <p className="mb-4">
-                Die Zusammenarbeit erfolgt mit verschiedenen Auftragsverarbeitern, die im Auftrag Daten verarbeiten. Diese Dienstleister sind vertraglich verpflichtet, die Daten vertraulich zu behandeln und ausschließlich im Rahmen der jeweiligen Dienstleistung zu nutzen. Zudem gibt es Fälle, in denen die Verantwortung für die Datenverarbeitung gemeinsam mit anderen Stellen getragen wird. In solchen Fällen werden die Verantwortlichkeiten transparent geregelt und dokumentiert, um die Einhaltung der Datenschutzanforderungen sicherzustellen.
-              </p>
+              <p className="mb-4">Wir arbeiten mit folgenden Auftragsverarbeitern zusammen, die in unserem Auftrag personenbezogene Daten verarbeiten:</p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.1 Hosting und Infrastruktur</h3>
+              <div className="bg-muted/30 border-l-4 border-primary p-4 rounded-r-lg mb-4">
+                <strong>1&amp;1 IONOS SE</strong><br />
+                Elgendorfer Str. 57, 56410 Montabaur, Deutschland<br />
+                <em>Zweck:</em> Hosting der Website, Datenbank, Automatisierungsserver<br />
+                <em>Serverstandort:</em> Deutschland<br />
+                <a href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung</a>
+              </div>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.2 Telefon-KI (Voice)</h3>
+              <div className="bg-muted/30 border-l-4 border-primary p-4 rounded-r-lg mb-4">
+                <strong>Placetel – Gamma Communications GmbH</strong><br />
+                <em>Zweck:</em> KI-gestützte Telefonannahme, Sprachverarbeitung, automatische Terminvereinbarung<br />
+                <em>Verarbeitete Daten:</em> Telefonnummer, Sprachaufnahmen, Transkriptionen<br />
+                <em>Serverstandort:</em> EU-Rechenzentren<br />
+                <em>Rechtsgrundlage:</em> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)<br />
+                <a href="https://www.placetel.de/datenschutz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung</a>
+              </div>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.3 WhatsApp Business API</h3>
+              <div className="bg-muted/30 border-l-4 border-primary p-4 rounded-r-lg mb-4">
+                <strong>Meta Platforms Ireland Limited</strong><br />
+                4 Grand Canal Square, Dublin 2, Irland<br />
+                <em>Zweck:</em> Kommunikation über WhatsApp Business API für Kundenanfragen und Terminbuchungen<br />
+                <em>Verarbeitete Daten:</em> Telefonnummer, Nachrichteninhalte, Zeitstempel<br />
+                <em>Hinweis:</em> Es erfolgt eine Datenübermittlung in die USA. Meta ist unter dem EU-US Data Privacy Framework zertifiziert.<br />
+                <em>Rechtsgrundlage:</em> Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)<br />
+                <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung</a>
+              </div>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">3.4 KI-Textverarbeitung</h3>
+              <div className="bg-muted/30 border-l-4 border-primary p-4 rounded-r-lg mb-4">
+                <strong>mittwald GmbH &amp; Co. KG</strong><br />
+                Königsberger Str. 4-6, 32339 Espelkamp, Deutschland<br />
+                <em>Zweck:</em> KI-gestützte Verarbeitung von Freitexteingaben zur Dienstleistungserkennung (Fallback-System)<br />
+                <em>Serverstandort:</em> Deutschland<br />
+                <em>Rechtsgrundlage:</em> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)<br />
+                <a href="https://www.mittwald.de/datenschutz" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung</a>
+              </div>
             </section>
 
             {/* 4. Begriffsbestimmungen */}
             <section className="mb-10">
               <h2 className="text-2xl font-bold text-foreground mb-4">4. Begriffsbestimmungen</h2>
-              <p className="mb-4">
-                Um die Transparenz dieser Datenschutzerklärung zu gewährleisten und sie für jedermann verständlich zu machen, werden in dieser Erklärung vorrangig Begriffe verwendet, die auch in der Datenschutz-Grundverordnung (DSGVO) definiert sind. Die vollständigen gesetzlichen Definitionen finden sich in Art. 4 DSGVO.
-              </p>
               <ul className="list-disc list-inside space-y-2 mb-4">
                 <li><strong>Personenbezogene Daten:</strong> Alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen.</li>
-                <li><strong>Verarbeitung:</strong> Jede Handlung im Zusammenhang mit personenbezogenen Daten (Erheben, Erfassen, Organisieren, Speichern, etc.).</li>
-                <li><strong>Verantwortlicher:</strong> Die natürliche oder juristische Person, die über die Zwecke und Mittel der Verarbeitung entscheidet.</li>
-                <li><strong>Auftragsverarbeiter:</strong> Eine Stelle, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet.</li>
-                <li><strong>Einwilligung:</strong> Jede freiwillig, für den bestimmten Fall, in informierter Weise und unmissverständlich abgegebene Willensbekundung.</li>
+                <li><strong>Verarbeitung:</strong> Jede Handlung im Zusammenhang mit personenbezogenen Daten.</li>
+                <li><strong>Verantwortlicher:</strong> Die natürliche oder juristische Person, die über die Zwecke der Verarbeitung entscheidet.</li>
+                <li><strong>Auftragsverarbeiter:</strong> Natürliche oder juristische Person, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet.</li>
               </ul>
             </section>
 
-            {/* 5. Hosting */}
+            {/* 5. Rechtsgrundlagen */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">5. Hosting</h2>
-              <p className="mb-4">
-                Diese Website wird auf den Servern eines externen Dienstleisters gehostet, um Ihnen eine zuverlässige und sichere Nutzung dieses Onlineangebots zu gewährleisten.
-              </p>
-              <p className="mb-4">
-                Die Datenverarbeitung durch den Hosting-Anbieter erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO, da der Verantwortliche ein berechtigtes Interesse daran hat, eine stabile und sichere Website bereitzustellen.
-              </p>
-              <p className="mb-4">
-                <strong>Der Hosting-Anbieter ist:</strong><br />
-                1&amp;1 Ionos<br />
-                Elgendorfer Str. 57, 56410 Montabaur, Deutschland
-              </p>
-              <p className="mb-4">
-                Details zur Datenverarbeitung und zum Datenschutz können Sie der Datenschutzerklärung des Hosting-Anbieters entnehmen: <a href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.ionos.de/terms-gtc/datenschutzerklaerung/</a>
-              </p>
-            </section>
-
-            {/* 6. Rechtliche Grundlagen der Datenverarbeitung */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">6. Rechtliche Grundlagen der Datenverarbeitung</h2>
-              <p className="mb-4">
-                Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage der Datenschutz-Grundverordnung (DSGVO) sowie weiterer relevanter gesetzlicher Bestimmungen. Je nach Zweck der Datenverarbeitung kommen unterschiedliche Rechtsgrundlagen zur Anwendung:
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">5. Rechtsgrundlagen der Datenverarbeitung</h2>
               <ul className="list-disc list-inside space-y-2 mb-4">
                 <li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Einwilligung des Nutzers</li>
                 <li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
@@ -155,180 +121,180 @@ const Datenschutz = () => {
               </ul>
             </section>
 
-            {/* 7. Datenweitergabe an Drittstaaten */}
+            {/* 6. Datenerfassung */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">7. Datenweitergabe an unsichere Drittstaaten</h2>
-              <p className="mb-4">
-                Falls auf dieser Website Tools von Unternehmen eingesetzt werden, die ihren Sitz in datenschutzrechtlich unsicheren Drittstaaten haben, oder US-Tools verwendet werden, deren Anbieter nicht nach dem EU-US Data Privacy Framework (DPF) zertifiziert sind, können Ihre personenbezogenen Daten in diese Staaten übertragen und dort verarbeitet werden.
-              </p>
-              <p className="mb-4">
-                Es wird darauf hingewiesen, dass in datenschutzrechtlich unsicheren Drittstaaten kein Datenschutzniveau gewährleistet werden kann, das dem der EU entspricht.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">6. Datenerfassung auf der Website</h2>
+              
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">6.1 Server-Log-Files</h3>
+              <p className="mb-4">Bei jedem Zugriff auf unsere Website werden automatisch Informationen erfasst und in Server-Log-Files gespeichert: IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem.</p>
+              <p className="mb-4"><strong>Speicherdauer:</strong> 7 Tage</p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">6.2 Cookies</h3>
+              <p className="mb-4">Unsere Website verwendet technisch notwendige Cookies für die Funktionalität der Anwendung. Diese Cookies werden für die Sitzungsverwaltung benötigt und nach Schließen des Browsers gelöscht.</p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">6.3 Kontaktformular</h3>
+              <p className="mb-4">Bei Nutzung des Kontaktformulars werden Ihre Angaben (Name, E-Mail, Nachricht) zur Bearbeitung der Anfrage gespeichert. Die Daten werden nach vollständiger Bearbeitung und Ablauf etwaiger Aufbewahrungsfristen gelöscht.</p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">6.4 SSL/TLS-Verschlüsselung</h3>
+              <p className="mb-4">Diese Website nutzt aus Sicherheitsgründen SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://" in der Adresszeile Ihres Browsers.</p>
             </section>
 
-            {/* 8. Speicherdauer */}
+            {/* 7. Digitaler Empfang */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">8. Speicherdauer</h2>
-              <p className="mb-4">
-                Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben personenbezogene Daten beim Verantwortlichen, bis der Zweck für die Datenverarbeitung entfällt. Wenn ein berechtigtes Löschersuchen geltend gemacht wird oder eine Einwilligung zur Datenverarbeitung widerrufen wird, werden die betreffenden Daten gelöscht, sofern keine anderen rechtlich zulässigen Gründe für die Speicherung der personenbezogenen Daten vorliegen.
-              </p>
-            </section>
+              <h2 className="text-2xl font-bold text-foreground mb-4">7. Digitaler Empfang – Unser Kernprodukt</h2>
+              <p className="mb-4">Unser Digitaler Empfang ermöglicht die automatisierte Bearbeitung von Kundenanfragen über mehrere Kommunikationskanäle.</p>
 
-            {/* 9. Sicherheitsmaßnahmen */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">9. Sicherheitsmaßnahmen und Datenminimierung</h2>
-              <p className="mb-4">
-                Es werden umfassende technische und organisatorische Maßnahmen ergriffen, um Ihre personenbezogenen Daten wirksam vor zufälliger oder unrechtmäßiger Zerstörung, Verlust, Veränderung oder unbefugter Offenlegung bzw. unbefugtem Zugriff zu schützen. Dabei wird darauf geachtet, dass ausschließlich die für den jeweiligen Zweck unbedingt erforderlichen Daten erhoben und verarbeitet werden.
-              </p>
-            </section>
-
-            {/* 10. SSL/TLS-Verschlüsselung */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">10. SSL/TLS-Verschlüsselung</h2>
-              <p className="mb-4">
-                Um die Sicherheit Ihrer Daten bei der Übertragung zu schützen, werden dem aktuellen Stand der Technik entsprechende Verschlüsselungsverfahren (z. B. SSL oder TLS) über HTTPS verwendet. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
-              </p>
-            </section>
-
-            {/* 11. Log-Files */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">11. Speicherung von Nutzerinformationen in Log-Files</h2>
-              <p className="mb-4">
-                Bei jedem Zugriff auf die Website werden automatisch Informationen allgemeiner Natur erfasst, die Ihr Browser an den Server übermittelt. Diese Informationen umfassen:
-              </p>
-              <ul className="list-disc list-inside space-y-1 mb-4">
-                <li>IP-Adresse des anfragenden Rechners</li>
-                <li>Datum und Uhrzeit des Zugriffs</li>
-                <li>Name und URL der abgerufenen Datei</li>
-                <li>Website, von welcher der Zugriff erfolgt (Referrer-URL)</li>
-                <li>Verwendeter Browser und User Agent String</li>
-                <li>Betriebssystem</li>
-                <li>Name Ihres Access-Providers</li>
-                <li>HTTP-Statuscode</li>
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">7.1 Kommunikationskanäle</h3>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Telefon-KI:</strong> Automatische Anrufannahme und Terminvereinbarung über Placetel AI</li>
+                <li><strong>WhatsApp:</strong> Kommunikation über WhatsApp Business API (+49 175 536 6559)</li>
+                <li><strong>E-Mail:</strong> Verarbeitung eingehender E-Mails</li>
+                <li><strong>Website-Chatbot:</strong> Interaktiver Chat auf der Website</li>
+                <li><strong>Kontaktformular:</strong> Webbasierte Anfragen</li>
               </ul>
-              <p className="mb-4">
-                Rechtsgrundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. f DSGVO.
-              </p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">7.2 Verarbeitete Daten</h3>
+              <p className="mb-4">Folgende Daten werden im Rahmen des Digitalen Empfangs verarbeitet:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li>Kontaktdaten: Name, Telefonnummer, E-Mail-Adresse</li>
+                <li>Kommunikationsinhalte: Nachrichten, Sprachaufnahmen (bei Telefon)</li>
+                <li>Terminwünsche: Gewünschte Dienstleistung, Terminpräferenzen</li>
+                <li>Technische Daten: Zeitstempel, Kanal der Anfrage</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">7.3 Automatisierte Entscheidungsfindung (Art. 22 DSGVO)</h3>
+              <p className="mb-4">Unser System trifft automatisierte Entscheidungen zur Bearbeitung von Anfragen:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Intent-Klassifizierung:</strong> Automatische Erkennung ob Termin, Rückruf oder Information gewünscht wird</li>
+                <li><strong>Terminvorschläge:</strong> Automatische Ermittlung freier Termine basierend auf Kalenderverfügbarkeit</li>
+                <li><strong>Dienstleistungserkennung:</strong> Automatische Zuordnung zur passenden Dienstleistung</li>
+              </ul>
+              <p className="mb-4">Diese automatisierten Entscheidungen dienen ausschließlich der effizienten Terminvereinbarung und haben keine rechtliche Wirkung. Sie können jederzeit eine manuelle Prüfung verlangen, indem Sie uns kontaktieren.</p>
             </section>
 
-            {/* 12. Cookies */}
+            {/* 8. Terminbuchung */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">12. Cookies</h2>
-              <p className="mb-4">
-                Diese Website verwendet Cookies. Dabei handelt es sich um kleine Dateien, die Ihr Browser automatisch erstellt und die auf Ihrem Endgerät gespeichert werden, wenn Sie die Seite besuchen. Cookies richten auf Ihrem Endgerät keinen Schaden an, enthalten keine Viren, Trojaner oder sonstige Schadsoftware.
-              </p>
-              <p className="mb-4">
-                Der Einsatz von Cookies dient dazu, die Nutzung des Angebots für Sie angenehmer zu gestalten. Die meisten Browser akzeptieren Cookies automatisch. Sie können Ihren Browser jedoch so konfigurieren, dass keine Cookies auf Ihrem Computer gespeichert werden.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">8. Terminbuchung und Kalenderdaten</h2>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">8.1 Erhobene Daten</h3>
+              <p className="mb-4">Bei der Terminbuchung werden folgende Daten verarbeitet:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li>Name und Kontaktdaten</li>
+                <li>Gewünschte Dienstleistung</li>
+                <li>Terminzeitpunkt und -ort (beim Dienstleister oder vor Ort beim Kunden)</li>
+                <li>Ergänzende Anmerkungen</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">8.2 Google Calendar Integration</h3>
+              <p className="mb-4">Gebuchte Termine werden in den Google Calendar des jeweiligen Dienstleisters übertragen.</p>
+              <div className="bg-muted/30 border-l-4 border-primary p-4 rounded-r-lg mb-4">
+                <strong>Google Ireland Limited</strong><br />
+                Gordon House, Barrow Street, Dublin 4, Irland<br />
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung</a>
+              </div>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">8.3 Speicherdauer</h3>
+              <p className="mb-4">Terminbuchungsdaten werden <strong>90 Tage nach dem Termin</strong> automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
             </section>
 
-            {/* 13. Cookie Consent Banner */}
+            {/* 9. B2B */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">13. Cookie Consent Banner</h2>
-              <p className="mb-4">
-                Diese Website verwendet ein Cookie Consent Banner, um Ihre Einwilligungen zur Nutzung von Cookies zu verwalten. Das Cookie Consent Banner setzt ein technisch notwendiges Cookie, um Ihre Cookie-Einstellungen zu speichern. Dieses Cookie verarbeitet keine personenbezogenen Daten.
-              </p>
-              <p className="mb-4">
-                Die Datenverarbeitung durch das Cookie Consent Banner erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO. Ihre Einstellungen können Sie jederzeit in den Cookie-Einstellungen dieser Website ändern.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">9. Datenverarbeitung für Geschäftskunden (B2B)</h2>
+              <p className="mb-4">aireichbar agiert als <strong>Auftragsverarbeiter</strong> im Sinne von Art. 28 DSGVO für unsere Geschäftskunden (Mandanten). Das bedeutet:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li>Wir verarbeiten Endkundendaten im Auftrag des jeweiligen Dienstleisters (z.B. Handwerksbetrieb, Friseursalon)</li>
+                <li>Die Endkundendaten werden an den beauftragenden Mandanten übermittelt</li>
+                <li>Es besteht ein Auftragsverarbeitungsvertrag (AVV) zwischen aireichbar und dem Mandanten</li>
+                <li>Der Mandant ist datenschutzrechtlich Verantwortlicher für die Verarbeitung seiner Kundendaten</li>
+              </ul>
             </section>
 
-            {/* 14. Kontaktformular */}
+            {/* 10. Dashboard */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">14. Nutzung des Kontaktformulars</h2>
-              <p className="mb-4">
-                Bei Fragen jeglicher Art besteht die Möglichkeit, über ein auf dieser Website bereitgestelltes Formular Kontakt mit dem Verantwortlichen aufzunehmen. Um zu wissen, von wem die Anfrage stammt und um diese beantworten zu können, ist die Angabe folgender Daten erforderlich: Name, Unternehmen, E-Mail, Telefon.
-              </p>
-              <p className="mb-4">
-                Die Datenverarbeitung zum Zwecke der Kontaktaufnahme erfolgt nach Art. 6 Abs. 1 S. 1 lit. a DSGVO auf Grundlage der freiwillig erteilten Einwilligung. Die erhobenen personenbezogenen Daten werden nach Erledigung der gestellten Anfrage regelmäßig gelöscht.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">10. Mandanten-Dashboard</h2>
+              <p className="mb-4">Für unsere Geschäftskunden stellen wir ein Dashboard unter www.aireichbar.de/kompass bereit.</p>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">10.1 Verarbeitete Daten</h3>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li>Login-Daten: Benutzername, gehashtes Passwort</li>
+                <li>Einstellungen: Öffnungszeiten, Dienstleistungen, Kanaleinstellungen</li>
+                <li>Statistiken: Anonymisierte Nutzungsdaten, Buchungsübersichten</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">10.2 Speicherort und Sicherheit</h3>
+              <p className="mb-4">Alle Dashboard-Daten werden verschlüsselt auf Servern in Deutschland (IONOS) gespeichert.</p>
             </section>
 
-            {/* 15. Anfragen per E-Mail oder Telefon */}
+            {/* 11. Speicherfristen */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">15. Anfragen per E-Mail oder Telefon</h2>
-              <p className="mb-4">
-                Es besteht die Möglichkeit, Anfragen per E-Mail oder telefonisch an den Verantwortlichen zu richten. Die dabei übermittelten personenbezogenen Daten werden ausschließlich zum Zwecke der Bearbeitung der Anfrage und etwaiger Anschlussfragen verarbeitet und gespeichert.
-              </p>
-              <p className="mb-4">
-                Die Rechtsgrundlage für diese Datenverarbeitung ist Art. 6 Abs. 1 lit. b DSGVO.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">11. Speicherfristen</h2>
+              <p className="mb-4">Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Buchungsanfragen:</strong> 90 Tage nach Termin</li>
+                <li><strong>Konversationen (WhatsApp/Chat):</strong> 30 Tage</li>
+                <li><strong>Server-Log-Files:</strong> 7 Tage</li>
+                <li><strong>Vertragsdaten (B2B):</strong> 10 Jahre (steuerliche Aufbewahrungspflicht)</li>
+                <li><strong>Dashboard-Daten:</strong> Während der Vertragslaufzeit, danach 30 Tage</li>
+              </ul>
             </section>
 
-            {/* 16. Anfragen per WhatsApp */}
+            {/* 12. Analyse-Tools */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">16. Anfragen per WhatsApp</h2>
-              <p className="mb-4">
-                Es besteht die Möglichkeit, Anfragen per WhatsApp an den Verantwortlichen zu richten. Bitte beachten Sie, dass WhatsApp die übermittelten Daten auf Servern in den USA speichert. Daher sollten keine sensiblen Informationen über diesen Kanal übermittelt werden.
-              </p>
-              <p className="mb-4">
-                Zusätzliche Informationen zur Verarbeitung Ihrer personenbezogenen Daten durch WhatsApp finden Sie in deren Datenschutzerklärung unter: <a href="https://www.whatsapp.com/legal/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.whatsapp.com/legal/</a>
-              </p>
-            </section>
-
-            {/* 17. Werbung */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">17. Untersagung der Zusendung von Werbe-E-Mails</h2>
-              <p className="mb-4">
-                Die Nutzung der im Impressum veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit untersagt. Der Betreiber dieser Website behält sich ausdrücklich rechtliche Schritte vor, falls es zu Verstößen kommt.
-              </p>
-            </section>
-
-            {/* 18. Analyse-Tools */}
-            <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">18. Verwendung von Analyse- und Tracking-Tools</h2>
-              <p className="mb-4">
-                Es kommen Analyse- und Tracking-Tools zum Einsatz, um eine bedarfsgerechte Gestaltung und kontinuierliche Optimierung dieser Website zu gewährleisten.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">12. Analyse-Tools</h2>
               <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">IONOS WebAnalytics</h3>
-              <p className="mb-4">
-                Es wird IONOS WebAnalytics verwendet, ein Webanalysedienst der 1&amp;1 IONOS SE. Laut IONOS erfolgt die Datenerhebung vollständig anonymisiert, sodass keine Rückschlüsse auf einzelne Personen möglich sind. Cookies werden von IONOS WebAnalytics nicht gespeichert.
-              </p>
-              <p className="mb-4">
-                Weitere Informationen: <a href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://www.ionos.de/terms-gtc/datenschutzerklaerung/</a>
-              </p>
+              <p className="mb-4">Wir verwenden IONOS WebAnalytics zur Analyse der Website-Nutzung. Laut IONOS erfolgt die Datenerhebung vollständig anonymisiert, sodass keine Rückschlüsse auf einzelne Personen möglich sind. Es werden keine Cookies gespeichert.</p>
+              <p className="mb-4"><a href="https://www.ionos.de/terms-gtc/datenschutzerklaerung/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Weitere Informationen</a></p>
             </section>
 
-            {/* 19. Kunden- und Vertragsdaten */}
+            {/* 13. Externe Dienste */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">19. Verarbeitung von Kunden- und Vertragsdaten</h2>
-              <p className="mb-4">
-                Personenbezogene Kunden- und Vertragsdaten werden zur Begründung, inhaltlichen Ausgestaltung und Änderung der Vertragsbeziehungen erhoben, verarbeitet und genutzt. Dazu können Name, Adresse, E-Mail-Adresse und Telefonnummer gehören.
-              </p>
-              <p className="mb-4">
-                Die Verarbeitung personenbezogener Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO zur Erfüllung eines Vertrags oder zur Durchführung vorvertraglicher Maßnahmen.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">13. Externe Dienste</h2>
+              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Google Fonts</h3>
+              <p className="mb-4">Diese Website nutzt Google Fonts zur einheitlichen Darstellung von Schriftarten. Die Fonts werden von Servern von Google Ireland Limited geladen. Dabei kann Ihre IP-Adresse an Google übermittelt werden.</p>
+              <p className="mb-4"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Datenschutzerklärung von Google</a></p>
             </section>
 
-            {/* 20. Verträge über Dienstleistungen */}
+            {/* 14. Drittstaaten */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">20. Abschluss von Verträgen über Dienstleistungen oder digitale Inhalte</h2>
-              <p className="mb-4">
-                Beim Abschluss von Verträgen über Dienstleistungen oder digitale Inhalte erhebt und verarbeitet der Verantwortliche Ihre personenbezogenen Daten, um die vertraglichen Verpflichtungen zu erfüllen. Diese Daten umfassen insbesondere Ihre Kontaktinformationen wie Name, Adresse, E-Mail-Adresse sowie relevante Informationen zur Nutzung der Dienstleistungen.
-              </p>
-              <p className="mb-4">
-                Die erhobenen Daten werden ausschließlich für die Durchführung und Erfüllung der Verträge genutzt und nach Abschluss des Vertragsverhältnisses sowie Ablauf etwaiger gesetzlicher Aufbewahrungsfristen gelöscht.
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">14. Datenweitergabe an Drittstaaten</h2>
+              <p className="mb-4">Bei der Nutzung von WhatsApp und Google-Diensten können Daten in die USA übermittelt werden. Diese Unternehmen sind unter dem <strong>EU-US Data Privacy Framework</strong> zertifiziert, das ein angemessenes Datenschutzniveau gewährleistet.</p>
             </section>
 
-            {/* 21. Digitaler Empfang */}
+            {/* 15. Ihre Rechte */}
             <section className="mb-10">
-              <h2 className="text-2xl font-bold text-foreground mb-4">21. Digitaler Empfang</h2>
-              <p className="mb-4">
-                Diese Website verwendet einen Digitalen Empfang, um Ihnen erweiterte Funktionalitäten und personalisierte Erlebnisse zu bieten. Dieses System nutzt moderne Technologie, um komplexe Aufgaben zu automatisieren, Analysen durchzuführen und mit Benutzern zu interagieren.
-              </p>
-              <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">ChatGPT</h3>
-              <p className="mb-4">
-                Es wird ChatGPT genutzt, um automatisierte Interaktionen auf der Website zu ermöglichen. ChatGPT ist ein Dienst der OpenAI, 3180 18th Street, San Francisco, CA 94110, USA.
-              </p>
-              <p className="mb-4">
-                Weitere Informationen zur Datenverarbeitung durch ChatGPT finden Sie in der Datenschutzerklärung von OpenAI: <a href="https://openai.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://openai.com/privacy</a>
-              </p>
+              <h2 className="text-2xl font-bold text-foreground mb-4">15. Ihre Rechte</h2>
+              <p className="mb-4">Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+              <ul className="list-disc list-inside space-y-2 mb-4">
+                <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Auskunft über die verarbeiteten Daten</li>
+                <li><strong>Berichtigungsrecht (Art. 16 DSGVO):</strong> Korrektur unrichtiger Daten</li>
+                <li><strong>Löschungsrecht (Art. 17 DSGVO):</strong> Löschung Ihrer Daten</li>
+                <li><strong>Einschränkungsrecht (Art. 18 DSGVO):</strong> Einschränkung der Verarbeitung</li>
+                <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Erhalt Ihrer Daten in maschinenlesbarem Format</li>
+                <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Widerspruch gegen die Verarbeitung</li>
+                <li><strong>Widerruf von Einwilligungen:</strong> Jederzeit mit Wirkung für die Zukunft</li>
+              </ul>
+              <p className="mb-4">Zur Ausübung Ihrer Rechte kontaktieren Sie uns unter <a href="mailto:info@aireichbar.de" className="text-primary hover:underline">info@aireichbar.de</a>.</p>
             </section>
 
-            <p className="text-sm text-muted-foreground mt-12">
-              Stand: Januar 2026
-            </p>
+            {/* 16. Beschwerderecht */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-bold text-foreground mb-4">16. Beschwerderecht</h2>
+              <p className="mb-4">Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die für uns zuständige Aufsichtsbehörde ist:</p>
+              <address className="not-italic bg-muted/50 p-4 rounded-lg mb-4">
+                <strong>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen</strong><br />
+                Kavalleriestraße 2-4<br />
+                40213 Düsseldorf<br />
+                <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.ldi.nrw.de</a>
+              </address>
+            </section>
+
+            {/* 17. Werbe-E-Mails */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-bold text-foreground mb-4">17. Widerspruch gegen Werbe-E-Mails</h2>
+              <p className="mb-4">Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Wir behalten uns ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen vor.</p>
+            </section>
+
+            <p className="text-sm text-muted-foreground mt-12">Stand: Februar 2026</p>
           </div>
         </div>
       </main>
